@@ -29,6 +29,9 @@
                     <input type="password" class="form-control" name="senha" placeholder="Senha">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
+               
+                    
+              
                 <div class="row">
                     <div class="col-xs-8">
                         <div class="checkbox icheck">
@@ -41,12 +44,29 @@
                         <input type="hidden" name="flag" value="home">
                         <input  type="submit" class="btn btn-primary btn-block btn-flat" value="Cadastrar">
                     </div><!-- /.col -->
+                    
+                </div>
+
+            </form><br>
+            <p>Esqueceu a senha? </p>
+            
+            <p>Digite o numero do apartamento </p>
+            <form action="Controle" method="POST">
+
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" name="apto" placeholder="Apto">
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-4">
+                        <input type="hidden" name="flag" value="altSenha">
+                        <input  type="submit" class="btn btn-primary btn-block btn-flat" value="Enviar">
+                    </div><!-- /.col -->
+                    
                 </div>
 
             </form>
-
-
-
 
         </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->

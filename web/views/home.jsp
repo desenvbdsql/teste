@@ -11,7 +11,6 @@
         <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
         <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
 
-
     </head>
     <body class="hold-transition skin-blue layout-boxed sidebar-mini">
         <div class="wrapper">
@@ -44,7 +43,6 @@
                                     <span class="label label-success">0</span>
                                 </a>
 
-
                                 <!-- Notifications Menu -->
                             <li class="dropdown notifications-menu">
                                 <!-- Menu toggle button -->
@@ -53,7 +51,6 @@
                                     <span class="label label-warning">0</span>
                                 </a>
 
-
                                 <!-- Tasks Menu -->
                             <li class="dropdown tasks-menu">
                                 <!-- Menu Toggle Button -->
@@ -61,7 +58,6 @@
                                     <i class="fa fa-flag-o"></i>
                                     <span class="label label-danger">0</span>
                                 </a>
-
 
                             </li>
                             <!-- User Account Menu -->
@@ -116,7 +112,6 @@
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
-
 
                     <!-- Sidebar Menu -->
                     <ul class="sidebar-menu">
@@ -205,7 +200,6 @@
                         </div>
                     </div>
 
-
                     <div class="col-md-6">
                         <div class="box box-info">
                             <div class="box-header with-border">
@@ -251,11 +245,9 @@
     <div class="control-sidebar-bg"></div>
 </div><!-- ./wrapper -->
 
-
 <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="dist/js/app.min.js"></script>
-
 
 </body>
 </html>

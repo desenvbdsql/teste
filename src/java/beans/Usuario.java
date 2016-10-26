@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package beans;
 
 /**
@@ -10,13 +5,13 @@ package beans;
  * @author Douglas
  */
 public class Usuario {
-    
+
     private int idUsuario;
     private int idPerfil;
     private String nome;
     private String email;
     private String senha;
-    private String apto;
+    private int apto;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -58,15 +53,12 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getApto() {
+    public int getApto() {
         return apto;
     }
 
-    public void setApto(String apto) {
+    public void setApto(int apto) {
         this.apto = apto;
     }
-    
-    
-    
-    
+
 }

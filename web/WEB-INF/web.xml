@@ -2,11 +2,35 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>Controle</servlet-name>
-        <servlet-class>controlers.Controle</servlet-class>
+        <servlet-class>controlers.Controlec</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>controlers.Logout</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>controlers.Login</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Perfil</servlet-name>
+        <servlet-class>controlers.Perfil</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Controle</servlet-name>
         <url-pattern>/Controle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Perfil</servlet-name>
+        <url-pattern>/Perfil</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

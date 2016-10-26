@@ -11,7 +11,6 @@
         <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
         <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
 
-
     </head>
     <body class="hold-transition skin-blue layout-boxed sidebar-mini">
         <div class="wrapper">
@@ -44,7 +43,6 @@
                                     <span class="label label-success">0</span>
                                 </a>
 
-
                                 <!-- Notifications Menu -->
                             <li class="dropdown notifications-menu">
                                 <!-- Menu toggle button -->
@@ -53,7 +51,6 @@
                                     <span class="label label-warning">0</span>
                                 </a>
 
-
                                 <!-- Tasks Menu -->
                             <li class="dropdown tasks-menu">
                                 <!-- Menu Toggle Button -->
@@ -61,7 +58,6 @@
                                     <i class="fa fa-flag-o"></i>
                                     <span class="label label-danger">0</span>
                                 </a>
-
 
                             </li>
                             <!-- User Account Menu -->
@@ -116,7 +112,6 @@
                         </div>
                     </div>
 
-
                     <!-- Sidebar Menu -->
                     <ul class="sidebar-menu">
                         <li class="header">MENU</li>
@@ -140,8 +135,6 @@
               
 <section class="content">
           <!-- conteudo) -->
-         
-
              
 <script type="text/javascript">
  function validaPerfil() {
@@ -176,7 +169,6 @@
             var ext = path.substring(path.lastIndexOf(".") + 1, path.length).toLowerCase();
             var isValidFile = false;
 
-
             for (var i = 0; i < validFilesTypes.length; i++) {
                 if (ext == validFilesTypes[i]) {
                     isValidFile = true;
@@ -193,13 +185,9 @@
             return isValidFile;
         };
     </script>
-
-
     
     <div>
         
-    
-
     <!-- WAIT -->
         <div id="idWait" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -219,7 +207,6 @@
             </div>
         </div>
 
-
         <div class="box">
             <div class="box-header">
             <h2>
@@ -229,7 +216,6 @@
             <p>
                 Alterar Perfil - Aqui é possível alter sua foto, nome e e-mail.</p>
         </div>
-
 
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -302,11 +288,9 @@
     <div class="control-sidebar-bg"></div>
 </div><!-- ./wrapper -->
 
-
 <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="dist/js/app.min.js"></script>
-
 
 </body>
 </html>

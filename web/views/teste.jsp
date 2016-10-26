@@ -14,14 +14,11 @@
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <!-- daterange picker -->
 
-
-
         <!-- Theme style -->
         <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
-
 
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
@@ -464,8 +461,6 @@
                 <!-- Main content -->
                 <section class="content">
 
-
-
                     <div class="row">
                         <div class="col-md-6">
 
@@ -495,12 +490,8 @@
                                         </div><!-- /.input group -->
                                     </div><!-- /.form group -->
 
-
-
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
-
-
 
                         </div><!-- /.box -->
                     </div><!-- /.col (right) -->
@@ -693,7 +684,6 @@
 <script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
 
 <!-- date-range-picker -->
-
 
 <!-- AdminLTE App -->
 <script src="dist/js/app.min.js"></script>
