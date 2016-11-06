@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-xs-4">
+                        <div class="col-xs-5">
                             <input type="hidden" name="flag" value="editSenha">
                             <input  type="submit" class="btn btn-primary btn-block btn-flat" value="Trocar senha">
                         </div><!-- /.col -->

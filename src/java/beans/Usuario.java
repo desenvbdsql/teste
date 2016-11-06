@@ -60,5 +60,4 @@ public class Usuario {
     public void setApto(int apto) {
         this.apto = apto;
     }
-
 }

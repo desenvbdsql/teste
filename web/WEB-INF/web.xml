@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>Controle</servlet-name>
+        <servlet-name>Controlec</servlet-name>
         <servlet-class>controlers.Controlec</servlet-class>
     </servlet>
     <servlet>
@@ -17,8 +17,8 @@
         <servlet-class>controlers.Perfil</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Controle</servlet-name>
-        <url-pattern>/Controle</url-pattern>
+        <servlet-name>Controlec</servlet-name>
+        <url-pattern>/Controlec</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
@@ -37,4 +37,10 @@
             30
         </session-timeout>
     </session-config>
+    <jsp-config>
+        <jsp-property-group>
+            <display-name>Home</display-name>
+            <url-pattern>/views/home.jsp</url-pattern>
+        </jsp-property-group>
+    </jsp-config>
 </web-app>

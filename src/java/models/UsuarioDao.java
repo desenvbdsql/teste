@@ -20,6 +20,36 @@ public class UsuarioDao {
         // retorna a conexao no momento da chamada da classe
         this.con = Conexao.getInstance().getConnection();
     }
+    
+    public List<Usuario> pesquisaLogin(String name, String pwd) {
+        List<Usuario> ListaUsuario = new ArrayList<>();
+        String sql = "SELECT * FROM tb_Usuario WHERE nome = '" + name + "' and senha = '" + pwd + "'";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setIdUsuario(rs.getInt("idUsuario"));
+                usuario.setIdPerfil(rs.getInt("idPerfil"));
+                usuario.setNome(rs.getString("nome"));
+                usuario.setEmail(rs.getString("email"));
+
+                ListaUsuario.add(usuario);
+            }
+            
+            rs.close();
+            ps.close();
+            
+            return ListaUsuario;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("Erro ao pesquisar usuário", ex);
+        }
+    }
 
     public List<Usuario> Pesquisar(Usuario usuario) {
         List<Usuario> ListaUsuario = new ArrayList<>();

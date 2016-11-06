@@ -1,18 +1,19 @@
-
 package controlers;
 
+import beans.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.UsuarioDao;
 
-/**
- *
- * @author luizo
- */
 public class Login extends HttpServlet {
 
     /**
@@ -25,20 +26,52 @@ public class Login extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            
-            String name = request.getParameter("name");
-            String pwd = request.getParameter("password");
-            
-            if (pwd.equals("")) {
-                HttpSession session = request.getSession();
-                session.setAttribute("name", name);
-                
-            }else {
-                request.getRequestDispatcher("index.html");
+
+        try {
+            HttpSession session = request.getSession();
+
+            String name = request.getParameter("usuario");
+            String pwd = request.getParameter("senha");
+
+            if ((name.equals("")) || (pwd.equals(""))) {
+                String erro = "Campos vazios ou inválidos!";
+                request.setAttribute("mensagem", erro);
+                request.getRequestDispatcher("views/erro.jsp").forward(request, response);
             }
+
+            UsuarioDao uDAO = new UsuarioDao();
+
+            List<Usuario> usuario = uDAO.pesquisaLogin(name, pwd);
+            if (usuario != null) {
+
+                for (Usuario usu : usuario) {
+
+                    session.setAttribute("idUsuario", usu.getIdUsuario());
+                    session.setAttribute("idPerfil", usu.getIdPerfil());
+                    session.setAttribute("nome", usu.getNome());
+                    session.setAttribute("email", usu.getEmail());
+                    session.setAttribute("apto", usu.getApto());
+                    System.out.println(".....tttt... " + session.getAttribute("email"));
+
+                    //request.getRequestDispatcher("views/home.jsp").forward(request, response);
+                    if (session.getAttribute("idPerfil").equals(2)) {
+                        // Redireciona para a View
+                        request.getRequestDispatcher("views/home.jsp").forward(request, response);
+
+                    } else if (session.getAttribute("idPerfil").equals(1)) {
+                        // Redireciona para a View
+                        request.getRequestDispatcher("views/home.jsp").forward(request, response);
+
+                    }
+                }
+
+            } else {
+                request.getRequestDispatcher("index.html").forward(request, response);
+            }
+
+        } finally {
         }
     }
 
@@ -54,7 +87,9 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        PrintWriter out = response.getWriter();
+        out.printf("sai fora");
+
     }
 
     /**
@@ -68,7 +103,11 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

@@ -10,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.SendResult;
 import models.UsuarioDao;
 
 public class Controlec extends HttpServlet {
@@ -18,57 +20,10 @@ public class Controlec extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
 
+        HttpSession session = request.getSession();
         String flag = request.getParameter("flag");
 
-        if (flag == null) {
-            request.getRequestDispatcher("index.html").
-                    forward(request, response);
-        }
-
-        // Verifica qual ação deve ser tomada
         switch (flag) {
-            case "home":
-
-                // significa que o formulário foi preenchido e foi submetido ao Controlec
-                // declara as variaveis string para receber os dados postados
-                Usuario usuario = new Usuario();
-
-                usuario.setNome(request.getParameter("usuario"));
-                usuario.setSenha(request.getParameter("senha"));
-
-                UsuarioDao usuarioDao = new UsuarioDao();
-
-                List<Usuario> ListaUsuario = usuarioDao.Pesquisar(usuario);
-
-                if (ListaUsuario.isEmpty()) {
-                    String erro = "Campos vazios ou inválidos!";
-                    request.setAttribute("mensagem", erro);
-                    request.getRequestDispatcher("views/erro.jsp").forward(request, response);
-                }
-
-                int idUsuario = 0;
-                int idPerfil = 0;
-                String nome = "";
-
-                //jogar na sessao
-                for (Usuario teste : ListaUsuario) {
-                    idUsuario = teste.getIdUsuario();
-                    idPerfil = teste.getIdPerfil();
-                    nome = teste.getNome();
-                }
-
-                if (idPerfil == 2) {
-                    // Redireciona para a View
-                    request.getRequestDispatcher("views/home.jsp").forward(request, response);
-
-                } else if (idPerfil == 1) {
-
-                    // Redireciona para a View
-                    request.getRequestDispatcher("views/home.jsp").forward(request, response);
-
-                }
-
-                break;
 
             case "perfil":
 
@@ -145,25 +100,25 @@ public class Controlec extends HttpServlet {
                 break;
 
             case "editSenha":
-                
+
                 int ap = Integer.parseInt(request.getParameter("ap"));
-                
+
                 String s = request.getParameter(String.valueOf("novaSenha"));
                 String cs = request.getParameter("confSenha");
-                
+
                 if ((s != null) && (cs != null)) {
                     Usuario user = new Usuario();
                     UsuarioDao userDao = new UsuarioDao();
-                    
+
                     user.setApto(ap);
                     user.setSenha(s);
                     userDao.editarSenha(user);
                     request.getRequestDispatcher("index.html").forward(request, response);
-                    
+
                 } else {
                     request.getRequestDispatcher("index.html").forward(request, response);
                 }
-                
+
                 break;
         }
     }

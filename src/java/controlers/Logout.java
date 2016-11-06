@@ -1,8 +1,6 @@
-
 package controlers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,14 +25,23 @@ public class Logout extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try {
+
+            HttpSession session = request.getSession();
+
+            session.setAttribute("idUduario", "");
+            session.setAttribute("idPerfil", "");
+            session.setAttribute("nome", "");
+            session.setAttribute("email", "");
+            session.setAttribute("apto", "");
+            
+            session.invalidate();
             
             request.getRequestDispatcher("index.html").include(request, response);
             
-            HttpSession session = request.getSession();
-            session.invalidate();
-            
-            
+
+        } finally {
+
         }
     }
 

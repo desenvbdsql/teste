@@ -1,15 +1,22 @@
-<!DOCTYPE html>
+<%@page import="controlers.Logout"%>
+<%@page import="controlers.Login"%>
+
 <html>
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Home</title>    
-        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">    
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">    
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <%
+            String contextPath = request.getContextPath();
+            //System.out.println("[EU] Home.jsp - contextPath() " + contextPath);
+        %>
+        <link rel="stylesheet" href="<%=contextPath%>/bootstrap/css/bootstrap.min.css">    
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-        <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-        <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+        <link rel="stylesheet" href="<%=contextPath%>/dist/css/AdminLTE.min.css">
+        <link rel="stylesheet" href="<%=contextPath%>/dist/css/skins/skin-blue.min.css">
 
     </head>
     <body class="hold-transition skin-blue layout-boxed sidebar-mini">
@@ -65,17 +72,23 @@
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!-- The user image in the navbar-->
-                                    <img src="dist/img/user9.jpg" class="user-image" alt="User Image">
+                                    <img src="<%=contextPath%>/dist/img/user9.jpg" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                    <span class="hidden-xs">Rangel Paolo</span>
+
+                                    <%
+                                        String nome = null;
+                                        nome = session.getAttribute("nome").toString();
+                                    %>
+                                    <span class="hidden-xs">
+                                        <%=nome%>
+                                    </span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <img src="dist/img/user9.jpg" class="img-circle" alt="User Image">
+                                        <img src="<%=contextPath%>/dist/img/user9.jpg" class="img-circle" alt="User Image">
                                         <p>
-                                            Rangel Paolo - Estagiário
-
+                                            <%=nome%>
                                         </p>
                                     </li>
                                     <!-- Menu Footer-->
@@ -85,7 +98,11 @@
 
                                         </div>
                                         <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-flat">Sair</a>
+                                            <form action="Logout" method="POST">
+                                                <!--<a href="<%new Logout();%>" class="btn btn-default btn-flat">Sair</a>-->
+                                                <input  type="submit" class="btn btn-default btn-flat" value="Sair">
+                                            </form>
+
                                         </div>
                                     </li>
                                 </ul>
@@ -104,10 +121,10 @@
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="dist/img/user9.jpg" class="img-circle" alt="User Image">
+                            <img src="<%=contextPath%>/dist/img/user9.jpg" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                            <p>Rangel Paolo</p>
+                            <p><%=nome%></p>
                             <!-- Status -->
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
@@ -117,8 +134,10 @@
                     <ul class="sidebar-menu">
                         <li class="header">MENU</li>
                         <!-- Optionally, you can add icons to the links -->
-                        <li class="active"><a href="Controle?flag=home"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
-                        <li><a href="Controle?flag=administradora"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>
+
+                        <li class="active" >
+                            <a href="<%=contextPath%>/views/home.jsp"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
+                        <li><a href="<%=contextPath%>/views/administradora.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>
                         <li><a href="Controle?flag=alosindico"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
                         <li><a href="Controle?flag=assembleia"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
                         <li><a href="Controle?flag=ocorrencia"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
@@ -135,7 +154,7 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                       BEM VINDO
+                        BEM VINDO
                         <small>Ao site do seu condomínio</small>
                     </h1>
 
@@ -245,9 +264,9 @@
     <div class="control-sidebar-bg"></div>
 </div><!-- ./wrapper -->
 
-<script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="dist/js/app.min.js"></script>
+<script src="<%=contextPath%>/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<script src="<%=contextPath%>/bootstrap/js/bootstrap.min.js"></script>
+<script src="<%=contextPath%>/dist/js/app.min.js"></script>
 
 </body>
 </html>
