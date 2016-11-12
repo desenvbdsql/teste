@@ -1,5 +1,6 @@
 package controlers;
 
+import beans.Administradora;
 import java.io.IOException;
 import beans.Usuario;
 import java.sql.SQLException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.SendResult;
+import models.AdministradoraDAO;
 import models.UsuarioDao;
 
 public class Controlec extends HttpServlet {
@@ -32,7 +34,14 @@ public class Controlec extends HttpServlet {
 
                 break;
 
-            case "administradora":
+            case "administradora":                
+                
+//                Administradora adm = new Administradora();
+                
+//                AdministradoraDAO admDao = new AdministradoraDAO();
+                List<Administradora> listaAdm = new AdministradoraDAO().Pesquisar();
+
+                request.setAttribute("listaAdm", listaAdm);
 
                 // Redireciona para a View
                 request.getRequestDispatcher("views/administradora.jsp").forward(request, response);

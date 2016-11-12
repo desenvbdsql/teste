@@ -5,32 +5,32 @@
         <servlet-class>controlers.Controlec</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Logout</servlet-name>
-        <servlet-class>controlers.Logout</servlet-class>
+        <servlet-name>LogoutServ</servlet-name>
+        <servlet-class>controlers.LogoutServ</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Login</servlet-name>
-        <servlet-class>controlers.Login</servlet-class>
+        <servlet-name>LoginServ</servlet-name>
+        <servlet-class>controlers.LoginServ</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Perfil</servlet-name>
-        <servlet-class>controlers.Perfil</servlet-class>
+        <servlet-name>PerfilServ</servlet-name>
+        <servlet-class>controlers.PerfilServ</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Controlec</servlet-name>
         <url-pattern>/Controlec</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Logout</servlet-name>
-        <url-pattern>/Logout</url-pattern>
+        <servlet-name>LogoutServ</servlet-name>
+        <url-pattern>/LogoutServ</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Login</servlet-name>
-        <url-pattern>/Login</url-pattern>
+        <servlet-name>LoginServ</servlet-name>
+        <url-pattern>/LoginServ</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Perfil</servlet-name>
-        <url-pattern>/Perfil</url-pattern>
+        <servlet-name>PerfilServ</servlet-name>
+        <url-pattern>/PerfilServ</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -43,4 +43,5 @@
             <url-pattern>/views/home.jsp</url-pattern>
         </jsp-property-group>
     </jsp-config>
+        
 </web-app>

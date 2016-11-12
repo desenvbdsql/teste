@@ -1,3 +1,10 @@
+<%@page import="java.io.PrintWriter"%>
+<%@page import="java.util.List"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="models.AdministradoraDAO" %>
+<%@page import="beans.Administradora"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,20 +14,33 @@
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <%
             String contextPath = request.getContextPath();
-            System.out.println("[EU] Home.jsp - contextPath() " + contextPath);
         %>
+        <%
+//            Administradora adm = new Administradora();
+//            AdministradoraDAO admDao = new AdministradoraDAO();
+//            List<Administradora> ListaAdm = admDao.Pesquisar(adm);
+            List<Administradora> listaAdm = new AdministradoraDAO().Pesquisar();
 
+//             ListaAdm = admDao.Pesquisar(adm);
+//            request.setAttribute("listaAdm", ListaAdm);
+        %>
         <link rel="stylesheet" href="<%=contextPath%>/bootstrap/css/bootstrap.min.css">    
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <link rel="stylesheet" href="<%=contextPath%>/dist/css/AdminLTE.min.css">
         <link rel="stylesheet" href="<%=contextPath%>/dist/css/skins/skin-blue.min.css">
+        <script src="<%=contextPath%>/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+        <script src="<%=contextPath%>/bootstrap/js/bootstrap.min.js"></script>
+        <script src="<%=contextPath%>/dist/js/app.min.js"></script>
         <%
             String usuario = null;
             usuario = session.getAttribute("nome").toString();
         %>
 
     </head>
+
+    <%--<c:forEach var="administradora" items="${ListaAdm}">--%>
+
     <body class="hold-transition skin-blue layout-boxed sidebar-mini">
         <div class="wrapper">
 
@@ -32,7 +52,7 @@
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>P</b>JT</span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>Projeto</b>5º</span>
+                    <span class="logo-lg"><b>Projeto</b>5Âº</span>
                 </div>
 
                 <!-- Header Navbar -->
@@ -106,6 +126,9 @@
                     </div>
                 </nav>
             </header>
+
+
+
             <!-- Left side column. contains the logo and sidebar -->
             <aside class="main-sidebar">
 
@@ -130,13 +153,13 @@
                         <li class="header">MENU</li>
                         <!-- Optionally, you can add icons to the links -->
                         <li class="active">
-                            <a href="<%=contextPath%>/views/home.jsp"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
+                            <a href="<%=contextPath%>/views/home.jsp"><i class="fa fa-home"></i> <span>InÃ­cÃ­o</span></a></li>
                         <li><a href="<%=contextPath%>/views/administradora.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>
-                        <li><a href="<%=contextPath%>/views/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
-                        <li><a href="<%=contextPath%>/views/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
-                        <li><a href="<%=contextPath%>/views/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
+                        <li><a href="<%=contextPath%>/views/aloSindico.jsp"><i class="fa fa-phone"></i> <span>AlÃ´ Sindico</span></a></li>
+                        <li><a href="<%=contextPath%>/views/assembleia.jsp"><i class="fa fa-group"></i> <span>AssemblÃ©ia</span></a></li>
+                        <li><a href="<%=contextPath%>/views/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>OcorrÃªncia</span></a></li>
                         <li><a href="<%=contextPath%>/views/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
-                        <li><a href="<%=contextPath%>/views/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li>
+                        <li><a href="<%=contextPath%>/views/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte TÃ©cnico</span></a></li>
                         </li>
                     </ul><!-- /.sidebar-menu -->
                 </section>
@@ -155,7 +178,6 @@
                     <!-- conteudo) -->
 
                     <div>
-
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="box">
@@ -174,21 +196,38 @@
                                         <div>
                                             <table class="table table-bordered table-striped dataTable" cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_dgvAdministradora" style="border-collapse:collapse;">
                                                 <tbody><tr>
-                                                        <th scope="col">Nome</th><th scope="col">Serviço</th><th scope="col">Contato</th><th scope="col">Telefone</th><th scope="col">Email</th><th scope="col">Endereço</th>
-                                                    </tr><tr>
-                                                        <td>Imobiliaria e ADM.</td><td>Administradora</td><td>Nome </td><td>(11) 0000-0000 </td><td>adm@adm.com.br</td><td>Endereço, 0000</td>
+                                                        <th scope="col">Nome</th><th scope="col">ServiÃ§o</th><th scope="col">Contato</th><th scope="col">Telefone</th><th scope="col">Email</th><th scope="col">EndereÃ§o</th>
                                                     </tr>
+
+                                                    <%
+                                                        if (listaAdm.size() == 0) {
+                                                    %>
+                                                <p>Sem dados de adminstradores</p>
+                                                <%
+                                                } else {
+
+                                                    for (Administradora admin : listaAdm) {
+
+                                                %>
+                                                <tr>
+                                                    <td><%=admin.getNome()%></td><td><%=admin.getServico()%></td><td><%=admin.getContato()%></td><td><%=admin.getTelefone()%></td><td><%=admin.getEmail()%></td><td><%=admin.getEndereco()%></td>
+                                                </tr>
+                                                <%
+                                                        }
+                                                    }
+                                                %>
+
                                                 </tbody></table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <!-- fim conteudo-->
                 </section>
             </div><!-- /.content-wrapper -->
+
 
             <!-- Main Footer -->
             <footer class="main-footer">
@@ -202,7 +241,7 @@
                 <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
                     <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
                     <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-                </ul>      
+                </ul>
         </div>
     </aside><!-- /.control-sidebar -->
     <!-- Add the sidebar's background. This div must be placed
@@ -210,11 +249,8 @@
     <div class="control-sidebar-bg"></div>
 </div><!-- ./wrapper -->
 
-
-<script src="<%=contextPath%>/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-<script src="<%=contextPath%>/bootstrap/js/bootstrap.min.js"></script>
-<script src="<%=contextPath%>/dist/js/app.min.js"></script>
-
-
 </body>
+
+<%--</c:forEach>--%>
+
 </html>

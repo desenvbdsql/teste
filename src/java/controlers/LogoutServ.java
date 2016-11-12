@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author luizo
  */
-public class Logout extends HttpServlet {
+public class LogoutServ extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -25,24 +25,19 @@ public class Logout extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
 
-            HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
 
-            session.setAttribute("idUduario", "");
-            session.setAttribute("idPerfil", "");
-            session.setAttribute("nome", "");
-            session.setAttribute("email", "");
-            session.setAttribute("apto", "");
-            
-            session.invalidate();
-            
-            request.getRequestDispatcher("index.html").include(request, response);
-            
+        session.setAttribute("idUduario", "");
+        session.setAttribute("idPerfil", "");
+        session.setAttribute("nome", "");
+        session.setAttribute("email", "");
+        session.setAttribute("apto", "");
 
-        } finally {
+        session.invalidate();
 
-        }
+        request.getRequestDispatcher("index.html").include(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

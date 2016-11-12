@@ -1,22 +1,29 @@
-<%@page import="controlers.Logout"%>
-<%@page import="controlers.Login"%>
+<%@page import="controlers.LogoutServ"%>
+<%@page import="controlers.LoginServ"%>
 
+<!DOCTYPE html>
 <html>
 
     <head>
+        <%
+            String contextPath = request.getContextPath();
+        %>
+        <%
+            String nome = null;
+            nome = session.getAttribute("nome").toString();
+        %>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Home</title>    
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <%
-            String contextPath = request.getContextPath();
-            //System.out.println("[EU] Home.jsp - contextPath() " + contextPath);
-        %>
         <link rel="stylesheet" href="<%=contextPath%>/bootstrap/css/bootstrap.min.css">    
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <link rel="stylesheet" href="<%=contextPath%>/dist/css/AdminLTE.min.css">
         <link rel="stylesheet" href="<%=contextPath%>/dist/css/skins/skin-blue.min.css">
+        <script src="<%=contextPath%>/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+        <script src="<%=contextPath%>/bootstrap/js/bootstrap.min.js"></script>
+        <script src="<%=contextPath%>/dist/js/app.min.js"></script>
 
     </head>
     <body class="hold-transition skin-blue layout-boxed sidebar-mini">
@@ -75,10 +82,6 @@
                                     <img src="<%=contextPath%>/dist/img/user9.jpg" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
 
-                                    <%
-                                        String nome = null;
-                                        nome = session.getAttribute("nome").toString();
-                                    %>
                                     <span class="hidden-xs">
                                         <%=nome%>
                                     </span>
@@ -99,7 +102,7 @@
                                         </div>
                                         <div class="pull-right">
                                             <form action="Logout" method="POST">
-                                                <!--<a href="<%new Logout();%>" class="btn btn-default btn-flat">Sair</a>-->
+                                                <!--<a href="<%new LogoutServ();%>" class="btn btn-default btn-flat">Sair</a>-->
                                                 <input  type="submit" class="btn btn-default btn-flat" value="Sair">
                                             </form>
 
@@ -138,11 +141,11 @@
                         <li class="active" >
                             <a href="<%=contextPath%>/views/home.jsp"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
                         <li><a href="<%=contextPath%>/views/administradora.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>
-                        <li><a href="Controle?flag=alosindico"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
-                        <li><a href="Controle?flag=assembleia"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
-                        <li><a href="Controle?flag=ocorrencia"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
-                        <li><a href="Controle?flag=aviso"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
-                        <li><a href="Controle?flag=suporte"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li>
+                        <li><a href="<%=contextPath%>/views/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
+                        <li><a href="<%=contextPath%>/views/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
+                        <li><a href="<%=contextPath%>/views/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
+                        <li><a href="<%=contextPath%>/views/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
+                        <li><a href="<%=contextPath%>/views/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li>
                         </li>
                     </ul><!-- /.sidebar-menu -->
                 </section>
@@ -263,10 +266,6 @@
          immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 </div><!-- ./wrapper -->
-
-<script src="<%=contextPath%>/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-<script src="<%=contextPath%>/bootstrap/js/bootstrap.min.js"></script>
-<script src="<%=contextPath%>/dist/js/app.min.js"></script>
 
 </body>
 </html>

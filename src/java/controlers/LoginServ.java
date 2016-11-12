@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.UsuarioDao;
 
-public class Login extends HttpServlet {
+public class LoginServ extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,8 +29,9 @@ public class Login extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
 
+        HttpSession session = request.getSession();
+        
         try {
-            HttpSession session = request.getSession();
 
             String name = request.getParameter("usuario");
             String pwd = request.getParameter("senha");
@@ -42,8 +43,8 @@ public class Login extends HttpServlet {
             }
 
             UsuarioDao uDAO = new UsuarioDao();
-
             List<Usuario> usuario = uDAO.pesquisaLogin(name, pwd);
+            
             if (usuario != null) {
 
                 for (Usuario usu : usuario) {
@@ -53,14 +54,14 @@ public class Login extends HttpServlet {
                     session.setAttribute("nome", usu.getNome());
                     session.setAttribute("email", usu.getEmail());
                     session.setAttribute("apto", usu.getApto());
-                    System.out.println(".....tttt... " + session.getAttribute("email"));
 
                     //request.getRequestDispatcher("views/home.jsp").forward(request, response);
-                    if (session.getAttribute("idPerfil").equals(2)) {
+                    if (session.getAttribute("idPerfil").equals(1)) {
                         // Redireciona para a View
+                        
                         request.getRequestDispatcher("views/home.jsp").forward(request, response);
 
-                    } else if (session.getAttribute("idPerfil").equals(1)) {
+                    } else if (session.getAttribute("idPerfil").equals(2)) {
                         // Redireciona para a View
                         request.getRequestDispatcher("views/home.jsp").forward(request, response);
 
@@ -106,7 +107,7 @@ public class Login extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginServ.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

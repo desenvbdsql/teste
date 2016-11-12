@@ -1,4 +1,3 @@
-
 package controlers;
 
 import java.io.IOException;
@@ -13,7 +12,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author luizo
  */
-public class Perfil extends HttpServlet {
+public class PerfilServ extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -27,18 +26,30 @@ public class Perfil extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            
-            request.getRequestDispatcher("home").include(request, response);
-            
-            HttpSession session = request.getSession();
-            if (session != null) {
-                String name = (String) session.getAttribute("name");
-                
-            }else {
-                request.getRequestDispatcher("login").include(request, response);
+
+        HttpSession session = request.getSession();
+
+//        try (PrintWriter out = response.getWriter()) {
+//
+//            request.getRequestDispatcher("home").include(request, response);
+//
+//            if (session != null) {
+//                String name = (String) session.getAttribute("name");
+//
+//            } else {
+//                request.getRequestDispatcher("login").include(request, response);
+//            }
+//        }
+
+        // verifica se existe uma sessao registrada, se nao houver,         
+        try {
+            if (!session.getAttribute("idUsuario").equals("")) {
+                //out.print("Usuário: " + session.getAttribute("nome"));
             }
+        } catch (Exception e) {
+            response.sendRedirect("index.html");
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
