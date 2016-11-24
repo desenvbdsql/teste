@@ -1,35 +1,30 @@
-<%@page import="controlers.LoginServ"%>
-<%@page import="controlers.LogoutServ"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="java.util.List"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="models.AdministradoraDAO" %>
 <%@page import="beans.Administradora"%>
+<%@page import="controlers.LogoutServ"%>
+<%@page import="controlers.LoginServ"%>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Administradora</title>    
-        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <%
             String contextPath = request.getContextPath();
+        %>
+        <%
+            List<Administradora> listaAdm = new AdministradoraDAO().Pesquisar();
         %>
         <%
             String nome = null;
             nome = session.getAttribute("nome").toString();
         %>
-        <%
-//            Administradora adm = new Administradora();
-//            AdministradoraDAO admDao = new AdministradoraDAO();
-//            List<Administradora> ListaAdm = admDao.Pesquisar(adm);
-            List<Administradora> listaAdm = new AdministradoraDAO().Pesquisar();
 
-//             ListaAdm = admDao.Pesquisar(adm);
-//            request.setAttribute("listaAdm", ListaAdm);
-%>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Administradora</title>    
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">  
         <link rel="stylesheet" href="<%=contextPath%>/bootstrap/css/bootstrap.min.css">    
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -39,10 +34,8 @@
         <script src="<%=contextPath%>/bootstrap/js/bootstrap.min.js"></script>
         <script src="<%=contextPath%>/dist/js/app.min.js"></script>
 
+
     </head>
-
-    <%--<c:forEach var="administradora" items="${ListaAdm}">--%>
-
     <body class="hold-transition skin-blue layout-boxed sidebar-mini">
         <div class="wrapper">
 
@@ -99,22 +92,23 @@
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!-- The user image in the navbar-->
-                                    <img src="<%=contextPath%>/dist/img/smile.png" class="user-image" alt="User Image">
+                                    <img src="<%=contextPath%>/dist/img/avatar04.png" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                     <span class="hidden-xs"><%=nome%></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <img src="<%=contextPath%>/dist/img/smile.png" class="img-circle" alt="User Image">
+                                        <img src="<%=contextPath%>/dist/img/avatar04.png" class="img-circle" alt="User Image">
                                         <p>
                                             <%=nome%>
+
                                         </p>
                                     </li>
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="<%=contextPath%>/views/perfil.jsp" class="btn btn-default btn-flat">Perfil</a>
+                                            <a href="<%=contextPath%>/views/viewSindico/perfil.jsp" class="btn btn-default btn-flat">Perfil</a>
 
                                         </div>
                                         <div class="pull-right">
@@ -131,8 +125,6 @@
                     </div>
                 </nav>
             </header>
-
-
             <!-- Left side column. contains the logo and sidebar -->
             <aside class="main-sidebar">
 
@@ -142,7 +134,7 @@
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="<%=contextPath%>/dist/img/smile.png" class="img-circle" alt="User Image">
+                            <img src="<%=contextPath%>/dist/img/avatar04.png" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
                             <p><%=nome%></p>
@@ -156,16 +148,14 @@
                     <ul class="sidebar-menu">
                         <li class="header">MENU</li>
                         <!-- Optionally, you can add icons to the links -->
-                        <li class="active">
-                            <a href="<%=contextPath%>/views/home.jsp"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
-                        <li><a href="<%=contextPath%>/views/administradora.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>
-                        <li><a href="<%=contextPath%>/views/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
-                        <li><a href="<%=contextPath%>/views/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
-                        <li><a href="<%=contextPath%>/views/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
-                        <li><a href="<%=contextPath%>/views/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
-                        <li><a href="<%=contextPath%>/views/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li>
-                        </li>
-                    </ul><!-- /.sidebar-menu -->
+                        <li class="active"><a href="<%=contextPath%>/views/viewSindico/homeSindico.jsp"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/administradoraSindico.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/alterarSenha.jsp"><i class="fa fa-key"></i> <span>Alterar Senha</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li><!-- /.sidebar-menu -->
                 </section>
                 <!-- /.sidebar -->
             </aside>
@@ -182,6 +172,7 @@
                     <!-- conteudo) -->
 
                     <div>
+
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="box">
@@ -206,7 +197,7 @@
                                                     <%
                                                         if (listaAdm.size() == 0) {
                                                     %>
-                                                <p>Sem dados de adminstradores</p>
+                                                <p>Sem dados de administradores</p>
                                                 <%
                                                 } else {
 
@@ -216,22 +207,20 @@
                                                 <tr>
                                                     <td><%=admin.getNome()%></td><td><%=admin.getServico()%></td><td><%=admin.getContato()%></td><td><%=admin.getTelefone()%></td><td><%=admin.getEmail()%></td><td><%=admin.getEndereco()%></td>
                                                 </tr>
-                                                <%
-                                                        }
+                                                <%      }
                                                     }
                                                 %>
-
                                                 </tbody></table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <!-- fim conteudo-->
                 </section>
             </div><!-- /.content-wrapper -->
-
 
             <!-- Main Footer -->
             <footer class="main-footer">
@@ -245,7 +234,7 @@
                 <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
                     <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
                     <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-                </ul>
+                </ul>      
         </div>
     </aside><!-- /.control-sidebar -->
     <!-- Add the sidebar's background. This div must be placed
@@ -253,8 +242,6 @@
     <div class="control-sidebar-bg"></div>
 </div><!-- ./wrapper -->
 
+
 </body>
-
-<%--</c:forEach>--%>
-
 </html>

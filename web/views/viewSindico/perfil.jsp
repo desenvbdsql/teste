@@ -1,5 +1,6 @@
 <%@page import="controlers.LoginServ"%>
 <%@page import="controlers.LogoutServ"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -55,6 +56,7 @@
                                     <span class="label label-success">0</span>
                                 </a>
 
+
                                 <!-- Notifications Menu -->
                             <li class="dropdown notifications-menu">
                                 <!-- Menu toggle button -->
@@ -62,6 +64,7 @@
                                     <i class="fa fa-bell-o"></i>
                                     <span class="label label-warning">0</span>
                                 </a>
+
 
                                 <!-- Tasks Menu -->
                             <li class="dropdown tasks-menu">
@@ -71,20 +74,21 @@
                                     <span class="label label-danger">0</span>
                                 </a>
 
+
                             </li>
                             <!-- User Account Menu -->
                             <li class="dropdown user user-menu">
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!-- The user image in the navbar-->
-                                    <img src="<%=contextPath%>/dist/img/smile.png" class="user-image" alt="User Image">
+                                    <img src="<%=contextPath%>/dist/img/avatar04.png" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                    <span class="hidden-xs"><%=nome%></span>
+                                    <span class="hidden-xs">Rangel Paolo</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <img src="<%=contextPath%>/dist/img/smile.png" class="img-circle" alt="User Image">
+                                        <img src="<%=contextPath%>/dist/img/avatar04.png" class="img-circle" alt="User Image">
                                         <p>
                                             <%=nome%>
 
@@ -93,7 +97,7 @@
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="<%=contextPath%>/views/perfil.jsp" class="btn btn-default btn-flat">Perfil</a>
+                                            <a href="<%=contextPath%>/views/viewSindico/perfil.jsp" class="btn btn-default btn-flat">Perfil</a>
                                         </div>
                                         <div class="pull-right">
                                             <form action="LogoutServ" method="POST">
@@ -118,7 +122,7 @@
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="<%=contextPath%>/dist/img/smile.png" class="img-circle" alt="User Image">
+                            <img src="<%=contextPath%>/dist/img/avatar04.png" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
                             <p><%=nome%></p>
@@ -127,19 +131,19 @@
                         </div>
                     </div>
 
+
                     <!-- Sidebar Menu -->
                     <ul class="sidebar-menu">
                         <li class="header">MENU</li>
                         <!-- Optionally, you can add icons to the links -->
-                        <li class="active">
-                            <a href="<%=contextPath%>/views/home.jsp"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
-                        <li><a href="<%=contextPath%>/views/administradora.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>
-                        <li><a href="<%=contextPath%>/views/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
-                        <li><a href="<%=contextPath%>/views/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
-                        <li><a href="<%=contextPath%>/views/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
-                        <li><a href="<%=contextPath%>/views/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
-                        <li><a href="<%=contextPath%>/views/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li>
-                        </li>
+                        <li class="active"><a href="<%=contextPath%>/views/viewSindico/homeSindico.jsp"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/administradoraSindico.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/alterarSenha.jsp"><i class="fa fa-key"></i> <span>Alterar Senha</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li>
                     </ul><!-- /.sidebar-menu -->
                 </section>
                 <!-- /.sidebar -->
@@ -186,6 +190,7 @@
                             var ext = path.substring(path.lastIndexOf(".") + 1, path.length).toLowerCase();
                             var isValidFile = false;
 
+
                             for (var i = 0; i < validFilesTypes.length; i++) {
                                 if (ext == validFilesTypes[i]) {
                                     isValidFile = true;
@@ -197,9 +202,11 @@
                                 isValidFile = false;
                             } else {
                                 $('#idWait').modal('show');
-                            };
+                            }
+                            ;
                             return isValidFile;
-                        };
+                        }
+                        ;
                     </script>
 
                     <div>
@@ -236,7 +243,7 @@
                             <!-- /.box-header -->
                             <div class="box-body">
                                 <div class="box-body box-profile">
-                                    <img id="ContentPlaceHolder1_logo" class="profile-user-img img-responsive img-circle" src="dist/img/smile.png">
+                                    <img id="ContentPlaceHolder1_logo" class="profile-user-img img-responsive img-circle" src="dist/img/avatar04.png">
                                     <h3 class="profile-username text-center">
                                     </h3>
                                     <div class="box box-info">
@@ -264,10 +271,10 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">
                                                 Nome:</label>
-                                            <input name="ctl00$ContentPlaceHolder1$txtNome" type="text" value="<%=nome%>" id="ContentPlaceHolder1_txtNome" class="form-control">
+                                            <input name="ctl00$ContentPlaceHolder1$txtNome" type="text" value="Sindico" id="ContentPlaceHolder1_txtNome" class="form-control">
                                             <label for="exampleInputEmail1">
                                                 Email:</label>
-                                            <input name="ctl00$ContentPlaceHolder1$txtEmail" type="text" value="rangelpaolo@hotmail.com" id="ContentPlaceHolder1_txtEmail" class="form-control">
+                                            <input name="ctl00$ContentPlaceHolder1$txtEmail" type="text" value="Sindico@hotmail.com" id="ContentPlaceHolder1_txtEmail" class="form-control">
                                         </div>
                                     </div>
                                     <div class="box-footer">
@@ -303,6 +310,7 @@
          immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 </div><!-- ./wrapper -->
+
 
 </body>
 </html>

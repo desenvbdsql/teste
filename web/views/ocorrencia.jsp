@@ -1,14 +1,20 @@
+<%@page import="controlers.LoginServ"%>
+<%@page import="controlers.LogoutServ"%>
+
 <!DOCTYPE html>
 <html>
     <head>
+        <%
+            String contextPath = request.getContextPath();
+        %>
+        <%
+            String nome = null;
+            nome = session.getAttribute("nome").toString();
+        %>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Ocorrência</title>    
-        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"> 
-        <%
-            String contextPath = request.getContextPath();
-            System.out.println("[EU] Home.jsp - contextPath() " + contextPath);
-        %>
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">    
         <link rel="stylesheet" href="<%=contextPath%>/bootstrap/css/bootstrap.min.css">    
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -63,33 +69,37 @@
                                     <span class="label label-danger">0</span>
                                 </a>
 
+
                             </li>
                             <!-- User Account Menu -->
                             <li class="dropdown user user-menu">
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!-- The user image in the navbar-->
-                                    <img src="dist/img/user9.jpg" class="user-image" alt="User Image">
+                                    <img src="<%=contextPath%>/dist/img/smile.png" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                    <span class="hidden-xs">Rangel Paolo</span>
+                                    <span class="hidden-xs"><%=nome%></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <img src="dist/img/user9.jpg" class="img-circle" alt="User Image">
+                                        <img src="<%=contextPath%>/dist/img/smile.png" class="img-circle" alt="User Image">
                                         <p>
-                                            Rangel Paolo - Estagiário
+                                            <%=nome%>
 
                                         </p>
                                     </li>
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="Controle?flag=perfil" class="btn btn-default btn-flat">Perfil</a>
+                                            <a href="<%=contextPath%>/views/perfil.jsp" class="btn btn-default btn-flat">Perfil</a>
 
                                         </div>
                                         <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-flat">Sair</a>
+                                            <form action="LogoutServ" method="POST">
+                                                <!--<a href="<%new LogoutServ();%>" class="btn btn-default btn-flat">Sair</a>-->
+                                                <input  type="submit" class="btn btn-default btn-flat" value="Sair">
+                                            </form>
                                         </div>
                                     </li>
                                 </ul>
@@ -108,10 +118,10 @@
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="dist/img/user9.jpg" class="img-circle" alt="User Image">
+                            <img src="<%=contextPath%>/dist/img/smile.png" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                            <p>Rangel Paolo</p>
+                            <p><%=nome%></p>
                             <!-- Status -->
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
@@ -122,14 +132,14 @@
                         <li class="header">MENU</li>
                         <!-- Optionally, you can add icons to the links -->
                         <li class="active">
-                            <a href="<%=contextPath%>/views/home.jsp"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
+                            <a href="Controle?flag=home"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
                         <li><a href="<%=contextPath%>/views/administradora.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>
                         <li><a href="<%=contextPath%>/views/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
                         <li><a href="<%=contextPath%>/views/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
+                        <li><a href="<%=contextPath%>/views/alterarSenha.jsp"><i class="fa fa-key"></i> <span>Alterar Senha</span></a></li>
                         <li><a href="<%=contextPath%>/views/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
                         <li><a href="<%=contextPath%>/views/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
                         <li><a href="<%=contextPath%>/views/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li>
-                        </li>
                     </ul><!-- /.sidebar-menu -->
                 </section>
                 <!-- /.sidebar -->
@@ -552,8 +562,9 @@
     <div class="control-sidebar-bg"></div>
 </div><!-- ./wrapper -->
 
+
 <!-- jQuery 2.1.4 -->
-<script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<script src="<%=contextPath%>/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 <!-- Bootstrap 3.3.5 -->
 <script src="<%=contextPath%>/bootstrap/js/bootstrap.min.js"></script>
 <!-- Select2 -->
@@ -563,6 +574,7 @@
 <script src="<%=contextPath%>/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
 
 <!-- date-range-picker -->
+
 
 <!-- AdminLTE App -->
 <script src="<%=contextPath%>/dist/js/app.min.js"></script>

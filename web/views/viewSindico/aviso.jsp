@@ -1,5 +1,3 @@
-<%@page import="controlers.LoginServ"%>
-<%@page import="controlers.LogoutServ"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,7 +10,7 @@
         %>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Quadro de Avisos</title>    
+        <title>Aviso</title>    
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">    
         <link rel="stylesheet" href="<%=contextPath%>/bootstrap/css/bootstrap.min.css">    
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -22,7 +20,6 @@
         <script src="<%=contextPath%>/plugins/jQuery/jQuery-2.1.4.min.js"></script>
         <script src="<%=contextPath%>/bootstrap/js/bootstrap.min.js"></script>
         <script src="<%=contextPath%>/dist/js/app.min.js"></script>
-
 
     </head>
     <body class="hold-transition skin-blue layout-boxed sidebar-mini">
@@ -81,14 +78,14 @@
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!-- The user image in the navbar-->
-                                    <img src="<%=contextPath%>/dist/img/smile.png" class="user-image" alt="User Image">
+                                    <img src="<%=contextPath%>/dist/img/avatar04.png" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                     <span class="hidden-xs"><%=nome%></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <img src="<%=contextPath%>/dist/img/smile.png" class="img-circle" alt="User Image">
+                                        <img src="<%=contextPath%>/dist/img/avatar04.png" class="img-circle" alt="User Image">
                                         <p>
                                             <%=nome%>
 
@@ -97,14 +94,11 @@
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="<%=contextPath%>/views/perfil.jsp" class="btn btn-default btn-flat">Perfil</a>
+                                            <a href="Sindico?flag=perfil" class="btn btn-default btn-flat">Perfil</a>
 
                                         </div>
                                         <div class="pull-right">
-                                            <form action="LogoutServ" method="POST">
-                                                <!--<a href="<%new LogoutServ();%>" class="btn btn-default btn-flat">Sair</a>-->
-                                                <input  type="submit" class="btn btn-default btn-flat" value="Sair">
-                                            </form>
+                                            <a href="index.html" class="btn btn-default btn-flat">Sair</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -123,7 +117,7 @@
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="<%=contextPath%>/dist/img/smile.png" class="img-circle" alt="User Image">
+                            <img src="<%=contextPath%>/dist/img/avatar04.png" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
                             <p><%=nome%></p>
@@ -137,16 +131,14 @@
                     <ul class="sidebar-menu">
                         <li class="header">MENU</li>
                         <!-- Optionally, you can add icons to the links -->
-                        <li class="active">
-                            <a href="<%=contextPath%>/views/home.jsp"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
-                        <li><a href="<%=contextPath%>/views/administradora.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>
-                        <li><a href="<%=contextPath%>/views/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
-                        <li><a href="<%=contextPath%>/views/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
-                        <li><a href="<%=contextPath%>/views/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
-                        <li><a href="<%=contextPath%>/views/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
-                        <li><a href="<%=contextPath%>/views/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li>
-                        </li>
-                    </ul><!-- /.sidebar-menu -->
+                        <li class="active"><a href="<%=contextPath%>/views/viewSindico/homeSindico.jsp"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/administradoraSindico.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/alterarSenha.jsp"><i class="fa fa-key"></i> <span>Alterar Senha</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li><!-- /.sidebar-menu -->
                 </section>
                 <!-- /.sidebar -->
             </aside>
@@ -156,87 +148,120 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
 
-
                 </section>
 
+                <!-- Main content -->
                 <section class="content">
                     <!-- conteudo) -->
 
-                    <style type="text/css">
-                        .botaoVisualizar
-                        {
-                            background: url(/imagens/lupa.png) no-repeat;
-                            cursor: pointer;
-                            border: none;
-                            width: 25px;
-                            height: 30px;
-                        }
-                    </style>
-                    <script type="text/javascript">
-
-                        //Vizualizar
-                        function ExibeAviso(token) {
-                            var obj = new Object();
-                            obj.token = token;
-                            var parametros = JSON.stringify(obj);
-
-                            $.ajax({
-                                type: "POST",
-                                url: "wfQuadroAviso.aspx/exibeAviso",
-                                data: parametros,
-                                contentType: "application/json; charset=utf-8",
-                                dataType: "json",
-                                success: OnSuccessView,
-                                failure: function (response) {
-                                    alert(response.d);
-                                }
-                            });
-                        }
-
-                        function OnSuccessView(response) {
-                            var res = response.d;
-                            var arr = String(res).split(",");
-
-                            document.getElementById("hfcvIdQuadroAviso").value = arr[0];
-                            document.getElementById("txtTitulo").value = arr[1].replace(/Ë/g, ",");
-                            document.getElementById("txtAviso").value = arr[2].replace(/Ë/g, ",");
-                            document.getElementById("txtData").value = arr[3];
-                            openModal();
-                        }
-
-                        function openModal() {
-                            $('#myModal').modal('show');
-                        }
-                        ;
-
-                        function closeModal() {
-                            $('#myModal').modal('hide');
-                            document.getElementById("hfcvIdQuadroAviso").value = "";
-                            document.getElementById("txtTitulo").value = "";
-                            document.getElementById("txtAviso").value = "";
-                            document.getElementById("txtData").value = "";
-                        }
-                        ;
-
-
-                    </script>
-
-
                     <div>
 
+                        <style type="text/css">
+                            .botaoEditar
+                            {
+                                background: url(/imagens/edit.png) no-repeat;
+                                cursor: pointer;
+                                border: none;
+                                width: 25px;
+                                height: 30px;
+                            }
+                            .textoMensagem
+                            {
+                                border: none;
+                                color: Red;
+                                text-align: center;
+                                width: 100%;
+                                background-color: #F2F2F2;
+                            }
+                        </style>
+                        <script language="Javascript" type="text/javascript">
+                            function pergunta() {
+
+                                if (confirm("Deseja realmente excluir?")) {
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            }
+                            function validaCampos() {
+                                if (document.getElementById("txtTitulo").value == "") {
+                                    document.getElementById("lblMensagem").value = "Informe o Titulo do Aviso.";
+                                    document.getElementById("txtTitulo").focus();
+                                    return false;
+                                }
+
+                                if (document.getElementById("txtAviso").value == "") {
+                                    document.getElementById("lblMensagem").value = "Informe o Aviso.";
+                                    document.getElementById("txtAviso").focus();
+                                    return false;
+                                }
+                            }
+                            ;
+
+                            function openModal() {
+                                $('#myModal').modal('show');
+                            }
+                            ;
+
+                            function closeModal() {
+                                $('#myModal').modal('hide');
+                                document.getElementById("hfcvIdQuadroAviso").value = "";
+                                document.getElementById("txtTitulo").value = "";
+                                document.getElementById("txtData").value = "";
+                                document.getElementById("txtDataExpiracao").value = "";
+                                document.getElementById("txtAviso").value = "";
+                            }
+                            ;
+
+                            function exibeAviso(token) {
+                                var obj = new Object();
+                                obj.token = token;
+                                var parametros = JSON.stringify(obj);
+                                $.ajax({
+                                    type: "POST",
+                                    url: "wfQuadroAvisoCadastro.aspx/exibeAviso",
+                                    data: parametros,
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    success: OnSuccess,
+                                    failure: function (response) {
+                                        alert(response.d);
+                                    }
+                                });
+                            }
+
+                            function OnSuccess(response) {
+                                var res = response.d;
+                                var arr = String(res).split(",");
+
+                                document.getElementById("hfcvIdQuadroAviso").value = arr[0];
+                                document.getElementById("txtTitulo").value = arr[1].replace(/Ë/g, ",");
+                                document.getElementById("txtData").value = arr[2];
+                                document.getElementById("txtDataExpiracao").value = arr[3];
+                                document.getElementById("txtAviso").value = arr[4].replace(/Ë/g, ",");
+                                openModal();
+                            }
+
+                        </script>
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="box">
                                     <div class="box-header">
                                         <h2>
-                                            <span class="ion ion-pin"></span><span class="glyphicon-class"> Quadro
-                                                de Avisos</span>
+                                            <span class="ion ion-pin"></span><span class="glyphicon-class"> Controle de Quadro de
+                                                Avisos</span>
                                         </h2>
                                     </div>
                                     <!-- /.box-header -->
                                     <div class="callout callout-info">
                                         <p>
-                                            Quadro de Avisos do Condominio BeLife</p>
+                                            Controle de Quadro de Avisos do Condominio</p>
+                                    </div>
+                                    <div class="margin">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal" data-backdrop="static" id="btnModal">
+                                                Novo Aviso</button>
+                                        </div>
                                     </div>
                                     <!--Modal-->
                                     <div class="modal fade" id="myModal">
@@ -253,7 +278,7 @@
                                                     <div class="box-body">
                                                         <div class="form-group">
                                                             <span id="ContentPlaceHolder1_Label1">Titulo</span>
-                                                            <input name="ctl00$ContentPlaceHolder1$txtTitulo" type="text" id="txtTitulo" disabled="disabled" class="aspNetDisabled form-control" style="background-color:White;">
+                                                            <input name="ctl00$ContentPlaceHolder1$txtTitulo" type="text" id="txtTitulo" class="form-control">
                                                         </div>
                                                         <div class="form-group">
                                                             <span id="ContentPlaceHolder1_lblData"> Data do Aviso</span>
@@ -266,32 +291,55 @@
                                                             <!-- /.input group -->
                                                         </div>
                                                         <div class="form-group">
+                                                            <span id="ContentPlaceHolder1_lblDataExpiracao"> Data de Expiração do Aviso</span>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </div>
+                                                                <input name="ctl00$ContentPlaceHolder1$txtDataExpiracao" type="text" id="txtDataExpiracao" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
+                                                            </div>
+                                                            <!-- /.input group -->
+                                                        </div>
+                                                        <div class="form-group">
                                                             <span id="ContentPlaceHolder1_lblAviso">Aviso</span>
-                                                            <textarea name="ctl00$ContentPlaceHolder1$txtAviso" rows="2" cols="20" id="txtAviso" disabled="disabled" class="aspNetDisabled form-control" style="background-color:White;height:200px;"></textarea>
+                                                            <textarea name="ctl00$ContentPlaceHolder1$txtAviso" rows="2" cols="20" id="txtAviso" class="form-control" style="height:200px;"></textarea>
                                                         </div>
                                                     </div>
                                                     <!-- /.box-body -->
                                                 </div>
+                                                <div class="form-group">
+                                                    <input name="ctl00$ContentPlaceHolder1$lblMensagem" type="text" id="lblMensagem" disabled="disabled" class="aspNetDisabled textoMensagem" style="background-color:White;">
+                                                </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal" onclick="closeModal();">
                                                         Fechar</button>
+                                                    <input type="submit" name="ctl00$ContentPlaceHolder1$btnSalvar" value="Gravar" onclick="return validaCampos();" id="ContentPlaceHolder1_btnSalvar" class="btn btn-info pull-right">
                                                 </div>
                                             </div>
                                             <!-- /.modal-content -->
                                         </div>
                                         <!-- /.modal-dialog -->
                                     </div>
+                                    <!-- GRID -->
                                     <div class="box-body">
                                         <div>
                                             <table class="table table-bordered table-striped dataTable" cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_dgvAviso" style="border-collapse:collapse;">
                                                 <tbody><tr>
-                                                        <th scope="col">Titulo</th><th scope="col">Data</th><th scope="col">Detalhes</th>
+                                                        <th scope="col">Editar</th><th scope="col">Excluir</th><th scope="col">Titulo</th><th scope="col">Data do Aviso</th><th scope="col">Data Expiração</th>
                                                     </tr><tr>
-                                                        <td>Economia de Agua</td><td>26/09/2015</td><td align="center" style="width:60px;">
-
-                                                            <button class="botaoVisualizar" type="button" id="btnExibeAviso" value="Exibir Aviso" onclick="ExibeAviso(1);">
+                                                        <td align="center" style="width:60px;">
+                                                            <button class="botaoEditar" type="button" id="btnEditaAviso" value="Editar Aviso" onclick="exibeAviso(25);">
                                                             </button>
-                                                        </td>
+                                                        </td><td align="center" style="width:60px;">
+                                                            <input type="image" name="ctl00$ContentPlaceHolder1$dgvAviso$ctl02$imgExcluir" id="ContentPlaceHolder1_dgvAviso_imgExcluir_0" src="imagens/lixeira.png" onclick="return pergunta();">
+                                                        </td><td>Entregas na Portaria</td><td>01/09/2016</td><td>01/09/2017</td>
+                                                    </tr><tr>
+                                                        <td align="center" style="width:60px;">
+                                                            <button class="botaoEditar" type="button" id="btnEditaAviso" value="Editar Aviso" onclick="exibeAviso(1);">
+                                                            </button>
+                                                        </td><td align="center" style="width:60px;">
+                                                            <input type="image" name="ctl00$ContentPlaceHolder1$dgvAviso$ctl03$imgExcluir" id="ContentPlaceHolder1_dgvAviso_imgExcluir_1" src="imagens/lixeira.png" onclick="return pergunta();">
+                                                        </td><td>Economia de Agua</td><td>26/09/2015</td><td>30/09/2017</td>
                                                     </tr>
                                                 </tbody></table>
                                         </div>
@@ -303,7 +351,6 @@
                     </div>
                     <!-- fim conteudo-->
                 </section>
-
             </div><!-- /.content-wrapper -->
 
             <!-- Main Footer -->
@@ -325,6 +372,7 @@
          immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 </div><!-- ./wrapper -->
+
 
 </body>
 </html>

@@ -1,14 +1,12 @@
-<%@page import="controlers.LoginServ"%>
-<%@page import="controlers.LogoutServ"%>
-
 <!DOCTYPE html>
 <html>
     <head>
-        <%
+                <%
             String contextPath = request.getContextPath();
         %>
         <%
-            String nome = session.getAttribute("nome").toString();
+            String nome = null;
+            nome = session.getAttribute("nome").toString();
         %>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -80,14 +78,14 @@
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!-- The user image in the navbar-->
-                                    <img src="<%=contextPath%>/dist/img/smile.png" class="user-image" alt="User Image">
+                                    <img src="<%=contextPath%>/dist/img/avatar04.png" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                     <span class="hidden-xs"><%=nome%></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <img src="<%=contextPath%>/dist/img/smile.png" class="img-circle" alt="User Image">
+                                        <img src="<%=contextPath%>/dist/img/avatar04.png" class="img-circle" alt="User Image">
                                         <p>
                                             <%=nome%>
 
@@ -96,14 +94,11 @@
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="<%=contextPath%>/views/perfil.jsp" class="btn btn-default btn-flat">Perfil</a>
+                                            <a href="Sindico?flag=perfil" class="btn btn-default btn-flat">Perfil</a>
 
                                         </div>
                                         <div class="pull-right">
-                                            <form action="LogoutServ" method="POST">
-                                                <!--<a href="<%new LogoutServ();%>" class="btn btn-default btn-flat">Sair</a>-->
-                                                <input  type="submit" class="btn btn-default btn-flat" value="Sair">
-                                            </form>
+                                            <a href="index.html" class="btn btn-default btn-flat">Sair</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -122,7 +117,7 @@
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="<%=contextPath%>/dist/img/smile.png" class="img-circle" alt="User Image">
+                            <img src="<%=contextPath%>/dist/img/avatar04.png" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
                             <p><%=nome%></p>
@@ -136,16 +131,14 @@
                     <ul class="sidebar-menu">
                         <li class="header">MENU</li>
                         <!-- Optionally, you can add icons to the links -->
-                        <li class="active">
-                            <a href="<%=contextPath%>/views/home.jsp"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
-                        <li><a href="<%=contextPath%>/views/administradora.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>
-                        <li><a href="<%=contextPath%>/views/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
-                        <li><a href="<%=contextPath%>/views/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
-                        <li><a href="<%=contextPath%>/views/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
-                        <li><a href="<%=contextPath%>/views/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
-                        <li><a href="<%=contextPath%>/views/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li>
-                        </li>
-                    </ul><!-- /.sidebar-menu -->
+                        <li class="active"><a href="<%=contextPath%>/views/viewSindico/homeSindico.jsp"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/administradoraSindico.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/alterarSenha.jsp"><i class="fa fa-key"></i> <span>Alterar Senha</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li>
                 </section>
                 <!-- /.sidebar -->
             </aside>
@@ -189,6 +182,7 @@
                                 document.getElementById("ContentPlaceHolder1_txtMensagem").focus();
                                 return false;
                             }
+
                         }
                         ;
                     </script>
@@ -233,6 +227,7 @@
                                             <textarea name="ctl00$ContentPlaceHolder1$txtMensagem" rows="10" cols="20" id="ContentPlaceHolder1_txtMensagem" class="form-control"></textarea>
                                         </div>
 
+
                                         <div class="form-group">
                                             <input name="ctl00$ContentPlaceHolder1$lblMensagem" type="text" id="lblMensagem" disabled="disabled" class="aspNetDisabled textoMensagem" style="background-color:White;">
                                         </div>
@@ -241,10 +236,11 @@
 
                                             <input type="submit" name="ctl00$ContentPlaceHolder1$btnEnviar" value="Enviar" onclick="return validaCampos();" id="ContentPlaceHolder1_btnEnviar" class="btn btn-success pull-right">
                                         </div>
-
+                                        
                                     </div>
-
+                                    
                                 </div>
+                                
                             </div>
 
                         </div>
@@ -274,6 +270,7 @@
          immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 </div><!-- ./wrapper -->
+
 
 </body>
 </html>

@@ -1,19 +1,28 @@
+<%@page import="controlers.LoginServ"%>
+<%@page import="controlers.LogoutServ"%>
+
 <!DOCTYPE html>
 <html>
     <head>
+        <%
+            String contextPath = request.getContextPath();
+        %>
+        <%
+            String nome = null;
+            nome = session.getAttribute("nome").toString();
+        %>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Assembleia</title>    
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <%
-            String contextPath = request.getContextPath();
-            System.out.println("[EU] Home.jsp - contextPath() " + contextPath);
-        %>
         <link rel="stylesheet" href="<%=contextPath%>/bootstrap/css/bootstrap.min.css">    
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <link rel="stylesheet" href="<%=contextPath%>/dist/css/AdminLTE.min.css">
         <link rel="stylesheet" href="<%=contextPath%>/dist/css/skins/skin-blue.min.css">
+        <script src="<%=contextPath%>/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+        <script src="<%=contextPath%>/bootstrap/js/bootstrap.min.js"></script>
+        <script src="<%=contextPath%>/dist/js/app.min.js"></script>
 
     </head>
     <body class="hold-transition skin-blue layout-boxed sidebar-mini">
@@ -69,27 +78,30 @@
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!-- The user image in the navbar-->
-                                    <img src="dist/img/user9.jpg" class="user-image" alt="User Image">
+                                    <img src="<%=contextPath%>/dist/img/smile.png" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                    <span class="hidden-xs">Rangel Paolo</span>
+                                    <span class="hidden-xs"><%=nome%></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <img src="dist/img/user9.jpg" class="img-circle" alt="User Image">
+                                        <img src="<%=contextPath%>/dist/img/smile.png" class="img-circle" alt="User Image">
                                         <p>
-                                            Rangel Paolo - Estagiário
+                                            <%=nome%>
 
                                         </p>
                                     </li>
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="Controle?flag=perfil" class="btn btn-default btn-flat">Perfil</a>
+                                            <a href="<%=contextPath%>/views/perfil.jsp" class="btn btn-default btn-flat">Perfil</a>
 
                                         </div>
                                         <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-flat">Sair</a>
+                                            <form action="LogoutServ" method="POST">
+                                                <!--<a href="<%new LogoutServ();%>" class="btn btn-default btn-flat">Sair</a>-->
+                                                <input  type="submit" class="btn btn-default btn-flat" value="Sair">
+                                            </form>
                                         </div>
                                     </li>
                                 </ul>
@@ -108,10 +120,10 @@
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="dist/img/user9.jpg" class="img-circle" alt="User Image">
+                            <img src="<%=contextPath%>/dist/img/smile.png" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                            <p>Rangel Paolo</p>
+                            <p><%=nome%></p>
                             <!-- Status -->
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
@@ -385,10 +397,6 @@
          immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 </div><!-- ./wrapper -->
-
-<script src="<%=contextPath%>/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-<script src="<%=contextPath%>/bootstrap/js/bootstrap.min.js"></script>
-<script src="<%=contextPath%>/dist/js/app.min.js"></script>
 
 </body>
 </html>

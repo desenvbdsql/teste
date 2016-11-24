@@ -59,7 +59,7 @@ public class LoginServ extends HttpServlet {
                     if (session.getAttribute("idPerfil").equals(1)) {
                         // Redireciona para a View
                         
-                        request.getRequestDispatcher("views/home.jsp").forward(request, response);
+                        request.getRequestDispatcher("views/viewSindico/homeSindico.jsp").forward(request, response);
 
                     } else if (session.getAttribute("idPerfil").equals(2)) {
                         // Redireciona para a View

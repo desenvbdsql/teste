@@ -9,12 +9,22 @@ import java.util.Calendar;
  */
 public class AloSindico {
     
+    private int idMsg;
     private String assunto;
     private Calendar dataEnvio;
+    private String mensagem;
     private String situacao;
 
     public AloSindico() {
         
+    }
+    
+    public int getIdMsg() {
+        return idMsg;
+    }
+
+    public void setIdMsg(int idMsg) {
+        this.idMsg = idMsg;
     }
     
     public String getAssunto() {
@@ -33,6 +43,14 @@ public class AloSindico {
         this.dataEnvio = dataEnvio;
     }
 
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
+    }
+    
     public String getSituacao() {
         return situacao;
     }
