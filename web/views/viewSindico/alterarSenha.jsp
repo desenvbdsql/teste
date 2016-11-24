@@ -1,19 +1,6 @@
-<%@page import="controlers.LoginServ"%>
-<%@page import="controlers.LogoutServ"%>
-<%@page import="java.io.PrintWriter"%>
-<%@page import="java.util.List"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="models.AdministradoraDAO" %>
-<%@page import="beans.Administradora"%>
-
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Administradora</title>    
-        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <%
             String contextPath = request.getContextPath();
         %>
@@ -21,15 +8,10 @@
             String nome = null;
             nome = session.getAttribute("nome").toString();
         %>
-        <%
-//            Administradora adm = new Administradora();
-//            AdministradoraDAO admDao = new AdministradoraDAO();
-//            List<Administradora> ListaAdm = admDao.Pesquisar(adm);
-            List<Administradora> listaAdm = new AdministradoraDAO().Pesquisar();
-
-//             ListaAdm = admDao.Pesquisar(adm);
-//            request.setAttribute("listaAdm", ListaAdm);
-%>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Home</title>    
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">    
         <link rel="stylesheet" href="<%=contextPath%>/bootstrap/css/bootstrap.min.css">    
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -40,9 +22,6 @@
         <script src="<%=contextPath%>/dist/js/app.min.js"></script>
 
     </head>
-
-    <%--<c:forEach var="administradora" items="${ListaAdm}">--%>
-
     <body class="hold-transition skin-blue layout-boxed sidebar-mini">
         <div class="wrapper">
 
@@ -54,7 +33,7 @@
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>P</b>JT</span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>Projeto</b>5Âº</span>
+                    <span class="logo-lg"><b>Projeto</b>5º</span>
                 </div>
 
                 <!-- Header Navbar -->
@@ -99,29 +78,27 @@
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!-- The user image in the navbar-->
-                                    <img src="<%=contextPath%>/dist/img/smile.png" class="user-image" alt="User Image">
+                                    <img src="<%=contextPath%>/dist/img/avatar04.png" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                     <span class="hidden-xs"><%=nome%></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <img src="<%=contextPath%>/dist/img/smile.png" class="img-circle" alt="User Image">
+                                        <img src="<%=contextPath%>/dist/img/avatar04.png" class="img-circle" alt="User Image">
                                         <p>
                                             <%=nome%>
+
                                         </p>
                                     </li>
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="<%=contextPath%>/views/perfil.jsp" class="btn btn-default btn-flat">Perfil</a>
+                                            <a href="Sindico?flag=perfil" class="btn btn-default btn-flat">Perfil</a>
 
                                         </div>
                                         <div class="pull-right">
-                                            <form action="LogoutServ" method="POST">
-                                                <!--<a href="<%new LogoutServ();%>" class="btn btn-default btn-flat">Sair</a>-->
-                                                <input  type="submit" class="btn btn-default btn-flat" value="Sair">
-                                            </form>
+                                            <a href="index.html" class="btn btn-default btn-flat">Sair</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -131,8 +108,6 @@
                     </div>
                 </nav>
             </header>
-
-
             <!-- Left side column. contains the logo and sidebar -->
             <aside class="main-sidebar">
 
@@ -142,7 +117,7 @@
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="<%=contextPath%>/dist/img/smile.png" class="img-circle" alt="User Image">
+                            <img src="<%=contextPath%>/dist/img/avatar04.png" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
                             <p><%=nome%></p>
@@ -156,16 +131,14 @@
                     <ul class="sidebar-menu">
                         <li class="header">MENU</li>
                         <!-- Optionally, you can add icons to the links -->
-                        <li class="active">
-                            <a href="<%=contextPath%>/views/home.jsp"><i class="fa fa-home"></i> <span>InÃ­cÃ­o</span></a></li>
-                        <li><a href="<%=contextPath%>/views/administradora.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>
-                        <li><a href="<%=contextPath%>/views/aloSindico.jsp"><i class="fa fa-phone"></i> <span>AlÃ´ Sindico</span></a></li>
-                        <li><a href="<%=contextPath%>/views/assembleia.jsp"><i class="fa fa-group"></i> <span>AssemblÃ©ia</span></a></li>
-                        <li><a href="<%=contextPath%>/views/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>OcorrÃªncia</span></a></li>
-                        <li><a href="<%=contextPath%>/views/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
-                        <li><a href="<%=contextPath%>/views/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte TÃ©cnico</span></a></li>
-                        </li>
-                    </ul><!-- /.sidebar-menu -->
+                        <li class="active"><a href="<%=contextPath%>/views/viewSindico/homeSindico.jsp"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/administradoraSindico.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/alterarSenha.jsp"><i class="fa fa-key"></i> <span>Alterar Senha</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li>  <!-- /.sidebar-menu -->
                 </section>
                 <!-- /.sidebar -->
             </aside>
@@ -173,65 +146,79 @@
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
-                <section class="content-header">
-
-                </section>
-
-                <!-- Main content -->
                 <section class="content">
                     <!-- conteudo) -->
 
                     <div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="box">
-                                    <div class="box-header">
-                                        <h2>
 
-                                            <span class="ion ion-document-text"></span><span class="glyphicon-class">
-                                                Administradora</span></h2>
-                                    </div>
-                                    <div class="callout callout-info">
-                                        <p>
-                                            Dados cadastrais da Administradora </p>
-                                    </div>
-                                    <!-- /.box-header -->
-                                    <div class="box-body">
-                                        <div>
-                                            <table class="table table-bordered table-striped dataTable" cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_dgvAdministradora" style="border-collapse:collapse;">
-                                                <tbody><tr>
-                                                        <th scope="col">Nome</th><th scope="col">ServiÃ§o</th><th scope="col">Contato</th><th scope="col">Telefone</th><th scope="col">Email</th><th scope="col">EndereÃ§o</th>
-                                                    </tr>
-
-                                                    <%
-                                                        if (listaAdm.size() == 0) {
-                                                    %>
-                                                <p>Sem dados de adminstradores</p>
-                                                <%
-                                                } else {
-
-                                                    for (Administradora admin : listaAdm) {
-
-                                                %>
-                                                <tr>
-                                                    <td><%=admin.getNome()%></td><td><%=admin.getServico()%></td><td><%=admin.getContato()%></td><td><%=admin.getTelefone()%></td><td><%=admin.getEmail()%></td><td><%=admin.getEndereco()%></td>
-                                                </tr>
-                                                <%
-                                                        }
-                                                    }
-                                                %>
-
-                                                </tbody></table>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="box">
+                            <div class="box-header">
+                                <h2>
+                                    <span class="ion ion-key"></span><span class="glyphicon-class"> Alterar Senha</span></h2>
                             </div>
-                        </div>
-                    </div>
-                    <!-- fim conteudo-->
-                </section>
-            </div><!-- /.content-wrapper -->
+                            <div class="callout callout-info">
+                                <p>
+                                    Alterar Senha - Aqui é possível alterar a sua senha.</p>
+                            </div>
+                            <div class="box-body">
 
+                                <span class="failureNotification">
+
+                                </span>
+                                <div id="ContentPlaceHolder1_ChangePassword1_ChangePasswordContainerID_ChangeUserPasswordValidationSummary" class="failureNotification" style="display:none;">
+
+                                </div>
+
+                                <form action="<%=contextPath%>/Controlec" method="POST">
+
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input name="senhaAtual" type="password" id="ContentPlaceHolder1_ChangePassword1_ChangePasswordContainerID_CurrentPassword" class="form-control" placeholder="Senha Atual">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-lock"></i>
+                                            </div>
+                                        </div>
+                                        <span id="ContentPlaceHolder1_ChangePassword1_ChangePasswordContainerID_CurrentPasswordRequired" title="A antiga Senha é obrigatória" class="failureNotification" style="visibility:hidden;">*</span>
+                                        <div class="input-group">
+                                            <input name="senhaNova" type="password" id="ContentPlaceHolder1_ChangePassword1_ChangePasswordContainerID_NewPassword" class="form-control" placeholder="Nova Senha">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-lock"></i>
+                                            </div>
+                                        </div>
+                                        <span id="ContentPlaceHolder1_ChangePassword1_ChangePasswordContainerID_NewPasswordRequired" title="A nova Senha é obrigatória." class="failureNotification" style="visibility:hidden;">*</span>
+                                        <div class="input-group">
+                                            <input name="confSenhaNova" type="password" id="ContentPlaceHolder1_ChangePassword1_ChangePasswordContainerID_ConfirmNewPassword" class="form-control" placeholder=" Confirmar Nova Senha">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-lock "></i>
+                                            </div>
+                                        </div>
+                                        <p>
+                                        </p>
+                                        <span id="ContentPlaceHolder1_ChangePassword1_ChangePasswordContainerID_ConfirmNewPasswordRequired" title="A nova senha deve ser confirmada." class="failureNotification" style="display:none;">*</span>
+                                        <span id="ContentPlaceHolder1_ChangePassword1_ChangePasswordContainerID_NewPasswordCompare" class="failureNotification" style="display:none;">*</span>
+                                        <p>
+                                            <input type="hidden" name="flag" value="altSenhaSindico">
+                                            <input type="submit" name="btTrocaSenha" value="Trocar Senha" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions( & quot; ctl00$ContentPlaceHolder1$ChangePassword1$ChangePasswordContainerID$Button2 & quot; , & quot; & quot; , true, & quot; ChangeUserPasswordValidationGroup & quot; , & quot; & quot; , false, false))" id="ContentPlaceHolder1_ChangePassword1_ChangePasswordContainerID_Button2" class="btn btn-block btn-success">
+                                            <input type="submit" name="ctl00$ContentPlaceHolder1$ChangePassword1$ChangePasswordContainerID$Button1" value="Cancelar" id="ContentPlaceHolder1_ChangePassword1_ChangePasswordContainerID_Button1" class="btn btn-block btn-warning">
+                                        </p><div class="login-box-body">
+                                            <div class="cor-letra">
+
+                                            </div>
+                                        </div>
+                                        <p></p>
+                                    </div>
+
+                                </form>
+
+                            </div> </div>
+
+                    </div>
+                    <!-- /.box -->
+                </section>
+
+                <!-- Main content -->
+
+            </div><!-- /.content-wrapper -->
 
             <!-- Main Footer -->
             <footer class="main-footer">
@@ -245,7 +232,7 @@
                 <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
                     <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
                     <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-                </ul>
+                </ul>      
         </div>
     </aside><!-- /.control-sidebar -->
     <!-- Add the sidebar's background. This div must be placed
@@ -253,8 +240,6 @@
     <div class="control-sidebar-bg"></div>
 </div><!-- ./wrapper -->
 
+
 </body>
-
-<%--</c:forEach>--%>
-
 </html>

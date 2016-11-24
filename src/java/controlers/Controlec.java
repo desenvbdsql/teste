@@ -1,6 +1,8 @@
 package controlers;
 
 import beans.Administradora;
+import beans.AloSindico;
+import beans.Sindico;
 import java.io.IOException;
 import beans.Usuario;
 import java.sql.SQLException;
@@ -14,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.SendResult;
 import models.AdministradoraDAO;
+import models.AloSindicoDAO;
+import models.SindicoDAO;
 import models.UsuarioDao;
 
 public class Controlec extends HttpServlet {
@@ -34,10 +38,9 @@ public class Controlec extends HttpServlet {
 
                 break;
 
-            case "administradora":                
-                
+            case "administradora":
+
 //                Administradora adm = new Administradora();
-                
 //                AdministradoraDAO admDao = new AdministradoraDAO();
                 List<Administradora> listaAdm = new AdministradoraDAO().Pesquisar();
 
@@ -49,6 +52,19 @@ public class Controlec extends HttpServlet {
                 break;
 
             case "alosindico":
+                System.out.println(".........CONTROLE........");
+                String titulo = request.getParameter("ctl00$ContentPlaceHolder1$txtTitulo");
+                String mensagem = request.getParameter("ctl00$ContentPlaceHolder1$txtAloSindico");
+
+                AloSindicoDAO sindDAO = new AloSindicoDAO();
+                AloSindico msgsindico = new AloSindico();
+
+                msgsindico.setAssunto(titulo);
+                msgsindico.setMensagem(mensagem);
+
+                System.out.println(titulo);
+
+                sindDAO.Cadastrar(msgsindico);
 
                 // Redireciona para a View
                 request.getRequestDispatcher("views/aloSindico.jsp").forward(request, response);
@@ -83,28 +99,31 @@ public class Controlec extends HttpServlet {
 
                 break;
 
-            case "altSenha":
+            case "altSenhaSindico":
 
-                Usuario usu = new Usuario();
-                usu.setApto(Integer.parseInt(request.getParameter("apto")));
+                String senhaAtual = request.getParameter("senhaAtual");
+                String senhaNova = request.getParameter("novaSenha");
+                String confSenhaNova = request.getParameter("confSenhaNova");
+                String nomeSind = session.getAttribute("nome").toString();
 
-                UsuarioDao usuDao = new UsuarioDao();
-                List<Usuario> ListaUsu = usuDao.recuperaSenha(usu);
+                if (senhaAtual != "") {
+                    if (senhaNova == confSenhaNova) {
 
-//                if(ListaUsu.isEmpty())
-//                        {
-//                          String erro = "Campos vazios ou inválidos!";
-//                        request.setAttribute("mensagem", erro);
-//                        request.getRequestDispatcher("views/erro.jsp").forward(request, response);
-//                        }
-//                String apto = "";
-//                jogar na sessao
-//                for (Usuario teste : ListaUsu) {
-//                apto = teste.getApto();
-//                }
-                request.setAttribute("listaApto", ListaUsu);
+                        SindicoDAO sindicoDAO = new SindicoDAO();
+                        Sindico sindico = new Sindico();
+                        sindico.setSenha(senhaNova);
+                        sindico.setNome(nomeSind);
 
-                request.getRequestDispatcher("views/AlterarSenha.jsp").forward(request, response);
+                        sindicoDAO.editarSenha(sindico);
+
+                        request.getRequestDispatcher("views/viewSindico/alterarSenha.jsp").forward(request, response);
+
+                    } else {
+                        request.getRequestDispatcher("views/erro.jsp").forward(request, response);
+                    }
+                } else {
+                    request.getRequestDispatcher("views/erro.jsp").forward(request, response);
+                }
 
                 break;
 

@@ -1,5 +1,6 @@
-<%@page import="controlers.LoginServ"%>
 <%@page import="controlers.LogoutServ"%>
+<%@page import="controlers.LoginServ"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,7 +13,7 @@
         %>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Perfil</title>    
+        <title>Home</title>    
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">    
         <link rel="stylesheet" href="<%=contextPath%>/bootstrap/css/bootstrap.min.css">    
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -31,12 +32,12 @@
             <header class="main-header">
 
                 <!-- Logo -->
-                <a href="#" class="logo">
+                <div class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>P</b>JT</span>
                     <!-- logo for regular state and mobile devices -->
                     <span class="logo-lg"><b>Projeto</b>5º</span>
-                </a>
+                </div>
 
                 <!-- Header Navbar -->
                 <nav class="navbar navbar-static-top" role="navigation">
@@ -55,6 +56,7 @@
                                     <span class="label label-success">0</span>
                                 </a>
 
+
                                 <!-- Notifications Menu -->
                             <li class="dropdown notifications-menu">
                                 <!-- Menu toggle button -->
@@ -62,6 +64,7 @@
                                     <i class="fa fa-bell-o"></i>
                                     <span class="label label-warning">0</span>
                                 </a>
+
 
                                 <!-- Tasks Menu -->
                             <li class="dropdown tasks-menu">
@@ -71,20 +74,21 @@
                                     <span class="label label-danger">0</span>
                                 </a>
 
+
                             </li>
                             <!-- User Account Menu -->
                             <li class="dropdown user user-menu">
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!-- The user image in the navbar-->
-                                    <img src="<%=contextPath%>/dist/img/smile.png" class="user-image" alt="User Image">
+                                    <img src="<%=contextPath%>/dist/img/avatar04.png" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                     <span class="hidden-xs"><%=nome%></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <img src="<%=contextPath%>/dist/img/smile.png" class="img-circle" alt="User Image">
+                                        <img src="<%=contextPath%>/dist/img/avatar04.png" class="img-circle" alt="User Image">
                                         <p>
                                             <%=nome%>
 
@@ -93,7 +97,8 @@
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="<%=contextPath%>/views/perfil.jsp" class="btn btn-default btn-flat">Perfil</a>
+                                            <a href="<%=contextPath%>/views/viewSindico/perfil.jsp" class="btn btn-default btn-flat">Perfil</a>
+
                                         </div>
                                         <div class="pull-right">
                                             <form action="LogoutServ" method="POST">
@@ -118,7 +123,7 @@
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="<%=contextPath%>/dist/img/smile.png" class="img-circle" alt="User Image">
+                            <img src="<%=contextPath%>/dist/img/avatar04.png" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
                             <p><%=nome%></p>
@@ -127,19 +132,20 @@
                         </div>
                     </div>
 
+
                     <!-- Sidebar Menu -->
                     <ul class="sidebar-menu">
                         <li class="header">MENU</li>
                         <!-- Optionally, you can add icons to the links -->
-                        <li class="active">
-                            <a href="<%=contextPath%>/views/home.jsp"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
-                        <li><a href="<%=contextPath%>/views/administradora.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>
-                        <li><a href="<%=contextPath%>/views/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
-                        <li><a href="<%=contextPath%>/views/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
-                        <li><a href="<%=contextPath%>/views/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
-                        <li><a href="<%=contextPath%>/views/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
-                        <li><a href="<%=contextPath%>/views/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li>
-                        </li>
+                        <li class="active"><a href="Sindico?flag=home"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/administradoraSindico.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/alterarSenha.jsp"><i class="fa fa-key"></i> <span>Alterar Senha</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li>
+
                     </ul><!-- /.sidebar-menu -->
                 </section>
                 <!-- /.sidebar -->
@@ -148,69 +154,18 @@
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
-
                 <section class="content">
                     <!-- conteudo) -->
 
-                    <script type="text/javascript">
-                        function validaPerfil() {
-                            if (document.getElementById("ContentPlaceHolder1_txtEmail").value == "") {
-                                alert("O Email não pode estar vazio");
-                                document.getElementById("ContentPlaceHolder1_txtEmail").focus();
-                                return false;
-                            }
-                            if (document.getElementById("ContentPlaceHolder1_txtNome").value == "") {
-                                alert("O Nome não pode estar vazio");
-                                document.getElementById("ContentPlaceHolder1_txtNome").focus();
-                                return false;
-                            }
-                            var emailPat = /^(\".*\"|[A-Za-z]\w*)@(\[\d{1,3}(\.\d{1,3}){3}]|[A-Za-z]\w*(\.[A-Za-z]\w*)+)$/;
-                            var emailid = document.getElementById("ContentPlaceHolder1_txtEmail").value;
-                            var matchArray = emailid.match(emailPat);
-                            if (matchArray == null) {
-                                alert("O Email esta no formato incorreto. Tente novamente.");
-                                document.getElementById("ContentPlaceHolder1_txtEmail").focus();
-                                return false;
-                            } else {
-                                $('#idWait').modal('show');
-                            }
-                            ;
-                        }
-                        ;
-                    </script>
-                    <script type="text/javascript">
-                        function validaExtencao() {
-                            var file = document.getElementById("flFotoPerfil");
-                            var validFilesTypes = ["jpg", "jpeg"];
-                            var path = file.value;
-                            var ext = path.substring(path.lastIndexOf(".") + 1, path.length).toLowerCase();
-                            var isValidFile = false;
-
-                            for (var i = 0; i < validFilesTypes.length; i++) {
-                                if (ext == validFilesTypes[i]) {
-                                    isValidFile = true;
-                                    break;
-                                }
-                            }
-                            if (!isValidFile) {
-                                alert('Extenção de Arquivo Inválida. Exntenção permitida (.JPEG/.JPG)');
-                                isValidFile = false;
-                            } else {
-                                $('#idWait').modal('show');
-                            };
-                            return isValidFile;
-                        };
-                    </script>
-
                     <div>
 
-                        <!-- WAIT -->
                         <div id="idWait" class="modal fade" role="dialog">
                             <div class="modal-dialog">
                                 <!-- Modal content-->
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4 class="modal-title">Aguarde ...</h4>
+                                        <h4 class="modal-title">
+                                            Aguarde ...</h4>
                                     </div>
                                     <div class="modal-body">
                                         <div class="progress progress active">
@@ -223,66 +178,114 @@
                             </div>
                         </div>
 
-                        <div class="box">
-                            <div class="box-header">
-                                <h2>
-                                    <span class="ion ion-edit"></span><span class="glyphicon-class"> Alterar Perfil</span></h2>
-                            </div>
-                            <div class="callout callout-info">
-                                <p>
-                                    Alterar Perfil - Aqui é possível alter sua foto, nome e e-mail.</p>
+                        <section class="content-header">
+                            <small> Bem Vindo </small>
+                            <h1>
+                                <span id="ContentPlaceHolder1_lblUsuario">Sindico</span>
+                                <small> ao site do seu condomínio!</small>
+                            </h1>
+                            <ol class="breadcrumb">
+                                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                                <li class="active">Dashboard</li>
+                            </ol>
+                        </section>
+                        <section class="content">
+                            <!-- Small boxes (Stat box) -->
+                            <div class="row">
+                                <div class="col-lg-3 col-xs-6">
+                                    <!-- small box -->
+                                    <div class="small-box bg-red">
+                                        <div class="inner">
+                                            <h3><span id="ContentPlaceHolder1_lblOcorreciasDB">0/0</span></h3>
+                                            <p>Ocorrências abertas</p>
+                                        </div>
+                                        <div class="icon">
+                                            <i class="ion ion-speakerphone"></i>
+                                        </div>
+                                        <a href="<%=contextPath%>/views/viewSindico/ocorrencia.jsp" class="small-box-footer">Mais <i class="fa fa-arrow-circle-right"></i></a>
+                                    </div>
+                                </div><!-- ./col -->
+                                <div class="col-lg-3 col-xs-6">
+                                    <!-- small box -->
+                                    <div class="small-box bg-yellow">
+                                        <div class="inner">
+                                            <h3><span id="ContentPlaceHolder1_lblAloSindicoDB">0/0</span></h3>
+                                            <p>Alô Sindico</p>
+                                        </div>
+                                        <div class="icon">
+                                            <i class="ion ion-android-call"></i>
+                                        </div>
+                                        <a href="<%=contextPath%>/views/viewSindico/aloSindico.jsp" class="small-box-footer">Mais <i class="fa fa-arrow-circle-right"></i></a>
+                                    </div>
+                                </div><!-- ./col -->
+                                <div class="col-lg-3 col-xs-6">
+                                    <!-- small box -->
+                                    <div class="small-box bg-green">
+                                        <div class="inner">
+                                            <h3><span id="ContentPlaceHolder1_lblAssembleiaDB">0/0</span></h3>
+                                            <p>Novas Assembleias</p>
+                                        </div>
+                                        <div class="icon">
+                                            <i class="ion ion-person-stalker"></i>
+                                        </div>
+                                        <a href="<%=contextPath%>/views/viewSindico/assembleia.jsp" class="small-box-footer">Mais <i class="fa fa-arrow-circle-right"></i></a>
+                                    </div>
+                                </div><!-- ./col -->
+                                <div class="col-lg-3 col-xs-6">
+                                    <!-- small box -->
+                                    <div class="small-box bg-aqua">
+                                        <div class="inner">
+                                            <h3><span id="ContentPlaceHolder1_lblFaqDB">1</span></h3>
+                                            <p>Avisos cadastrados</p>
+                                        </div>
+                                        <div class="icon">
+                                            <i class="ion ion-help"></i>
+                                        </div>
+                                        <a href="wfFAQ.aspx" class="small-box-footer">Mais <i class="fa fa-arrow-circle-right"></i></a>
+                                    </div>
+                                </div><!-- ./col -->
+                            </div><!-- /.row -->
+
+                            <div class="row">
+
+                                <!-- PERFIL -->
+
+                                <!-- AVISOS -->
+                                <div class="col-md-6">
+                                    <div class="box">
+                                        <div class="box-body">
+
+                                            <div class="box box-info collapsed-box">
+                                                <div class="box-header with-border">
+                                                    <h3 class="box-title">Usuários cadastrados</h3>
+                                                    <div class="box-tools pull-right">
+                                                        <button class="btn btn-box-tool" data-widget="collapse" type="button"><i class="fa fa-plus"></i></button>
+                                                    </div>
+                                                </div>
+                                                <div class="box-body" style="display: none;">
+                                                    <div class="progress-group"><span class="progress-text">Torre A</span><span class="progress-number">10/ 112</span><div class="progress md"><div class="progress-bar progress-bar-yellow" style="width: 10.710000%"></div></div></div>   
+                                                </div>
+                                                <div class="box-body" style="display: none;">
+                                                    <div class="progress-group"><span class="progress-text">Torre b</span><span class="progress-number">61/ 112</span><div class="progress md"><div class="progress-bar progress-bar-yellow" style="width: 50.710000%"></div></div></div>   
+                                                </div>
+                                                <div class="box-body" style="display: none;">
+                                                    <div class="progress-group"><span class="progress-text">Torre c</span><span class="progress-number">20 / 112</span><div class="progress md"><div class="progress-bar progress-bar-yellow" style="width: 20.710000%"></div></div></div>   
+                                                </div>
+                                            </div>                                           
+
+                                        </div><!-- /.box-body -->
+                                    </div><!-- /.box -->
+                                </div>
+
                             </div>
 
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <div class="box-body box-profile">
-                                    <img id="ContentPlaceHolder1_logo" class="profile-user-img img-responsive img-circle" src="dist/img/smile.png">
-                                    <h3 class="profile-username text-center">
-                                    </h3>
-                                    <div class="box box-info">
-                                        <div class="box-header with-border">
-                                            <h3 class="box-title">
-                                                Alterar Foto de Perfil</h3>
-                                            <div class="box-tools pull-right">
-                                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                                    <i class="fa fa-minus"></i>
-                                                </button>
-                                            </div>
-                                            <!-- /.box-tools -->
-                                        </div>
-                                        <!-- /.box-header -->
-                                        <div class="box-body" style="display: block;">
-                                            <input type="file" name="ctl00$ContentPlaceHolder1$flFotoPerfil" id="flFotoPerfil" style="width:400px;">
-                                            <p class="text-red">
-                                                A foto deve ter no maximo 1MB e o seu formato .JPG</p>
-                                            <input type="submit" name="ctl00$ContentPlaceHolder1$btnAlteraFotoPerfil" value="Alterar foto perfil" onclick="return validaExtencao();" id="ContentPlaceHolder1_btnAlteraFotoPerfil" class="btn btn-info pull-right">
-                                        </div>
-                                        <!-- /.box-body -->
-                                    </div>
-                                    <!-- /.box -->
-                                    <div class="box-body">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">
-                                                Nome:</label>
-                                            <input name="ctl00$ContentPlaceHolder1$txtNome" type="text" value="<%=nome%>" id="ContentPlaceHolder1_txtNome" class="form-control">
-                                            <label for="exampleInputEmail1">
-                                                Email:</label>
-                                            <input name="ctl00$ContentPlaceHolder1$txtEmail" type="text" value="rangelpaolo@hotmail.com" id="ContentPlaceHolder1_txtEmail" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="box-footer">
-                                        <input type="submit" name="ctl00$ContentPlaceHolder1$btnAlteraPerfil" value="Alterar Perfil" onclick="return validaPerfil();" id="ContentPlaceHolder1_btnAlteraPerfil" class="btn btn-info pull-right">
-                                    </div>
-                                </div>
-                                <!-- /.box-body -->
-                            </div>
-                            <!-- /.box -->
-                        </div>
+                        </section>
+
                     </div>
                     <!-- fim conteudo-->
                 </section>
-
             </div><!-- /.content-wrapper -->
+            <!-- /.content-wrapper -->
 
             <!-- Main Footer -->
             <footer class="main-footer">
@@ -306,3 +309,4 @@
 
 </body>
 </html>
+

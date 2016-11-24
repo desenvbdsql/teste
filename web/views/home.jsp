@@ -79,7 +79,7 @@
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!-- The user image in the navbar-->
-                                    <img src="<%=contextPath%>/dist/img/user9.jpg" class="user-image" alt="User Image">
+                                    <img src="<%=contextPath%>/dist/img/smile.png" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
 
                                     <span class="hidden-xs">
@@ -89,7 +89,7 @@
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <img src="<%=contextPath%>/dist/img/user9.jpg" class="img-circle" alt="User Image">
+                                        <img src="<%=contextPath%>/dist/img/smile.png" class="img-circle" alt="User Image">
                                         <p>
                                             <%=nome%>
                                         </p>
@@ -97,11 +97,11 @@
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="Controle?flag=perfil" class="btn btn-default btn-flat">Perfil</a>
+                                            <a href="<%=contextPath%>/views/perfil.jsp" class="btn btn-default btn-flat">Perfil</a>
 
                                         </div>
                                         <div class="pull-right">
-                                            <form action="Logout" method="POST">
+                                            <form action="LogoutServ" method="POST">
                                                 <!--<a href="<%new LogoutServ();%>" class="btn btn-default btn-flat">Sair</a>-->
                                                 <input  type="submit" class="btn btn-default btn-flat" value="Sair">
                                             </form>
@@ -124,7 +124,7 @@
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="<%=contextPath%>/dist/img/user9.jpg" class="img-circle" alt="User Image">
+                            <img src="<%=contextPath%>/dist/img/smile.png" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
                             <p><%=nome%></p>
@@ -176,7 +176,7 @@
                             <div class="icon">
                                 <i class="ion ion-speakerphone"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Mais <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="<%=contextPath%>/views/ocorrencia.jsp" class="small-box-footer">Mais <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
 
@@ -190,7 +190,7 @@
                             <div class="icon">
                                 <i class="ion ion-android-call"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Mais <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="<%=contextPath%>/views/aloSindico.jsp" class="small-box-footer">Mais <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
 
@@ -204,7 +204,7 @@
                             <div class="icon">
                                 <i class="ion ion-person-stalker"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Mais <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="<%=contextPath%>/views/assembleia.jsp" class="small-box-footer">Mais <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
 
@@ -218,7 +218,7 @@
                             <div class="icon">
                                 <i class="fa fa-thumb-tack"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Mais <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="<%=contextPath%>/views/aviso.jsp" class="small-box-footer">Mais <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
 

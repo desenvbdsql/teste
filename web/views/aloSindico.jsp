@@ -1,3 +1,8 @@
+
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="models.AloSindicoDAO"%>
+<%@page import="beans.AloSindico"%>
+<%@page import="java.util.List"%>
 <%@page import="controlers.LogoutServ"%>
 <%@page import="controlers.LoginServ"%>
 
@@ -10,6 +15,10 @@
         <%
             String nome = null;
             nome = session.getAttribute("nome").toString();
+        %>
+        <%
+            List<AloSindico> listaSindico = new AloSindicoDAO().Listar();
+            SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
         %>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -78,14 +87,14 @@
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!-- The user image in the navbar-->
-                                    <img src="dist/img/user9.jpg" class="user-image" alt="User Image">
+                                    <img src="<%=contextPath%>/dist/img/smile.png" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                     <span class="hidden-xs"><%=nome%></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <img src="dist/img/user9.jpg" class="img-circle" alt="User Image">
+                                        <img src="<%=contextPath%>/dist/img/smile.png" class="img-circle" alt="User Image">
                                         <p>
                                             <%=nome%>
 
@@ -94,11 +103,11 @@
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="Controle?flag=perfil" class="btn btn-default btn-flat">Perfil</a>
+                                            <a href="<%=contextPath%>/views/perfil.jsp" class="btn btn-default btn-flat">Perfil</a>
 
                                         </div>
                                         <div class="pull-right">
-                                            <form action="Logout" method="POST">
+                                            <form action="LogoutServ" method="POST">
                                                 <!--<a href="<%new LogoutServ();%>" class="btn btn-default btn-flat">Sair</a>-->
                                                 <input  type="submit" class="btn btn-default btn-flat" value="Sair">
                                             </form>
@@ -120,7 +129,7 @@
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="dist/img/user9.jpg" class="img-circle" alt="User Image">
+                            <img src="<%=contextPath%>/dist/img/smile.png" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
                             <p><%=nome%></p>
@@ -137,7 +146,7 @@
                         <li class="active">
                             <a href="<%=contextPath%>/views/home.jsp"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
                         <li><a href="<%=contextPath%>/views/administradora.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>
-                        <li><a href="<%=contextPath%>/views/alosindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
+                        <li><a href="<%=contextPath%>/views/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
                         <li><a href="<%=contextPath%>/views/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
                         <li><a href="<%=contextPath%>/views/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
                         <li><a href="<%=contextPath%>/views/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
@@ -210,57 +219,58 @@
                                     Fale com o Sindico</p>
                             </div>
                             <!-- CADASTRO -->
-                            <form action="Controlec" method="POST">
-                                
+                            <form action="/Condominio/Controlec" method="POST">
+
                                 <div class="margin">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal" data-backdrop="static" id="btnModal">
-                                        Nova Mensagem</button>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal" data-backdrop="static" id="btnModal">
+                                            Nova Mensagem</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- Modal -->
-                            <div id="myModal" class="modal fade" role="dialog">
-                                <div class="modal-dialog">
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">
-                                                ×</button>
-                                            <h4 class="modal-title">
-                                                Cadastro de Mensagem - Alô Sindico</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <input type="hidden" name="ctl00$ContentPlaceHolder1$hfAloSindico" id="hfAloSindico">
+                                <!-- Modal -->
+                                <div id="myModal" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">
+                                                    ×</button>
+                                                <h4 class="modal-title">
+                                                    Cadastro de Mensagem - Alô Sindico</h4>
                                             </div>
-                                            <div class="form-group">
-                                                <span id="ContentPlaceHolder1_Label1"> Título</span>
-                                                <input name="ctl00$ContentPlaceHolder1$txtTitulo" type="text" id="txtTitulo" class="form-control" placeholder="Digite o titulo ...">
-                                                <span id="ContentPlaceHolder1_TituloRequired" title="Assunto obrigatório." class="failureNotification" style="visibility:hidden;">*</span>
-                                            </div>
-                                            <div class="form-group">
-                                                <span id="ContentPlaceHolder1_Label2"> Mensagem</span>
-                                                <textarea name="ctl00$ContentPlaceHolder1$txtAloSindico" rows="5" cols="20" id="ContentPlaceHolder1_txtAloSindico" class="form-control" placeholder="Digite a mensagem ..."></textarea>
-                                                <span id="ContentPlaceHolder1_RequiredFieldValidator1" title="Mensagem obrigatória." class="failureNotification" style="visibility:hidden;">*</span>
-                                            </div>
-                                            <div class="form-group">
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <input type="hidden" name="ctl00$ContentPlaceHolder1$hfAloSindico" id="hfAloSindico">
+                                                </div>
+                                                <div class="form-group">
+                                                    <span id="ContentPlaceHolder1_Label1"> Título</span>
+                                                    <input name="ctl00$ContentPlaceHolder1$txtTitulo" type="text" id="txtTitulo" class="form-control" placeholder="Digite o titulo ...">
+                                                    <span id="ContentPlaceHolder1_TituloRequired" title="Assunto obrigatório." class="failureNotification" style="visibility:hidden;">*</span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <span id="ContentPlaceHolder1_Label2"> Mensagem</span>
+                                                    <textarea name="ctl00$ContentPlaceHolder1$txtAloSindico" rows="5" cols="20" id="ContentPlaceHolder1_txtAloSindico" class="form-control" placeholder="Digite a mensagem ..."></textarea>
+                                                    <span id="ContentPlaceHolder1_RequiredFieldValidator1" title="Mensagem obrigatória." class="failureNotification" style="visibility:hidden;">*</span>
+                                                </div>
+                                                <div class="form-group">
 
-                                                <div id="vsAssunto" style="display:none;">
+                                                    <div id="vsAssunto" style="display:none;">
 
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="box-footer">
-                                            <button type="button" class="btn btn-default" onclick="closeModal();">
-                                                Fechar</button>
-                                            <input type="submit" name="ctl00$ContentPlaceHolder1$btnSalvar" value="Gravar" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions( & quot; ctl00$ContentPlaceHolder1$btnSalvar & quot; , & quot; & quot; , true, & quot; AloSindicoValidationGroup & quot; , & quot; & quot; , false, false))" id="ContentPlaceHolder1_btnSalvar" class="btn btn-info pull-right">
+                                            <div class="box-footer">
+                                                <button type="button" class="btn btn-default" onclick="closeModal();">
+                                                    Fechar</button>
+                                                <input type="hidden" name="flag" value="alosindico">
+                                                <input type="submit" name="ctl00$ContentPlaceHolder1$btnSalvar" value="Gravar" onClick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions( & quot; ctl00$ContentPlaceHolder1$btnSalvar & quot; , & quot; & quot; , true, & quot; AloSindicoValidationGroup & quot; , & quot; & quot; , false, false))" id="ContentPlaceHolder1_btnSalvar" class="btn btn-info pull-right">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                                
+
                             </form>
-                            
+
                             <!-- Visualizar Modal -->
 
                             <!-- Visualizar Modal-->
@@ -276,11 +286,28 @@
                                         <input type="hidden" name="ctl00$ContentPlaceHolder1$hfToken" id="hfToken">
                                         <div>
                                             <table class="table table-bordered table-striped dataTable" cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_dgvAloSindico" style="border-collapse:collapse;">
-                                                <tbody><tr>
+                                                <tbody>
+                                                    <tr>
                                                         <th scope="col">Visualizar</th><th scope="col">Assunto</th><th scope="col">Data da Mensagem</th><th scope="col">Situação</th>
-                                                    </tr><tr>
-                                                        <td colspan="5">Nenhum Registro Encontrado</td>
                                                     </tr>
+
+                                                    <%
+                                                        if (listaSindico.size() != 0) {
+                                                            for (AloSindico alosind : listaSindico) {
+                                                    %>
+
+                                                    <tr>
+                                                        <td></td><td><%=alosind.getAssunto()%></td><td><%= fmt.format(alosind.getDataEnvio().getTimeInMillis())%></td><td><%=alosind.getSituacao()%></td>
+                                                    </tr>
+
+                                                    <%
+                                                        }
+                                                    } else 
+                                                        
+                                                    %>
+                                                <p>Sem dados de adminstradores</p>
+
+
                                                 </tbody></table>
                                         </div>
                                     </div>
