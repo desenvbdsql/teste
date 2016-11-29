@@ -96,7 +96,7 @@
 
                                         </div>
                                         <div class="pull-right">
-                                            <form action="LogoutServ" method="POST">
+                                            <form action="/Condominio/LogoutServ" method="POST">
                                                 <!--<a href="<%new LogoutServ();%>" class="btn btn-default btn-flat">Sair</a>-->
                                                 <input  type="submit" class="btn btn-default btn-flat" value="Sair">
                                             </form>
@@ -131,8 +131,7 @@
                     <ul class="sidebar-menu">
                         <li class="header">MENU</li>
                         <!-- Optionally, you can add icons to the links -->
-                        <li class="active">
-                            <a href="Controle?flag=home"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
+                        <li class="active"><a href="<%=contextPath%>/views/home.jsp"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
                         <li><a href="<%=contextPath%>/views/administradora.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>
                         <li><a href="<%=contextPath%>/views/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
                         <li><a href="<%=contextPath%>/views/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
