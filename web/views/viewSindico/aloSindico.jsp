@@ -1,3 +1,5 @@
+<%@page import="controlers.LogoutServ"%>
+<%@page import="controlers.LoginServ"%>
 
 <!DOCTYPE html>
 <html>
@@ -99,7 +101,10 @@
 
                                         </div>
                                         <div class="pull-right">
-                                            <a href="index.html" class="btn btn-default btn-flat">Sair</a>
+                                            <form action="LogoutServ" method="POST">
+                                                <!--<a href="<%new LogoutServ();%>" class="btn btn-default btn-flat">Sair</a>-->
+                                                <input  type="submit" class="btn btn-default btn-flat" value="Sair">
+                                            </form>
                                         </div>
                                     </li>
                                 </ul>
@@ -137,9 +142,11 @@
                         <li><a href="<%=contextPath%>/views/viewSindico/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
                         <li><a href="<%=contextPath%>/views/viewSindico/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
                         <li><a href="<%=contextPath%>/views/viewSindico/alterarSenha.jsp"><i class="fa fa-key"></i> <span>Alterar Senha</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/cadastroUsuario.jsp"><i class="fa fa-user-plus"></i> <span>Cadastro Usuario</span></a></li>
                         <li><a href="<%=contextPath%>/views/viewSindico/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
                         <li><a href="<%=contextPath%>/views/viewSindico/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
                         <li><a href="<%=contextPath%>/views/viewSindico/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/listaUsuario.jsp"><i class="fa fa-list"></i> <span>Lista Usuários</span></a></li>
                     </ul>
                     <!-- /.sidebar-menu -->
                 </section>

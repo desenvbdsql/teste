@@ -1,16 +1,28 @@
+<%@page import="controlers.LogoutServ"%>
+<%@page import="controlers.LoginServ"%>
+
 <!DOCTYPE html>
 <html>
     <head>
+        <%
+            String contextPath = request.getContextPath();
+        %>
+        <%
+            String nome = null;
+            nome = session.getAttribute("nome").toString();
+        %>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Lista de usuários</title>    
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">    
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">    
+        <link rel="stylesheet" href="<%=contextPath%>/bootstrap/css/bootstrap.min.css">    
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-        <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-        <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
-
+        <link rel="stylesheet" href="<%=contextPath%>/dist/css/AdminLTE.min.css">
+        <link rel="stylesheet" href="<%=contextPath%>/dist/css/skins/skin-blue.min.css">
+        <script src="<%=contextPath%>/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+        <script src="<%=contextPath%>/bootstrap/js/bootstrap.min.js"></script>
+        <script src="<%=contextPath%>/dist/js/app.min.js"></script>
 
     </head>
     <body class="hold-transition skin-blue layout-boxed sidebar-mini">
@@ -69,27 +81,30 @@
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!-- The user image in the navbar-->
-                                    <img src="dist/img/user9.jpg" class="user-image" alt="User Image">
+                                    <img src="<%=contextPath%>/dist/img/avatar04.png" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                    <span class="hidden-xs">Sr. Sindico</span>
+                                    <span class="hidden-xs"><%=nome%></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <img src="dist/img/user9.jpg" class="img-circle" alt="User Image">
+                                        <img src="<%=contextPath%>/dist/img/avatar04.png" class="img-circle" alt="User Image">
                                         <p>
-                                            Sr. Sindico
+                                            <%=nome%>
 
                                         </p>
                                     </li>
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="Sindico?flag=perfil" class="btn btn-default btn-flat">Perfil</a>
+                                            <a href="<%=contextPath%>/views/viewSindico/perfil.jsp" class="btn btn-default btn-flat">Perfil</a>
 
                                         </div>
                                         <div class="pull-right">
-                                            <a href="index.html" class="btn btn-default btn-flat">Sair</a>
+                                            <form action="LogoutServ" method="POST">
+                                                <!--<a href="<%new LogoutServ();%>" class="btn btn-default btn-flat">Sair</a>-->
+                                                <input  type="submit" class="btn btn-default btn-flat" value="Sair">
+                                            </form>
                                         </div>
                                     </li>
                                 </ul>
@@ -108,30 +123,31 @@
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="dist/img/user9.jpg" class="img-circle" alt="User Image">
+                            <img src="<%=contextPath%>/dist/img/avatar04.png" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                            <p>Sindico</p>
+                            <p><%=nome%></p>
                             <!-- Status -->
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
 
 
-                   <ul class="sidebar-menu">
+                    <ul class="sidebar-menu">
                         <li class="header">MENU</li>
                         <!-- Optionally, you can add icons to the links -->
-                        <li class="active"><a href="Sindico?flag=home"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
-                        <li><a href="Sindico?flag=administradora"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>                      
-                        <li><a href="Sindico?flag=alosindico"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
-                        <li><a href="Sindico?flag=assembleia"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
-                        <li><a href="Sindico?flag=alterarSenha"><i class="fa fa-key"></i> <span>Alterar Senha</span></a></li>
-                        <li><a href="Sindico?flag=cadastroUsuario"><i class="fa fa-user-plus"></i> <span>Cadastro Usuario</span></a></li>
-                        <li><a href="Sindico?flag=ocorrencia"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
-                        <li><a href="Sindico?flag=aviso"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
-                        <li><a href="Sindico?flag=suporte"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li>
-                        <li><a href="Sindico?flag=listaUsuario"><i class="fa fa-list"></i> <span>Lista Usuários</span></a></li>
-                        
+                        <li class="active"><a href="<%=contextPath%>/views/viewSindico/homeSindico.jsp"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/administradoraSindico.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>                      
+                        <li><a href="<%=contextPath%>/views/viewSindico/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/alterarSenha.jsp"><i class="fa fa-key"></i> <span>Alterar Senha</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/cadastroUsuario.jsp"><i class="fa fa-user-plus"></i> <span>Cadastro Usuario</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/listaUsuario.jsp"><i class="fa fa-list"></i> <span>Lista Usuários</span></a></li>
+
+
                     </ul><!-- /.sidebar-menu -->
                 </section>
                 <!-- /.sidebar -->
@@ -148,9 +164,7 @@
                 <section class="content">
                     <!-- conteudo) -->
 
-
-
- <script type="text/javascript">
+                    <script type="text/javascript">
                         $(document).ready(function () {
 
                             // Dialog Link
@@ -194,7 +208,6 @@
                         });
                     </script>
 
-
                     <div>
 
                         <div class="row">
@@ -220,71 +233,67 @@
                                                         <th scope="col">Nome</th>
                                                         <th scope="col">Email</th>
                                                         <th scope="col">Apto</th>
-                                                        
+
                                                     </tr>
                                                     <tr>
-                                                          <td><input type="submit" class="btn btn-success center-block " value="Editar" data-toggle="modal" data-target="#myModal" data-backdrop="static" id="Button1"</td>
+                                                        <td><input type="submit" class="btn btn-success center-block " value="Editar" data-toggle="modal" data-target="#myModal" data-backdrop="static" id="Button1"</td>
                                                         <td>A</td>
                                                         <td>Douglas Castro</td>
                                                         <td>douglasolive1987@gmail.com.br</td>
                                                         <td>154</td>
                                                         <!--<td><input type="submit" class="btn btn-success btn-block btn-flat" value="editar" name="flag"</td>-->
-                                                    
-                                                        
-                                                        
+
                                                     </tr>
-                                                 
+
                                                 </tbody></table>
                                         </div>
                                     </div>
-                                  
-                                     <!-- Modal -->
-                            <div id="myModal" class="modal fade" role="dialog">
-                                <div class="modal-dialog">
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">
-                                                ×</button>
-                                            <h4 class="modal-title">Altera cadastro</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            
-                                        <table  class="table table-bordered table-striped dataTable" cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_dgvAdministradora" style="border-collapse:collapse;">
-                                                <tbody><tr>
-                                                        <th scope="col">Torre</th><th scope="col">Nome</th><th scope="col">Email</th><th scope="col">Apto</th>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                      
-                                                        <td><input style="width:30px"  type="text" name="" value="A"></td>
-                                                       <td><input style="width:100%"  type="text" name="" value="Dougla castro"></td>
-                                                       <td><input style="width:100%" type="text" name="" value="douglasolive1987@gmail.com.br"></td>
-                                                       <td><input style="width:30px"  type="text" name="" value="154"></td>
-                                                        
-                                                        <!--<td><input type="submit" class="btn btn-success btn-block btn-flat" value="editar" name="flag"</td>-->
-                                                        
-                                                        
-                                                        
-                                                    </tr>
-                                                </tbody></table>
-                                        </div>
-                                        <div class="box-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeModal();">
-                                                Fechar</button>
-                                         
-                                            <input type="submit" name="" value="Salvar" onclick="return validaCadastro();" id="ContentPlaceHolder1_btnSalvar" class="btn btn-info pull-right">
+
+                                    <!-- Modal -->
+                                    <div id="myModal" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">
+                                                        ×</button>
+                                                    <h4 class="modal-title">Altera cadastro</h4>
+                                                </div>
+                                                <div class="modal-body">
+
+                                                    <table  class="table table-bordered table-striped dataTable" cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_dgvAdministradora" style="border-collapse:collapse;">
+                                                        <tbody><tr>
+                                                                <th scope="col">Torre</th><th scope="col">Nome</th><th scope="col">Email</th><th scope="col">Apto</th>
+
+                                                            </tr>
+                                                            <tr>
+
+                                                                <td><input style="width:30px"  type="text" name="" value="A"></td>
+                                                                <td><input style="width:100%"  type="text" name="" value="Dougla castro"></td>
+                                                                <td><input style="width:100%" type="text" name="" value="douglasolive1987@gmail.com.br"></td>
+                                                                <td><input style="width:30px"  type="text" name="" value="154"></td>
+
+                                                                <!--<td><input type="submit" class="btn btn-success btn-block btn-flat" value="editar" name="flag"</td>-->
+
+                                                            </tr>
+                                                        </tbody></table>
+                                                </div>
+                                                <div class="box-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeModal();">
+                                                        Fechar</button>
+
+                                                    <input type="submit" name="" value="Salvar" onclick="return validaCadastro();" id="ContentPlaceHolder1_btnSalvar" class="btn btn-info pull-right">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                    <!-- Visualizar Modal -->
+
                                 </div>
                             </div>
-                            <!-- Visualizar Modal -->
-                         
-                            </div>
-                        </div>
 
-                    </div>
-                    <!-- fim conteudo-->
+                        </div>
+                        <!-- fim conteudo-->
                 </section>
             </div><!-- /.content-wrapper -->
 
@@ -307,11 +316,6 @@
          immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 </div><!-- ./wrapper -->
-
-
-<script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="dist/js/app.min.js"></script>
 
 
 </body>

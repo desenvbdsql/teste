@@ -10,7 +10,7 @@ public class Conexao {
     private final String driver = "com.mysql.jdbc.Driver"; //oracle.jdbc.driver.OracleDriver
     private final String url = "jdbc:mysql://localhost:3306/projeto"; //jdbc:oracle:thin:@localhost:1521:xe
     private final String usuario = "root";
-    private final String senha = "";
+    private final String senha = "mysql";
 
     private static Conexao connectionFactory = null;
 
