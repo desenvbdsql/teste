@@ -243,7 +243,7 @@
                                         <div class="icon">
                                             <i class="ion ion-help"></i>
                                         </div>
-                                        <a href="wfFAQ.aspx" class="small-box-footer">Mais <i class="fa fa-arrow-circle-right"></i></a>
+                                        <a href="<%=contextPath%>/views/viewSindico/aviso.jsp" class="small-box-footer">Mais <i class="fa fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div><!-- ./col -->
                             </div><!-- /.row -->

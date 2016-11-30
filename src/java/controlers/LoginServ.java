@@ -45,7 +45,7 @@ public class LoginServ extends HttpServlet {
             UsuarioDao uDAO = new UsuarioDao();
             List<Usuario> usuario = uDAO.pesquisaLogin(name, pwd);
             
-            if (usuario != null) {
+            if (!usuario.isEmpty()) {
 
                 for (Usuario usu : usuario) {
 
@@ -54,6 +54,7 @@ public class LoginServ extends HttpServlet {
                     session.setAttribute("nome", usu.getNome());
                     session.setAttribute("email", usu.getEmail());
                     session.setAttribute("apto", usu.getApto());
+                    
 
                     //request.getRequestDispatcher("views/home.jsp").forward(request, response);
                     if (session.getAttribute("idPerfil").equals(1)) {
@@ -69,7 +70,7 @@ public class LoginServ extends HttpServlet {
                 }
 
             } else {
-                request.getRequestDispatcher("index.html").forward(request, response);
+                request.getRequestDispatcher("views/erro.jsp").forward(request, response);
             }
 
         } finally {

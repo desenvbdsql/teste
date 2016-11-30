@@ -23,7 +23,7 @@ public class UsuarioDao {
     
     public List<Usuario> pesquisaLogin(String name, String pwd) {
         List<Usuario> ListaUsuario = new ArrayList<>();
-        String sql = "SELECT * FROM tb_Usuario WHERE nome = '" + name + "' and senha = '" + pwd + "'";
+        String sql = "SELECT * FROM tb_Usuario WHERE nome = '" + name + "' AND senha = '" + pwd + "'";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -38,6 +38,7 @@ public class UsuarioDao {
                 usuario.setEmail(rs.getString("email"));
 
                 ListaUsuario.add(usuario);
+                System.out.println(usuario.getNome());
             }
             
             rs.close();
