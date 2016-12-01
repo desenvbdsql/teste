@@ -16,6 +16,10 @@
         <servlet-name>PerfilServ</servlet-name>
         <servlet-class>controlers.PerfilServ</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CadastroMoradorServ</servlet-name>
+        <servlet-class>controlers.CadastroMoradorServ</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Controlec</servlet-name>
         <url-pattern>/Controlec</url-pattern>
@@ -32,6 +36,10 @@
         <servlet-name>PerfilServ</servlet-name>
         <url-pattern>/PerfilServ</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastroMoradorServ</servlet-name>
+        <url-pattern>/CadastroMoradorServ</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -43,5 +51,4 @@
             <url-pattern>/views/home.jsp</url-pattern>
         </jsp-property-group>
     </jsp-config>
-        
 </web-app>

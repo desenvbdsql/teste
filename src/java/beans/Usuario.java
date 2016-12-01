@@ -8,10 +8,11 @@ public class Usuario {
 
     private int idUsuario;
     private int idPerfil;
+    private int idTorre;
     private String nome;
     private String email;
     private String senha;
-    private int apto;
+    private String apto;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -29,6 +30,14 @@ public class Usuario {
         this.idPerfil = idPerfil;
     }
 
+    public int getIdTorre() {
+        return idTorre;
+    }
+
+    public void setIdTorre(int idTorre) {
+        this.idTorre = idTorre;
+    }
+    
     public String getNome() {
         return nome;
     }
@@ -53,11 +62,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public int getApto() {
+    public String getApto() {
         return apto;
     }
 
-    public void setApto(int apto) {
+    public void setApto(String apto) {
         this.apto = apto;
     }
 }

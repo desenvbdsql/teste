@@ -129,7 +129,7 @@ public class Controlec extends HttpServlet {
 
             case "editSenha":
 
-                int ap = Integer.parseInt(request.getParameter("ap"));
+                String ap = request.getParameter("ap");
 
                 String s = request.getParameter(String.valueOf("novaSenha"));
                 String cs = request.getParameter("confSenha");
