@@ -283,7 +283,7 @@
                                             <div class="form-group">
                                                 <label for="senhaMorador" class="col-sm-2 control-label">Senha:</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="senhaMorador" name="senhaMorador" placeholder="Apartamento">
+                                                    <input type="text" class="form-control" id="senhaMorador" name="senhaMorador" placeholder="Senha">
                                                 </div>
                                             </div>
                                             <div class="form-group">

@@ -236,7 +236,7 @@
                                             <table class="table table-bordered table-striped dataTable" cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_dgvAdministradora" style="border-collapse:collapse;">
                                                 <tbody>
                                                     <tr>
-                                                        <th scope="col"></th>
+                                                        <th scope="col" colspan="2"></th>
                                                         <th scope="col">Torre</th>
                                                         <th scope="col">Nome</th>
                                                         <th scope="col">Email</th>
@@ -254,6 +254,7 @@
                                                 %>
                                                 <tr>
                                                     <td><input type="submit" class="btn btn-success center-block " value="Editar" data-toggle="modal" data-target="#myModal" data-backdrop="static" id="Button1"</td>
+                                                    <td><input type="submit" class="btn btn-success center-block " value="Excluir" data-toggle="modal" data-target="#myModal" data-backdrop="static" id="Button1"</td>
                                                     <td>A</td>
                                                     <td><%=user.getNome()%></td>
                                                     <td><%=user.getEmail()%></td>
