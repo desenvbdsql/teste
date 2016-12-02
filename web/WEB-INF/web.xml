@@ -20,6 +20,14 @@
         <servlet-name>QuadroAviso</servlet-name>
         <servlet-class>controlers.QuadroAviso</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CadastroMoradorServ</servlet-name>
+        <servlet-class>controlers.CadastroMoradorServ</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SindicoServ</servlet-name>
+        <servlet-class>controlers.SindicoServ</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Controlec</servlet-name>
         <url-pattern>/Controlec</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>QuadroAviso</servlet-name>
         <url-pattern>/QuadroAviso</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastroMoradorServ</servlet-name>
+        <url-pattern>/CadastroMoradorServ</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SindicoServ</servlet-name>
+        <url-pattern>/SindicoServ</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -3,7 +3,10 @@ package models;
 import beans.Sindico;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utils.Conexao;
@@ -22,14 +25,14 @@ public class SindicoDAO {
     }
 
     public void editarSenha(Sindico sindico) {
-        
+
         String sql = "UPDATE tb_sindico SET senha=? WHERE nome=?";
 
         try {
             try (PreparedStatement ps = con.prepareStatement(sql)) {
                 ps.setString(1, sindico.getSenha());
                 ps.setString(2, sindico.getNome());
-                
+
                 ps.executeUpdate();
             }
 

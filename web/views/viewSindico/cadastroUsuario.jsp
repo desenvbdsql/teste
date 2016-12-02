@@ -248,14 +248,14 @@
                                 <div class="box box-info">
 
                                     <!-- form start -->
-                                    <form class="form-horizontal" action="" method="">
+                                    <form class="form-horizontal" action="<%=contextPath%>/CadastroMoradorServ?flag=cadastrar" method="POST">
 
                                         <div class="box-body">
 
                                             <div class="form-group ">
-                                                <label for="inputEmail3" class="col-sm-2 control-label">Torre:</label>
+                                                <label for="torre" class="col-sm-2 control-label">Torre:</label>
                                                 <div class="col-sm-10">
-                                                    <select type="text" class="form-control" >
+                                                    <select class="form-control" name="torre" >
                                                         <option selected="selected">A</option>
                                                         <option>B</option>
                                                         <option>C</option>
@@ -269,21 +269,27 @@
                                             <!-- /.form-group -->
 
                                             <div class="form-group">
-                                                <label for="inputEmail3" class="col-sm-2 control-label">Nome:</label>
+                                                <label for="nomeMorador" class="col-sm-2 control-label">Nome:</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="inputEmail3" placeholder="Nome">
+                                                    <input type="text" class="form-control" id="nomeMorador" name="nomeMorador" placeholder="Nome">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="inputEmail3" class="col-sm-2 control-label">Email:</label>
+                                                <label for="emailMorador" class="col-sm-2 control-label">Email:</label>
                                                 <div class="col-sm-10">
-                                                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                                                    <input type="email" class="form-control" id="emailMorador" name="emailMorador" placeholder="Email">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="inputEmail3" class="col-sm-2 control-label">Apto:</label>
+                                                <label for="senhaMorador" class="col-sm-2 control-label">Senha:</label>
                                                 <div class="col-sm-10">
-                                                    <input type="email" class="form-control" id="inputEmail3" placeholder="Apartamento">
+                                                    <input type="text" class="form-control" id="senhaMorador" name="senhaMorador" placeholder="Senha">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="aptMorador" class="col-sm-2 control-label">Apto:</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="aptMorador" name="aptMorador" placeholder="Apartamento">
                                                 </div>
                                             </div>
                                             <div class="box-footer">
@@ -312,13 +318,12 @@
                                 <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
                                     <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
                                     <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-                                </ul>      
-                        </div>
-                        </aside><!-- /.control-sidebar -->
-                        <!-- Add the sidebar's background. This div must be placed
-                             immediately after the control sidebar -->
-                        <div class="control-sidebar-bg"></div>
-                    </div><!-- ./wrapper -->
+                                </ul>
+                            </aside><!-- /.control-sidebar -->
+                            <!-- Add the sidebar's background. This div must be placed
+                                 immediately after the control sidebar -->
+                            <div class="control-sidebar-bg"></div>
+                        </div><!-- ./wrapper -->
 
-                    </body>
-                    </html>
+                        </body>
+                        </html>

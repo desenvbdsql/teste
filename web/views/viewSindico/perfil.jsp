@@ -1,5 +1,6 @@
 <%@page import="controlers.LoginServ"%>
-<%@page import="controlers.LogoutServ"%>
+<%@page import="controlers.LogoutServ" %>
+<%@page import="java.util.List" %>
 
 <!DOCTYPE html>
 <html>
@@ -271,16 +272,14 @@
                                     <!-- /.box -->
                                     <div class="box-body">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">
-                                                Nome:</label>
-                                            <input name="ctl00$ContentPlaceHolder1$txtNome" type="text" value="Sindico" id="ContentPlaceHolder1_txtNome" class="form-control">
-                                            <label for="exampleInputEmail1">
-                                                Email:</label>
-                                            <input name="ctl00$ContentPlaceHolder1$txtEmail" type="text" value="Sindico@hotmail.com" id="ContentPlaceHolder1_txtEmail" class="form-control">
+                                            <label for="ContentPlaceHolder1_txtNome">Nome: </label>
+                                            <input name="ContentPlaceHolder1_txtNome" type="text" value="Sindico" id="ContentPlaceHolder1_txtNome" class="form-control"><!-- ContentPlaceHolder1_txtNome -->
+                                            <label for="ContentPlaceHolder1_txtEmail">Email: </label>
+                                            <input name="ContentPlaceHolder1_txtEmail" type="text" value="Sindico@hotmail.com" id="ContentPlaceHolder1_txtEmail" class="form-control"><!-- Sindico@hotmail.com, ContentPlaceHolder1_txtEmail -->
                                         </div>
                                     </div>
                                     <div class="box-footer">
-                                        <input type="submit" name="ctl00$ContentPlaceHolder1$btnAlteraPerfil" value="Alterar Perfil" onclick="return validaPerfil();" id="ContentPlaceHolder1_btnAlteraPerfil" class="btn btn-info pull-right">
+                                        <input type="submit" name="flag" value="Alterar Perfil" onclick="return validaPerfil();" id="ContentPlaceHolder1_btnAlteraPerfil" class="btn btn-info pull-right"><!-- ctl00$ContentPlaceHolder1$btnAlteraPerfil -->
                                     </div>
                                 </div>
                                 <!-- /.box-body -->
@@ -305,14 +304,13 @@
                 <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
                     <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
                     <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-                </ul>      
-        </div>
-    </aside><!-- /.control-sidebar -->
-    <!-- Add the sidebar's background. This div must be placed
-         immediately after the control sidebar -->
-    <div class="control-sidebar-bg"></div>
-</div><!-- ./wrapper -->
+                </ul>
+            </aside><!-- /.control-sidebar -->
+            <!-- Add the sidebar's background. This div must be placed
+                 immediately after the control sidebar -->
+            <div class="control-sidebar-bg"></div>
+        </div><!-- ./wrapper -->
 
 
-</body>
+    </body>
 </html>

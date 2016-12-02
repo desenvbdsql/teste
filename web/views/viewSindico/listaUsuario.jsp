@@ -1,6 +1,9 @@
-<%@page import="controlers.LogoutServ"%>
-<%@page import="controlers.LoginServ"%>
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="models.UsuarioDao"%>
+<%@page import="models.TorreDAO"%>
+<%@page import="beans.Usuario"%>
+<%@page import="beans.Torre"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,12 +11,17 @@
             String contextPath = request.getContextPath();
         %>
         <%
+            List<Usuario> listaUsuario = new UsuarioDao().listar();
+            //List<Torre> listaTorre = new TorreDAO().buscaTorre();
+        %>
+        <%
             String nome = null;
             nome = session.getAttribute("nome").toString();
         %>
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Lista de usuários</title>    
+        <title>Lista de usuÃ¡rios</title>    
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">    
         <link rel="stylesheet" href="<%=contextPath%>/bootstrap/css/bootstrap.min.css">    
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -36,7 +44,7 @@
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>P</b>JT</span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>Projeto</b>5º</span>
+                    <span class="logo-lg"><b>Projeto</b>5Âº</span>
                 </div>
 
                 <!-- Header Navbar -->
@@ -102,7 +110,7 @@
                                         </div>
                                         <div class="pull-right">
                                             <form action="/Condominio/LogoutServ" method="POST">
-                                                <!--<a href="<%new LogoutServ();%>" class="btn btn-default btn-flat">Sair</a>-->
+                                                <!--<a href="" class="btn btn-default btn-flat">Sair</a>-->
                                                 <input  type="submit" class="btn btn-default btn-flat" value="Sair">
                                             </form>
                                         </div>
@@ -136,16 +144,16 @@
                     <ul class="sidebar-menu">
                         <li class="header">MENU</li>
                         <!-- Optionally, you can add icons to the links -->
-                        <li class="active"><a href="<%=contextPath%>/views/viewSindico/homeSindico.jsp"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
+                        <li class="active"><a href="<%=contextPath%>/views/viewSindico/homeSindico.jsp"><i class="fa fa-home"></i> <span>InÃ­cÃ­o</span></a></li>
                         <li><a href="<%=contextPath%>/views/viewSindico/administradoraSindico.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>                      
-                        <li><a href="<%=contextPath%>/views/viewSindico/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
-                        <li><a href="<%=contextPath%>/views/viewSindico/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/aloSindico.jsp"><i class="fa fa-phone"></i> <span>AlÃ´ Sindico</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/assembleia.jsp"><i class="fa fa-group"></i> <span>AssemblÃ©ia</span></a></li>
                         <li><a href="<%=contextPath%>/views/viewSindico/alterarSenha.jsp"><i class="fa fa-key"></i> <span>Alterar Senha</span></a></li>
                         <li><a href="<%=contextPath%>/views/viewSindico/cadastroUsuario.jsp"><i class="fa fa-user-plus"></i> <span>Cadastro Usuario</span></a></li>
-                        <li><a href="<%=contextPath%>/views/viewSindico/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>OcorrÃªncia</span></a></li>
                         <li><a href="<%=contextPath%>/views/viewSindico/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
-                        <li><a href="<%=contextPath%>/views/viewSindico/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li>
-                        <li><a href="<%=contextPath%>/views/viewSindico/listaUsuario.jsp"><i class="fa fa-list"></i> <span>Lista Usuários</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte TÃ©cnico</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/listaUsuario.jsp"><i class="fa fa-list"></i> <span>Lista UsuÃ¡rios</span></a></li>
 
 
                     </ul><!-- /.sidebar-menu -->
@@ -217,7 +225,7 @@
                                         <h2>
 
                                             <span class="fa fa-list"></span><span class="glyphicon-class">
-                                                Lista de Usuários</span></h2>
+                                                Lista de UsuÃ¡rios</span></h2>
                                     </div>
                                     <div class="callout callout-info">
                                         <p>
@@ -227,25 +235,43 @@
                                     <div class="box-body">
                                         <div>
                                             <table class="table table-bordered table-striped dataTable" cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_dgvAdministradora" style="border-collapse:collapse;">
-                                                <tbody><tr>
-                                                        <th scope="col"></th>
-                                                        <th scope="col">Torre</th>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="col" colspan="2"></th>
+                                                        <th scope="col" colspan="2">Torre</th>
                                                         <th scope="col">Nome</th>
                                                         <th scope="col">Email</th>
                                                         <th scope="col">Apto</th>
-
                                                     </tr>
+
+                                                    <%
+                                                        if (listaUsuario.size() == 0) {
+                                                    %>
+                                                <p>Sem dados de morador</p>
+                                                <%
+                                                } else {
+
+                                                    for (Usuario user : listaUsuario) {
+                                                %>
+                                                <form action="<%=contextPath%>/CadastroMoradorServ" method="POST">
                                                     <tr>
-                                                        <td><input type="submit" class="btn btn-success center-block " value="Editar" data-toggle="modal" data-target="#myModal" data-backdrop="static" id="Button1"</td>
-                                                        <td>A</td>
-                                                        <td>Douglas Castro</td>
-                                                        <td>douglasolive1987@gmail.com.br</td>
-                                                        <td>154</td>
+                                                        <td><input type="submit" class="btn btn-success center-block " value="Editar" name="flag" data-toggle="modal" data-target="#myModal" data-backdrop="static" id="Button1"</td>
+                                                        <td><input type="submit" class="btn btn-success center-block " value="Excluir" name="flag" data-toggle="modal" data-target="#myModal" data-backdrop="static" id="Button1"</td>
+                                                        <td><input type="hidden" class="form-control"  name="idM" value="<%=user.getIdUsuario()%>" /></td><!-- A -->
+                                                        <td><input type="text" class="form-control" id="torreM" name="torreM" value="<%=user.getIdTorre()%>" disabled /></td>
+                                                        <td><input type="text" class="form-control" id="nomeMorador" name="nomeMorador" placeholder="Nome" value="<%=user.getNome()%>" /></td>
+                                                        <td><input type="email" class="form-control" id="emailMorador" name="emailMorador" placeholder="Email" value="<%=user.getEmail()%>" size="50" /></td>
+                                                        <td><input type="text" class="form-control" id="aptMorador" name="aptMorador" placeholder="Apt" value="<%=user.getApto()%>" /></td>
                                                         <!--<td><input type="submit" class="btn btn-success btn-block btn-flat" value="editar" name="flag"</td>-->
-
                                                     </tr>
+                                                </form>
+                                                <%
+                                                    }
+                                                }
+                                                %>
+                                                </tbody>
 
-                                                </tbody></table>
+                                            </table>
                                         </div>
                                     </div>
 
@@ -256,7 +282,7 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal">
-                                                        ×</button>
+                                                        Ã—</button>
                                                     <h4 class="modal-title">Altera cadastro</h4>
                                                 </div>
                                                 <div class="modal-body">

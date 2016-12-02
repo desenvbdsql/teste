@@ -7,19 +7,18 @@ package beans;
  */
 public class Sindico {
     
-    private int idSindico;
+    private int idUsuario;
     private int idPerfil;
     private String nome;
     private String email;
     private String senha;
     
-
-    public int getIdSindico() {
-        return idSindico;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdSindico(int idSindico) {
-        this.idSindico = idSindico;
+    public void setIdSindico(int idUsuario) {
+        this.idUsuario = this.idUsuario;
     }
 
     public int getIdPerfil() {
