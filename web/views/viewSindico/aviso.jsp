@@ -1,16 +1,19 @@
-<%@page import="controlers.LogoutServ"%>
-<%@page import="controlers.LoginServ"%>
+<%@page import="beans.Aviso"%>
+<%@page import="java.util.List"%>
+<%@page import="models.AvisoDAO" %>
 
 <!DOCTYPE html>
 <html>
     <head>
         <%
             String contextPath = request.getContextPath();
-        %>
-        <%
+
+            List<Aviso> listaAviso = new AvisoDAO().Pesquisar();
+
             String nome = null;
             nome = session.getAttribute("nome").toString();
         %>
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Aviso</title>    
@@ -36,7 +39,7 @@
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>P</b>JT</span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>Projeto</b>5º</span>
+                    <span class="logo-lg"><b>Projeto</b>5?</span>
                 </div>
 
                 <!-- Header Navbar -->
@@ -102,7 +105,7 @@
                                         </div>
                                         <div class="pull-right">
                                             <form action="/Condominio/LogoutServ" method="POST">
-                                                <!--<a href="<%new LogoutServ();%>" class="btn btn-default btn-flat">Sair</a>-->
+                                                <!--<a href="" class="btn btn-default btn-flat">Sair</a>-->
                                                 <input  type="submit" class="btn btn-default btn-flat" value="Sair">
                                             </form>
                                         </div>
@@ -137,16 +140,16 @@
                     <ul class="sidebar-menu">
                         <li class="header">MENU</li>
                         <!-- Optionally, you can add icons to the links -->
-                        <li class="active"><a href="<%=contextPath%>/views/viewSindico/homeSindico.jsp"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
+                        <li class="active"><a href="<%=contextPath%>/views/viewSindico/homeSindico.jsp"><i class="fa fa-home"></i> <span>In?c?o</span></a></li>
                         <li><a href="<%=contextPath%>/views/viewSindico/administradoraSindico.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>
-                        <li><a href="<%=contextPath%>/views/viewSindico/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
-                        <li><a href="<%=contextPath%>/views/viewSindico/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Al? Sindico</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembl?ia</span></a></li>
                         <li><a href="<%=contextPath%>/views/viewSindico/alterarSenha.jsp"><i class="fa fa-key"></i> <span>Alterar Senha</span></a></li>
                         <li><a href="<%=contextPath%>/views/viewSindico/cadastroUsuario.jsp"><i class="fa fa-user-plus"></i> <span>Cadastro Usuario</span></a></li>
-                        <li><a href="<%=contextPath%>/views/viewSindico/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorr?ncia</span></a></li>
                         <li><a href="<%=contextPath%>/views/viewSindico/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
-                        <li><a href="<%=contextPath%>/views/viewSindico/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li><!-- /.sidebar-menu -->
-                        <li><a href="<%=contextPath%>/views/viewSindico/listaUsuario.jsp"><i class="fa fa-list"></i> <span>Lista Usuários</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte T?cnico</span></a></li><!-- /.sidebar-menu -->
+                        <li><a href="<%=contextPath%>/views/viewSindico/listaUsuario.jsp"><i class="fa fa-list"></i> <span>Lista Usu?rios</span></a></li>
                 </section>
                 <!-- /.sidebar -->
             </aside>
@@ -185,7 +188,7 @@
                         <script language="Javascript" type="text/javascript">
                             function pergunta() {
 
-                                if (confirm("Deseja realmente excluir?")) {
+                                if (confirm("Deseja realmente Salvar?")) {
                                     return true;
                                 } else {
                                     return false;
@@ -243,12 +246,14 @@
                                 var arr = String(res).split(",");
 
                                 document.getElementById("hfcvIdQuadroAviso").value = arr[0];
-                                document.getElementById("txtTitulo").value = arr[1].replace(/Ë/g, ",");
-                                document.getElementById("txtData").value = arr[2];
+                                        document.getElementById("txtTitulo").value = arr[1].replace(/?/g, ",");
+                                        document.getElementById("txtData").value = arr[2];
                                 document.getElementById("txtDataExpiracao").value = arr[3];
-                                document.getElementById("txtAviso").value = arr[4].replace(/Ë/g, ",");
-                                openModal();
+                                        document.getElementById("txtAviso").value = arr[4].replace(/?/g, ",");
+                                        openModal();
                             }
+
+
 
                         </script>
                         <div class="row">
@@ -263,7 +268,7 @@
                                     <!-- /.box-header -->
                                     <div class="callout callout-info">
                                         <p>
-                                            Controle de Quadro de Avisos do Condominio</p>
+                                            Controle de Quadro de Avisos do Condominio BeLife</p>
                                     </div>
                                     <div class="margin">
                                         <div class="btn-group">
@@ -272,91 +277,130 @@
                                         </div>
                                     </div>
                                     <!--Modal-->
-                                    <div class="modal fade" id="myModal">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <input type="hidden" name="ctl00$ContentPlaceHolder1$hfcvIdQuadroAviso" id="hfcvIdQuadroAviso">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal();">
-                                                        <span aria-hidden="true">×</span></button>
-                                                    <h4 class="modal-title">
-                                                        Quadro de Avisos</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="box-body">
-                                                        <div class="form-group">
-                                                            <span id="ContentPlaceHolder1_Label1">Titulo</span>
-                                                            <input name="ctl00$ContentPlaceHolder1$txtTitulo" type="text" id="txtTitulo" class="form-control">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <span id="ContentPlaceHolder1_lblData"> Data do Aviso</span>
-                                                            <div class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-calendar"></i>
-                                                                </div>
-                                                                <input name="ctl00$ContentPlaceHolder1$txtData" type="text" id="txtData" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
-                                                            </div>
-                                                            <!-- /.input group -->
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <span id="ContentPlaceHolder1_lblDataExpiracao"> Data de Expiração do Aviso</span>
-                                                            <div class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-calendar"></i>
-                                                                </div>
-                                                                <input name="ctl00$ContentPlaceHolder1$txtDataExpiracao" type="text" id="txtDataExpiracao" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
-                                                            </div>
-                                                            <!-- /.input group -->
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <span id="ContentPlaceHolder1_lblAviso">Aviso</span>
-                                                            <textarea name="ctl00$ContentPlaceHolder1$txtAviso" rows="2" cols="20" id="txtAviso" class="form-control" style="height:200px;"></textarea>
-                                                        </div>
+
+                                    <form action="/Condominio/QuadroAviso"method="POST">
+
+                                        <div class="modal fade" id="myModal">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <input type="hidden" name="ctl00$ContentPlaceHolder1$hfcvIdQuadroAviso" id="hfcvIdQuadroAviso">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick="closeModal();">
+                                                            <span aria-hidden="true">?</span></button>
+                                                        <h4 class="modal-title">
+                                                            Quadro de Avisos</h4>
                                                     </div>
-                                                    <!-- /.box-body -->
+                                                    <div class="modal-body">
+                                                        <div class="box-body">
+                                                            <div class="form-group">
+                                                                <span id="ContentPlaceHolder1_Label1">Titulo</span>
+                                                                <input name="titulo" type="text"   id="" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <span id="ContentPlaceHolder1_lblData"> Data do Aviso</span>
+                                                                <div class="input-group">
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-calendar"></i>
+                                                                    </div>
+                                                                    <input name="data" type="text" id="txtData" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
+                                                                </div>
+                                                                <!-- /.input group -->
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <span id="ContentPlaceHolder1_lblDataExpiracao"> Data de Expira??o do Aviso</span>
+                                                                <div class="input-group">
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-calendar"></i>
+                                                                    </div>
+                                                                    <input name="dataExp" type="text" id="" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
+                                                                </div>
+                                                                <!-- /.input group -->
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <span id="ContentPlaceHolder1_lblAviso">Aviso</span>
+                                                                <textarea name="mensagemAviso" rows="2" cols="20" id="" class="form-control" style="height:200px;"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.box-body -->
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input name="mensagem" type="text" id="lblMensagem" disabled="disabled" class="aspNetDisabled textoMensagem" style="background-color:White;">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal" onClick="closeModal();">
+                                                            Fechar</button>
+
+                                                        <input type="submit" value="Gravar"  onclick="return pergunta();" class="btn btn-info pull-right">
+
+                                                    </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <input name="ctl00$ContentPlaceHolder1$lblMensagem" type="text" id="lblMensagem" disabled="disabled" class="aspNetDisabled textoMensagem" style="background-color:White;">
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" onclick="closeModal();">
-                                                        Fechar</button>
-                                                    <input type="submit" name="ctl00$ContentPlaceHolder1$btnSalvar" value="Gravar" onclick="return validaCampos();" id="ContentPlaceHolder1_btnSalvar" class="btn btn-info pull-right">
-                                                </div>
+                                                <!-- /.modal-content -->
                                             </div>
-                                            <!-- /.modal-content -->
+                                            <!-- /.modal-dialog -->
                                         </div>
-                                        <!-- /.modal-dialog -->
-                                    </div>
+                                    </form>
+
+
+
+
                                     <!-- GRID -->
-                                    <div class="box-body">
-                                        <div>
-                                            <table class="table table-bordered table-striped dataTable" cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_dgvAviso" style="border-collapse:collapse;">
-                                                <tbody><tr>
-                                                        <th scope="col">Editar</th><th scope="col">Excluir</th><th scope="col">Titulo</th><th scope="col">Data do Aviso</th><th scope="col">Data Expiração</th>
-                                                    </tr><tr>
-                                                        <td align="center" style="width:60px;">
-                                                            <button class="botaoEditar" type="button" id="btnEditaAviso" value="Editar Aviso" onclick="exibeAviso(25);">
-                                                            </button>
-                                                        </td><td align="center" style="width:60px;">
-                                                            <input type="image" name="ctl00$ContentPlaceHolder1$dgvAviso$ctl02$imgExcluir" id="ContentPlaceHolder1_dgvAviso_imgExcluir_0" src="imagens/lixeira.png" onclick="return pergunta();">
-                                                        </td><td>Entregas na Portaria</td><td>01/09/2016</td><td>01/09/2017</td>
-                                                    </tr><tr>
-                                                        <td align="center" style="width:60px;">
-                                                            <button class="botaoEditar" type="button" id="btnEditaAviso" value="Editar Aviso" onclick="exibeAviso(1);">
-                                                            </button>
-                                                        </td><td align="center" style="width:60px;">
-                                                            <input type="image" name="ctl00$ContentPlaceHolder1$dgvAviso$ctl03$imgExcluir" id="ContentPlaceHolder1_dgvAviso_imgExcluir_1" src="imagens/lixeira.png" onclick="return pergunta();">
-                                                        </td><td>Economia de Agua</td><td>26/09/2015</td><td>30/09/2017</td>
-                                                    </tr>
-                                                </tbody></table>
+
+
+                                    <%
+                                        if (listaAviso.size() == 0) {
+                                    %>
+                                    <p>Sem dados de aviso</p>
+                                    <%
+                                    } else {
+
+                                        for (Aviso aviso : listaAviso) {
+                                    %>
+                                    <form action="/Condominio/QuadroAviso"method="POST">
+
+                                        <div class="box-body">
+                                            <div>
+                                                <table class="table table-bordered table-striped dataTable" cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_dgvAviso" style="border-collapse:collapse;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="col">Editar</th><th scope="col">Excluir</th><th scope="col">Titulo</th><th scope="col">Data do Aviso</th><th scope="col">Data Expira??o</th><th scope="col">Mensagem</th>
+                                                        </tr>
+
+                                                        <tr>
+
+                                                            <td align="center" style="width:60px;">
+
+                                                                <input type="submit" id="" class="btn btn-info pull-right" value="Editar" name="flag"  onclick="return pergunta();">
+                                                            </td>
+
+                                                            <td align="center" style="width:60px;">
+                                                                <input type="submit" id="" class="btn btn-danger pull-right" value="Excluir" name="flag"  onclick="return pergunta();">
+                                                            </td>
+
+                                                            <td><input type="hidden" name="idmsg" value="<%=aviso.getIdQuadroAviso()%>"></td>
+                                                            <td><input type="text" name="titulomsg" value="<%=aviso.getTitulo()%>"></td>
+                                                            <td><input type="text" name="datamsg" value="<%=aviso.getData()%>"></td>
+                                                            <td><input type="text" name="dataexpmsg" value="<%=aviso.getDataExp()%>"></td>
+                                                            <td><input type="text" name="msg" value="<%=aviso.getMensagemAviso()%>"></td>
+
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
+
+                                    <%
+                                            }
+                                        }
+                                    %>
+
                                 </div>
                             </div>
                         </div>
 
                     </div>
+
+
                     <!-- fim conteudo-->
                 </section>
             </div><!-- /.content-wrapper -->
