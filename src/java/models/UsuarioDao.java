@@ -53,7 +53,7 @@ public class UsuarioDao {
     
     public List<Usuario> listar() {
         List<Usuario> listaUsuario = new ArrayList();
-        String sql = "SELECT * FROM tb_Usuario";
+        String sql = "SELECT * FROM tb_Usuario ORDER BY idUsuario";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -62,6 +62,7 @@ public class UsuarioDao {
 
             while (rs.next()) {
                 Usuario usuario = new Usuario();
+                usuario.setIdUsuario(rs.getInt("idUsuario"));
                 usuario.setIdTorre(rs.getInt("idTorre"));
                 usuario.setNome(rs.getString("nome"));
                 usuario.setEmail(rs.getString("email"));
@@ -78,6 +79,25 @@ public class UsuarioDao {
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
             throw new RuntimeException("Erro ao pesquisar usuário", ex);
+        }
+    }
+    
+    public void excluir(Usuario usuario) {
+        try {
+            String sql = "DELETE FROM tb_usuario WHERE idUsuario=?";
+            // seta os valores
+            try (PreparedStatement ps = con.prepareStatement(sql)) {
+                
+                ps.setInt(1, usuario.getIdUsuario());
+
+                ps.executeUpdate();
+                ps.close();
+            }
+
+            con.close();
+
+        } catch (SQLException ex) {
+            throw new RuntimeException("Erro ao excluir Usuario", ex);
         }
     }
     
@@ -103,6 +123,26 @@ public class UsuarioDao {
 
         } catch (SQLException ex) {
             throw new RuntimeException("Erro ao inserir Usuario", ex);
+        }
+    }
+    
+    public void alterar(Usuario usuario) {
+        
+        String sql = "UPDATE tb_Usuario SET nome=?, email=?, apto=? WHERE idUsuario=?";
+
+        try {
+            try (PreparedStatement ps = con.prepareStatement(sql)) {
+                ps.setString(1, usuario.getNome());
+                ps.setString(2, usuario.getEmail());
+                ps.setString(3, usuario.getApto());
+                ps.setInt(4, usuario.getIdUsuario());
+                
+                ps.executeUpdate();
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SindicoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("Erro ao atualizar Morador");
         }
     }
 

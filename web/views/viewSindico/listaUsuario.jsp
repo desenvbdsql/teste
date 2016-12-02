@@ -12,6 +12,7 @@
         %>
         <%
             List<Usuario> listaUsuario = new UsuarioDao().listar();
+            //List<Torre> listaTorre = new TorreDAO().buscaTorre();
         %>
         <%
             String nome = null;
@@ -237,7 +238,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <th scope="col" colspan="2"></th>
-                                                        <th scope="col">Torre</th>
+                                                        <th scope="col" colspan="2">Torre</th>
                                                         <th scope="col">Nome</th>
                                                         <th scope="col">Email</th>
                                                         <th scope="col">Apto</th>
@@ -252,17 +253,21 @@
 
                                                     for (Usuario user : listaUsuario) {
                                                 %>
-                                                <tr>
-                                                    <td><input type="submit" class="btn btn-success center-block " value="Editar" data-toggle="modal" data-target="#myModal" data-backdrop="static" id="Button1"</td>
-                                                    <td><input type="submit" class="btn btn-success center-block " value="Excluir" data-toggle="modal" data-target="#myModal" data-backdrop="static" id="Button1"</td>
-                                                    <td>A</td>
-                                                    <td><%=user.getNome()%></td>
-                                                    <td><%=user.getEmail()%></td>
-                                                    <td><%=user.getApto()%></td>
-                                                    <!--<td><input type="submit" class="btn btn-success btn-block btn-flat" value="editar" name="flag"</td>-->
-                                                </tr>
-                                                <%      }
+                                                <form action="<%=contextPath%>/CadastroMoradorServ" method="POST">
+                                                    <tr>
+                                                        <td><input type="submit" class="btn btn-success center-block " value="Editar" name="flag" data-toggle="modal" data-target="#myModal" data-backdrop="static" id="Button1"</td>
+                                                        <td><input type="submit" class="btn btn-success center-block " value="Excluir" name="flag" data-toggle="modal" data-target="#myModal" data-backdrop="static" id="Button1"</td>
+                                                        <td><input type="hidden" class="form-control"  name="idM" value="<%=user.getIdUsuario()%>" /></td><!-- A -->
+                                                        <td><input type="text" class="form-control" id="torreM" name="torreM" value="<%=user.getIdTorre()%>" disabled /></td>
+                                                        <td><input type="text" class="form-control" id="nomeMorador" name="nomeMorador" placeholder="Nome" value="<%=user.getNome()%>" /></td>
+                                                        <td><input type="email" class="form-control" id="emailMorador" name="emailMorador" placeholder="Email" value="<%=user.getEmail()%>" size="50" /></td>
+                                                        <td><input type="text" class="form-control" id="aptMorador" name="aptMorador" placeholder="Apt" value="<%=user.getApto()%>" /></td>
+                                                        <!--<td><input type="submit" class="btn btn-success btn-block btn-flat" value="editar" name="flag"</td>-->
+                                                    </tr>
+                                                </form>
+                                                <%
                                                     }
+                                                }
                                                 %>
                                                 </tbody>
 

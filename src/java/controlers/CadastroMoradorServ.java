@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -52,45 +53,48 @@ public class CadastroMoradorServ extends HttpServlet {
 
         String flag = request.getParameter("flag");
 
-        if (flag != null) {
-            if (flag.equals("listaUsuario")) {
-
-////            listaUsuario = usuarioDAO.listar();
-//            listaTorre = torreDAO.buscaTorre();
-//            listaUsuario = usuarioDAO.listar();
-//            for(Torre tr : listaTorre) {
-//                for(Usuario usr : listaUsuario){
-//                    usrg.setTorre(tr.getTorre());
-//                    usrg.setTorre(usr.getNome());
-//                    usrg.setTorre(usr.getEmail());
-//                    usrg.setTorre(usr.getApto());
-//                }
-//                listaUser.add(usrg);
-////                idTorre = tr.getIdTorre();
-////                tore = tr.getTorre();
-//            }
-//            request.setAttribute("listaUser", listaUser);
+        switch (flag) {
+            case "Editar":
+                usuarioDAO = new UsuarioDao();
+                user = new Usuario();
+                user.setIdUsuario(Integer.parseInt(request.getParameter("idM")));
+                user.setNome(request.getParameter("nomeMorador"));
+                user.setEmail(request.getParameter("emailMorador"));
+                user.setApto(request.getParameter("aptMorador"));
+                usuarioDAO.alterar(user);
                 request.getRequestDispatcher("views/viewSindico/listaUsuario.jsp").forward(request, response);
-            }
-        } else {
-            user.setIdPerfil(2);
+                break;
 
-            torre.setTorre(request.getParameter("torre"));
+            case "Excluir":
+                usuarioDAO = new UsuarioDao();
+                user = new Usuario();
+                user.setIdUsuario(Integer.parseInt(request.getParameter("idM")));
+                usuarioDAO.excluir(user);
+                //usuarioDAO
+                request.getRequestDispatcher("views/viewSindico/listaUsuario.jsp").forward(request, response);
+                break;
 
-            user.setNome(request.getParameter("nomeMorador"));
-            user.setEmail(request.getParameter("emailMorador"));
-            user.setSenha(request.getParameter("senhaMorador"));
-            user.setApto(request.getParameter("aptMorador"));
+            case "cadastrar":
+                user.setIdPerfil(2);
 
-            user.setIdTorre(torreDAO.pesquisaTorre(torre.getTorre()));
+                torre.setTorre(request.getParameter("torre"));
 
-            usuarioDAO.inserir(user);
+                user.setNome(request.getParameter("nomeMorador"));
+                user.setEmail(request.getParameter("emailMorador"));
+                user.setSenha(request.getParameter("senhaMorador"));
+                user.setApto(request.getParameter("aptMorador"));
 
-            request.getRequestDispatcher("views/viewSindico/listaUsuario.jsp").forward(request, response);
+                user.setIdTorre(torreDAO.pesquisaTorre(torre.getTorre()));
+
+                usuarioDAO.inserir(user);
+
+                request.getRequestDispatcher("views/viewSindico/listaUsuario.jsp").forward(request, response);
+                break;
         }
+
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

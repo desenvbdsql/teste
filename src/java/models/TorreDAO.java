@@ -61,7 +61,7 @@ public class TorreDAO {
     
     public List<Torre> buscaTorre() {
         List<Torre> listaTorre = new ArrayList();
-        String sql = "SELECT * FROM tb_torre";
+        String sql = "SELECT * FROM tb_torre ORDER BY idTorre";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);

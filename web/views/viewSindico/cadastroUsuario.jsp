@@ -248,7 +248,7 @@
                                 <div class="box box-info">
 
                                     <!-- form start -->
-                                    <form class="form-horizontal" action="<%=contextPath%>/CadastroMoradorServ" method="POST">
+                                    <form class="form-horizontal" action="<%=contextPath%>/CadastroMoradorServ?flag=cadastrar" method="POST">
 
                                         <div class="box-body">
 
