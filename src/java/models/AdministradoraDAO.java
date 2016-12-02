@@ -45,10 +45,10 @@ public class AdministradoraDAO {
 //            ps.setString(2, usuario.getSenha());
 
             ResultSet rs = ps.executeQuery();
-            Administradora administradora = new Administradora();
+//            Administradora administradora = new Administradora();
 
             while (rs.next()) {
-                administradora = new Administradora();
+                Administradora administradora = new Administradora();
                 administradora.setNome(rs.getString("nome"));
                 administradora.setServico(rs.getString("servico"));
                 administradora.setContato(rs.getString("contato"));
