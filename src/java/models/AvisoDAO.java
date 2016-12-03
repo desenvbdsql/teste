@@ -22,7 +22,7 @@ import utils.Conexao;
  */
 public class AvisoDAO {
 
-    private Connection con = null;
+    private Connection con ;
     private String status;
 
     public AvisoDAO() throws SQLException {
@@ -102,7 +102,7 @@ public class AvisoDAO {
 
             while (rs.next()) {
                 Aviso aviso = new Aviso();
-                aviso.setIdQuadroAviso(rs.getString("idQuadroAviso"));
+                aviso.setIdQuadroAviso(rs.getInt("idQuadroAviso"));
                 aviso.setTitulo(rs.getString("titulo"));
                 aviso.setData(rs.getString("dataAviso"));
                 aviso.setDataExp(rs.getString("dataExp"));
@@ -141,7 +141,7 @@ public class AvisoDAO {
             ps.setString(2, aviso.getData());
             ps.setString(3, aviso.getDataExp());
             ps.setString(4, aviso.getMensagemAviso());
-            ps.setString(5, aviso.getIdQuadroAviso());
+            ps.setInt(5, aviso.getIdQuadroAviso());
 
             System.out.println(aviso.getMensagemAviso());
             ps.executeUpdate();
@@ -153,5 +153,39 @@ public class AvisoDAO {
                     "Erro ao atualizar aviso");
         }
     }
+    
+    
+    public void excluir(Aviso aviso) {
+        
+         if (con == null) {
 
+            try {
+                con = Conexao.getInstance().getConnection();
+            } catch (SQLException ex) {
+                System.out.println("Erro na pesquisa: " + ex.getMessage());
+            }
+        }
+        
+        
+        try {
+            String sql = "DELETE FROM tb_aviso WHERE idQuadroAviso=?";
+            // seta os valores
+            try (PreparedStatement ps = con.prepareStatement(sql)) {
+                
+                ps.setInt(1, aviso.getIdQuadroAviso());
+
+                ps.executeUpdate();
+                ps.close();
+            }
+
+            con.close();
+
+        } catch (SQLException ex) {
+            throw new RuntimeException("Erro ao excluir Usuario", ex);
+        }
+    }
 }
+    
+    
+
+

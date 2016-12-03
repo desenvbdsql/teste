@@ -79,7 +79,8 @@ public class QuadroAviso extends HttpServlet {
                 
 //                System.out.println(request.getParameter("titulomsg"));
 //
-                String id = request.getParameter("idmsg");
+                
+                int id =(Integer.parseInt(request.getParameter("idmsg")));
                 String tituloUp = request.getParameter("titulomsg");
                 String dataUp = request.getParameter("datamsg");
                 String dataExpUp = request.getParameter("dataexpmsg");
@@ -102,9 +103,12 @@ public class QuadroAviso extends HttpServlet {
                 break;
 
             case "Excluir":
-
-                
-
+                avisoDAO = new AvisoDAO();
+                aviso = new Aviso();
+                aviso.setIdQuadroAviso(Integer.parseInt(request.getParameter("idmsg")));
+                avisoDAO.excluir(aviso);
+                //usuarioDAO
+                request.getRequestDispatcher("views/viewSindico/aviso.jsp").forward(request, response);
                 break;
 
         }

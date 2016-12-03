@@ -258,6 +258,7 @@
                                                         <td><input type="submit" class="btn btn-success center-block " value="Editar" name="flag" data-toggle="modal" data-target="#myModal" data-backdrop="static" id="Button1"</td>
                                                         <td><input type="submit" class="btn btn-success center-block " value="Excluir" name="flag" data-toggle="modal" data-target="#myModal" data-backdrop="static" id="Button1"</td>
                                                         <td><input type="hidden" class="form-control"  name="idM" value="<%=user.getIdUsuario()%>" /></td><!-- A -->
+                                                        
                                                         <td><input type="text" class="form-control" id="torreM" name="torreM" value="<%=user.getIdTorre()%>" disabled /></td>
                                                         <td><input type="text" class="form-control" id="nomeMorador" name="nomeMorador" placeholder="Nome" value="<%=user.getNome()%>" /></td>
                                                         <td><input type="email" class="form-control" id="emailMorador" name="emailMorador" placeholder="Email" value="<%=user.getEmail()%>" size="50" /></td>

@@ -11,19 +11,21 @@ package beans;
  */
 public class Aviso {
     
-    private String idQuadroAviso;
+    private int idQuadroAviso;
     private String titulo;
     private String data;
     private String dataExp;
     private String mensagemAviso; 
 
-    public String getIdQuadroAviso() {
+    public int getIdQuadroAviso() {
         return idQuadroAviso;
     }
 
-    public void setIdQuadroAviso(String idQuadroAviso) {
+    public void setIdQuadroAviso(int idQuadroAviso) {
         this.idQuadroAviso = idQuadroAviso;
     }
+
+   
 
     public String getTitulo() {
         return titulo;

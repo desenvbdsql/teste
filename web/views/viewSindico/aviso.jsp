@@ -140,16 +140,16 @@
                     <ul class="sidebar-menu">
                         <li class="header">MENU</li>
                         <!-- Optionally, you can add icons to the links -->
-                        <li class="active"><a href="<%=contextPath%>/views/viewSindico/homeSindico.jsp"><i class="fa fa-home"></i> <span>In?c?o</span></a></li>
+                        <li class="active"><a href="<%=contextPath%>/views/viewSindico/homeSindico.jsp"><i class="fa fa-home"></i> <span>Inicio</span></a></li>
                         <li><a href="<%=contextPath%>/views/viewSindico/administradoraSindico.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>
-                        <li><a href="<%=contextPath%>/views/viewSindico/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Al? Sindico</span></a></li>
-                        <li><a href="<%=contextPath%>/views/viewSindico/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembl?ia</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/assembleia.jsp"><i class="fa fa-group"></i> <span>Assemblêia</span></a></li>
                         <li><a href="<%=contextPath%>/views/viewSindico/alterarSenha.jsp"><i class="fa fa-key"></i> <span>Alterar Senha</span></a></li>
                         <li><a href="<%=contextPath%>/views/viewSindico/cadastroUsuario.jsp"><i class="fa fa-user-plus"></i> <span>Cadastro Usuario</span></a></li>
-                        <li><a href="<%=contextPath%>/views/viewSindico/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorr?ncia</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
                         <li><a href="<%=contextPath%>/views/viewSindico/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
-                        <li><a href="<%=contextPath%>/views/viewSindico/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte T?cnico</span></a></li><!-- /.sidebar-menu -->
-                        <li><a href="<%=contextPath%>/views/viewSindico/listaUsuario.jsp"><i class="fa fa-list"></i> <span>Lista Usu?rios</span></a></li>
+                        <li><a href="<%=contextPath%>/views/viewSindico/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li><!-- /.sidebar-menu -->
+                        <li><a href="<%=contextPath%>/views/viewSindico/listaUsuario.jsp"><i class="fa fa-list"></i> <span>Lista Usuários</span></a></li>
                 </section>
                 <!-- /.sidebar -->
             </aside>
@@ -307,7 +307,7 @@
                                                                 <!-- /.input group -->
                                                             </div>
                                                             <div class="form-group">
-                                                                <span id="ContentPlaceHolder1_lblDataExpiracao"> Data de Expira??o do Aviso</span>
+                                                                <span id="ContentPlaceHolder1_lblDataExpiracao"> Data de Expiração do Aviso</span>
                                                                 <div class="input-group">
                                                                     <div class="input-group-addon">
                                                                         <i class="fa fa-calendar"></i>
@@ -362,21 +362,28 @@
                                                 <table class="table table-bordered table-striped dataTable" cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_dgvAviso" style="border-collapse:collapse;">
                                                     <tbody>
                                                         <tr>
-                                                            <th scope="col">Editar</th><th scope="col">Excluir</th><th scope="col">Titulo</th><th scope="col">Data do Aviso</th><th scope="col">Data Expira??o</th><th scope="col">Mensagem</th>
+                                                            <th scope="col">Editar</th>
+                                                            <th scope="col">Excluir</th>
+                                                            <th scope="col">Titulo</th>
+                                                            <th scope="col">Data do Aviso</th>
+                                                            <th scope="col">Data Expiração</th>
+                                                            <th scope="col">Mensagem</th>
                                                         </tr>
 
                                                         <tr>
 
                                                             <td align="center" style="width:60px;">
 
-                                                                <input type="submit" id="" class="btn btn-info pull-right" value="Editar" name="flag"  onclick="return pergunta();">
+                                                                <input type="submit"  class="btn btn-info pull-right" value="Editar" name="flag"  onclick="return pergunta();">
                                                             </td>
 
                                                             <td align="center" style="width:60px;">
+                                                                
                                                                 <input type="submit" id="" class="btn btn-danger pull-right" value="Excluir" name="flag"  onclick="return pergunta();">
                                                             </td>
 
-                                                            <td><input type="hidden" name="idmsg" value="<%=aviso.getIdQuadroAviso()%>"></td>
+                                                            <input type="hidden" name="idmsg" value="<%=aviso.getIdQuadroAviso()%>">
+                                                            
                                                             <td><input type="text" name="titulomsg" value="<%=aviso.getTitulo()%>"></td>
                                                             <td><input type="text" name="datamsg" value="<%=aviso.getData()%>"></td>
                                                             <td><input type="text" name="dataexpmsg" value="<%=aviso.getDataExp()%>"></td>

@@ -229,7 +229,14 @@
                             </div><!-- /.box-header -->
                             <div class="box-body">
 
-                                <div class="box box-info collapsed-box"><div class="box-header with-border"><h3 class="box-title">Economia de Agua</h3><div class="box-tools pull-right"><button class="btn btn-box-tool" data-widget="collapse" type="button"><i class="fa fa-plus"></i></button></div></div><div class="box-body">Cuidar bem da água e usá-la com sabedoria é uma necessidade cada vez mais presente. Afinal, esse insumo tão precioso está cada vez mais escasso.
+                                <div class="box box-info collapsed-box">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Economia de Agua</h3>
+                                        <div class="box-tools pull-right">
+                                            <button class="btn btn-box-tool" data-widget="collapse" type="button"><i class="fa fa-plus"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="box-body">Cuidar bem da água e usá-la com sabedoria é uma necessidade cada vez mais presente. Afinal, esse insumo tão precioso está cada vez mais escasso.
 
                                         Como a água é barata no Brasil - sim, apesar de ser o segundo item mais pesado no orçamento dos condomínios, por aqui pagamos apenas pelo seu uso e não pelo recurso natural , se passa a falsa sensação de abundância.
 
@@ -237,7 +244,9 @@
 
                                         E, ainda bem, há bastante espaço para melhorias no padrão de consumo dos condomínios: individualização de hidrômetros, reuso da água da chuva e campanhas de conscientização para moradores e funcionários impactam positivamente no perfil do uso da água.
 
-                                        Com essas medidas, além da economia da água, há também uma diminuição da conta, o que é um ganho positivo para todos.</div></div>
+                                        Com essas medidas, além da economia da água, há também uma diminuição da conta, o que é um ganho positivo para todos.</div>
+                                            
+                                </div>
 
                             </div><!-- /.box-body -->
                         </div><!-- /.box -->
