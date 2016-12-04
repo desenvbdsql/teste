@@ -28,6 +28,10 @@
         <servlet-name>SindicoServ</servlet-name>
         <servlet-class>controlers.SindicoServ</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Assembleia</servlet-name>
+        <servlet-class>beans.Assembleia</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Controlec</servlet-name>
         <url-pattern>/Controlec</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>SindicoServ</servlet-name>
         <url-pattern>/SindicoServ</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Assembleia</servlet-name>
+        <url-pattern>/Assembleia</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
