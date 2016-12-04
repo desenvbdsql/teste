@@ -47,33 +47,39 @@ public class QuadroAviso extends HttpServlet {
         HttpSession session = request.getSession();
 
         try (PrintWriter out = response.getWriter()) {
-//            /* TODO output your page here. You may use following sample code. */
-//
-//            String titulo = request.getParameter("titulo");
-//            String data = request.getParameter("dataAviso");
-//            String dataExp = request.getParameter("dataExp");
-//            String mensagem = request.getParameter("mensagemAviso");
-//
-//            ArrayList<Aviso> listaAviso = new ArrayList<>();
-//
-//            Aviso aviso = new Aviso();
-//            aviso.setTitulo(titulo);
-//            aviso.setData(data);
-//            aviso.setDataExp(dataExp);
-//            aviso.setMensagemAviso(mensagem);
-//
-//            AvisoDAO avisoDAO = new AvisoDAO();
-//            avisoDAO.Inserir(aviso);
-//
-//            listaAviso.add(aviso);
-//
-//            request.setAttribute("listaAviso", listaAviso);
-//
-//            request.getRequestDispatcher("views/viewSindico/aviso.jsp").forward(request, response);
+            /* TODO output your page here. You may use following sample code. */
+           
 
         String flag = request.getParameter("flag");
 
         switch (flag) {
+            
+            
+            case "Salvar":
+                
+            String titulo = request.getParameter("titulo");
+            String data = request.getParameter("dataAviso");
+            String dataExp = request.getParameter("dataExp");
+            String mensagem = request.getParameter("mensagemAviso");
+
+            ArrayList<Aviso> listaAviso = new ArrayList<>();
+
+            Aviso aviso = new Aviso();
+            aviso.setTitulo(titulo);
+            aviso.setData(data);
+            aviso.setDataExp(dataExp);
+            aviso.setMensagemAviso(mensagem);
+
+            AvisoDAO avisoDAO = new AvisoDAO();
+            avisoDAO.Inserir(aviso);
+
+            listaAviso.add(aviso);
+
+            request.setAttribute("listaAviso", listaAviso);
+
+            request.getRequestDispatcher("views/viewSindico/aviso.jsp").forward(request, response);
+            
+            break;
 
             case "Editar":
                 
@@ -84,9 +90,9 @@ public class QuadroAviso extends HttpServlet {
                 String tituloUp = request.getParameter("titulomsg");
                 String dataUp = request.getParameter("datamsg");
                 String dataExpUp = request.getParameter("dataexpmsg");
-                String mensagemUp = request.getParameter("msg");
+                String mensagemUp = request.getParameter("mensagemAviso");
 
-                Aviso aviso = new Aviso();
+                 aviso = new Aviso();
                 
                 aviso.setIdQuadroAviso(id);
                 aviso.setTitulo(tituloUp);
@@ -94,7 +100,7 @@ public class QuadroAviso extends HttpServlet {
                 aviso.setDataExp(dataExpUp);
                 aviso.setMensagemAviso(mensagemUp);
 
-                AvisoDAO avisoDAO = new AvisoDAO();
+                 avisoDAO = new AvisoDAO();
                 avisoDAO.Salvar(aviso);
 
                 request.getRequestDispatcher("views/viewSindico/aviso.jsp").forward(request, response);

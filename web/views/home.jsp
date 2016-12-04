@@ -1,5 +1,11 @@
+<%@page import="models.AvisoDAO"%>
+<%@page import="beans.Aviso"%>
+<%@page import="beans.Aviso"%>
+<%@page import="java.util.List"%>
 <%@page import="controlers.LogoutServ"%>
 <%@page import="controlers.LoginServ"%>
+<%@ page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1"%>
+<%request.setCharacterEncoding("ISO-8859-1");%>
 
 <!DOCTYPE html>
 <html>
@@ -7,8 +13,9 @@
     <head>
         <%
             String contextPath = request.getContextPath();
-        %>
-        <%
+
+            List<Aviso> listaAviso = new AvisoDAO().Pesquisar();
+
             String nome = null;
             nome = session.getAttribute("nome").toString();
         %>
@@ -207,6 +214,8 @@
                         </div>
                     </div>
 
+
+
                     <div class="col-lg-3 col-xs-6">
                         <!-- small box -->
                         <div class="small-box bg-aqua">
@@ -221,36 +230,58 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
-                        <div class="box box-info">
-                            <div class="box-header with-border">
-                                <i class="fa fa-warning"></i>
-                                <h3 class="box-title">Ultimos Avisos</h3>
-                            </div><!-- /.box-header -->
-                            <div class="box-body">
 
-                                <div class="box box-info collapsed-box">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title">Economia de Agua</h3>
-                                        <div class="box-tools pull-right">
-                                            <button class="btn btn-box-tool" data-widget="collapse" type="button"><i class="fa fa-plus"></i></button>
+                    <div class="row">
+
+
+
+                        <!-- PERFIL -->
+
+                        <!-- AVISOS -->
+                        <div class="col-md-6">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <i class="fa fa-warning"></i>
+                                    <h3 class="box-title">Ultimos Avisos</h3>
+                                </div><!-- /.box-header -->
+                                <%
+                                        if (listaAviso.size() == 0) {
+                                    %>
+                                    <p>Sem dados de aviso</p>
+                                    <%
+                                    } else {
+
+                                        for (Aviso aviso : listaAviso) {
+                                    %>
+                                <div class="box-body">
+
+                                    <div class="box box-info collapsed-box">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">
+                                                <%=aviso.getTitulo()%></h3>
+                                            <div class="box-tools pull-right">
+                                                <button class="btn btn-box-tool" data-widget="collapse" type="button"><i class="fa fa-plus"></i></button>
+                                            </div>
                                         </div>
+                                        <div class="box-body" style="display: none;"><%=aviso.getMensagemAviso()%></div>
+                                                
                                     </div>
-                                    <div class="box-body">Cuidar bem da água e usá-la com sabedoria é uma necessidade cada vez mais presente. Afinal, esse insumo tão precioso está cada vez mais escasso.
+                                   
+                                </div><!-- /.box-body -->
+                                <%
+                                            }
+                                        }
+                                    %>
+                                
+                                
+                            </div><!-- /.box -->
+                        </div>
 
-                                        Como a água é barata no Brasil - sim, apesar de ser o segundo item mais pesado no orçamento dos condomínios, por aqui pagamos apenas pelo seu uso e não pelo recurso natural , se passa a falsa sensação de abundância.
 
-                                        Por isso, síndicos, funcionários e moradores de condomínio devem fazer a sua parte, usando com consciência esse bem tão precioso.
 
-                                        E, ainda bem, há bastante espaço para melhorias no padrão de consumo dos condomínios: individualização de hidrômetros, reuso da água da chuva e campanhas de conscientização para moradores e funcionários impactam positivamente no perfil do uso da água.
-
-                                        Com essas medidas, além da economia da água, há também uma diminuição da conta, o que é um ganho positivo para todos.</div>
-                                            
-                                </div>
-
-                            </div><!-- /.box-body -->
-                        </div><!-- /.box -->
                     </div>
+
+
 
                 </section><!-- /.content -->
             </div><!-- /.content-wrapper -->

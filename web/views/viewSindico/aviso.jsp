@@ -3,6 +3,7 @@
 <%@page import="models.AvisoDAO" %>
 
 <!DOCTYPE html>
+<!-- aviso do sindico -->
 <html>
     <head>
         <%
@@ -28,7 +29,7 @@
         <script src="<%=contextPath%>/dist/js/app.min.js"></script>
 
     </head>
-    <body class="hold-transition skin-blue layout-boxed sidebar-mini">
+    <body class="hold-transition skin-blue  layout-boxed laysidebar-mini">
         <div class="wrapper">
 
             <!-- Main Header -->
@@ -302,7 +303,7 @@
                                                                     <div class="input-group-addon">
                                                                         <i class="fa fa-calendar"></i>
                                                                     </div>
-                                                                    <input name="data" type="text" id="txtData" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
+                                                                    <input name="dataAviso" type="text" id="txtData" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
                                                                 </div>
                                                                 <!-- /.input group -->
                                                             </div>
@@ -330,7 +331,7 @@
                                                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal" onClick="closeModal();">
                                                             Fechar</button>
 
-                                                        <input type="submit" value="Gravar"  onclick="return pergunta();" class="btn btn-info pull-right">
+                                                        <input type="submit" value="Salvar" name="flag"  onclick="return pergunta();" class="btn btn-info pull-right">
 
                                                     </div>
                                                 </div>
@@ -344,17 +345,17 @@
 
 
                                     <!-- GRID -->
+        <%
+                                                            if (listaAviso.size() == 0) {
+                                                        %>
+                                                    <p>Sem dados de aviso</p>
+                                                    <%
+                                                    } else {
+
+                                                        for (Aviso aviso : listaAviso) {
+                                                    %>
 
 
-                                    <%
-                                        if (listaAviso.size() == 0) {
-                                    %>
-                                    <p>Sem dados de aviso</p>
-                                    <%
-                                    } else {
-
-                                        for (Aviso aviso : listaAviso) {
-                                    %>
                                     <form action="/Condominio/QuadroAviso"method="POST">
 
                                         <div class="box-body">
@@ -370,66 +371,91 @@
                                                             <th scope="col">Mensagem</th>
                                                         </tr>
 
-                                                        <tr>
+                                                
+                                                    <tr>
 
-                                                            <td align="center" style="width:60px;">
 
-                                                                <input type="submit"  class="btn btn-info pull-right" value="Editar" name="flag"  onclick="return pergunta();">
-                                                            </td>
+                                                        <td align="center" style="width:5%;">
 
-                                                            <td align="center" style="width:60px;">
-                                                                
-                                                                <input type="submit" id="" class="btn btn-danger pull-right" value="Excluir" name="flag"  onclick="return pergunta();">
-                                                            </td>
+                                                            <input type="submit"  class="btn btn-info btn-sm pull-right" value="Editar" name="flag"  onclick="return pergunta();">
+                                                        </td>
 
-                                                            <input type="hidden" name="idmsg" value="<%=aviso.getIdQuadroAviso()%>">
-                                                            
-                                                            <td><input type="text" name="titulomsg" value="<%=aviso.getTitulo()%>"></td>
-                                                            <td><input type="text" name="datamsg" value="<%=aviso.getData()%>"></td>
-                                                            <td><input type="text" name="dataexpmsg" value="<%=aviso.getDataExp()%>"></td>
-                                                            <td><input type="text" name="msg" value="<%=aviso.getMensagemAviso()%>"></td>
+                                                        <td style="width:5%" align="center">
 
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                            <input type="submit"  id="" class="btn btn-danger btn-sm pull-right" value="Excluir" name="flag"  onclick="return pergunta();">
+
+
+                                                        </td>
+
+                                                    <input type="hidden" name="idmsg" value="<%=aviso.getIdQuadroAviso()%>">
+
+
+
+
+
+                                                    <td style="width:20%;"><input type="text" class="form-control" name="titulomsg" value="<%=aviso.getTitulo()%>"/></td>
+
+
+
+
+                                                    <td style="width:15%;"> <div class="input-group">
+                                                            <input type="text" class="form-control" name="datamsg" value="<%=aviso.getData()%>"></div></td>
+
+
+
+
+                                                    <td style="width:15%;">
+                                                        <div class="input-group">
+                                                            <input type="text" name="dataexpmsg" class="form-control" value="<%=aviso.getDataExp()%>"/>
+                                                        </div>
+                                                    </td>                                                          
+                                                    <td style="width:50%;"><textarea style="width:100%;" type="text" rows="5" name="mensagemAviso" ><%=aviso.getMensagemAviso()%></textarea></td>
+
+                                            </div>                                                    </tr>
+
+                                        
+
+
+                                            </tbody>
+                                            </table>
                                         </div>
-                                    </form>
-
-                                    <%
-                                            }
-                                        }
-                                    %>
-
                                 </div>
+                                </form>
+
+    <%
+                                                    }
+                                                }
+                                            %>
+
                             </div>
                         </div>
-
                     </div>
 
+            </div>
 
-                    <!-- fim conteudo-->
-                </section>
-            </div><!-- /.content-wrapper -->
 
-            <!-- Main Footer -->
-            <footer class="main-footer">
-                <!-- Default to the left -->
-                <strong>Copyright &copy; 2016 <a href="#">Beta</a>.</strong> Projeto.
-            </footer>
+            <!-- fim conteudo-->
+        </section>
+    </div><!-- /.content-wrapper -->
 
-            <!-- Control Sidebar -->
-            <aside class="control-sidebar control-sidebar-dark">
-                <!-- Create the tabs -->
-                <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-                    <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-                    <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-                </ul>      
-        </div>
-    </aside><!-- /.control-sidebar -->
-    <!-- Add the sidebar's background. This div must be placed
-         immediately after the control sidebar -->
-    <div class="control-sidebar-bg"></div>
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2016 <a href="#">Beta</a>.</strong> Projeto.
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Create the tabs -->
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+            <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+        </ul>      
+    </div>
+</aside><!-- /.control-sidebar -->
+<!-- Add the sidebar's background. This div must be placed
+     immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>
 </div><!-- ./wrapper -->
 
 

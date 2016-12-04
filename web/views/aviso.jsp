@@ -1,13 +1,19 @@
+
+<%@page import="models.AvisoDAO"%>
+<%@page import="beans.Aviso"%>
+<%@page import="java.util.List"%>
 <%@page import="controlers.LoginServ"%>
 <%@page import="controlers.LogoutServ"%>
 
 <!DOCTYPE html>
+<!-- AVISO DO MORADOR -->
 <html>
     <head>
         <%
             String contextPath = request.getContextPath();
-        %>
-        <%
+
+            List<Aviso> listaAviso = new AvisoDAO().Pesquisar();
+
             String nome = null;
             nome = session.getAttribute("nome").toString();
         %>
@@ -240,22 +246,37 @@
                                         <p>
                                             Quadro de Avisos do Condominio BeLife</p>
                                     </div>
+
+                                    <%
+                                        if (listaAviso.size() == 0) {
+                                    %>
+                                    <p>Sem dados de aviso</p>
+                                    <%
+                                    } else {
+
+                                        for (Aviso aviso : listaAviso) {
+                                    %>
                                     <!--Modal-->
                                     <div class="modal fade" id="myModal">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
-                                                <input type="hidden" name="ctl00$ContentPlaceHolder1$hfcvIdQuadroAviso" id="hfcvIdQuadroAviso">
+                                                    <input type="hidden" name="idmsg" value="<%=aviso.getIdQuadroAviso()%>">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal();">
                                                         <span aria-hidden="true">×</span></button>
                                                     <h4 class="modal-title">
                                                         Quadro de Avisos</h4>
                                                 </div>
+
+
+
                                                 <div class="modal-body">
+                                                    
                                                     <div class="box-body">
                                                         <div class="form-group">
-                                                            <span id="ContentPlaceHolder1_Label1">Titulo</span>
-                                                            <input name="ctl00$ContentPlaceHolder1$txtTitulo" type="text" id="txtTitulo" disabled="disabled" class="aspNetDisabled form-control" style="background-color:White;">
+                                                            <span>Titulo</span>
+                                                            <input name="titulomsg" type="text"  value="<%=aviso.getTitulo()%>" disabled="disabled" class="aspNetDisabled form-control" style="background-color:White;">
+
                                                         </div>
                                                         <div class="form-group">
                                                             <span id="ContentPlaceHolder1_lblData"> Data do Aviso</span>
@@ -263,17 +284,18 @@
                                                                 <div class="input-group-addon">
                                                                     <i class="fa fa-calendar"></i>
                                                                 </div>
-                                                                <input name="ctl00$ContentPlaceHolder1$txtData" type="text" id="txtData" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
+                                                                <input name="datamsg" type="text"  value="<%=aviso.getData()%>" id="txtData" disabled="disabled" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
                                                             </div>
                                                             <!-- /.input group -->
                                                         </div>
                                                         <div class="form-group">
-                                                            <span id="ContentPlaceHolder1_lblAviso">Aviso</span>
-                                                            <textarea name="ctl00$ContentPlaceHolder1$txtAviso" rows="2" cols="20" id="txtAviso" disabled="disabled" class="aspNetDisabled form-control" style="background-color:White;height:200px;"></textarea>
+                                                            <span>Aviso</span>
+                                                            <textarea name="mensagemAviso" rows="2" cols="20" id="txtAviso" disabled="disabled" class="aspNetDisabled form-control" style="background-color:White;height:200px;"><%=aviso.getMensagemAviso()%></textarea>
                                                         </div>
                                                     </div>
                                                     <!-- /.box-body -->
                                                 </div>
+
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal" onclick="closeModal();">
                                                         Fechar</button>
@@ -283,21 +305,53 @@
                                         </div>
                                         <!-- /.modal-dialog -->
                                     </div>
+                                    <%
+                                            }
+                                        }
+                                    %>
+
                                     <div class="box-body">
                                         <div>
                                             <table class="table table-bordered table-striped dataTable" cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_dgvAviso" style="border-collapse:collapse;">
-                                                <tbody><tr>
-                                                        <th scope="col">Titulo</th><th scope="col">Data</th><th scope="col">Detalhes</th>
-                                                    </tr><tr>
-                                                        <td>Economia de Agua</td><td>26/09/2015</td><td align="center" style="width:60px;">
-
-                                                            <button class="botaoVisualizar" type="button" id="btnExibeAviso" value="Exibir Aviso" onclick="ExibeAviso(1);">
-                                                            </button>
-                                                        </td>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="col">Titulo</th>
+                                                        <th scope="col">Data</th>
+                                                        <th scope="col">Detalhes</th>
                                                     </tr>
+
+                                                    <%
+                                                        if (listaAviso.size() == 0) {
+                                                    %>
+                                                <p>Sem dados de aviso</p>
+                                                <%
+                                                } else {
+
+                                                    for (Aviso aviso : listaAviso) {
+                                                %>  
+                                                <tr>
+                                                    
+                                                    <td><%=aviso.getTitulo()%></td>
+                                                    <td><%=aviso.getData()%></td>
+                                                    <td align="center" style="width:60px;">
+                                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal"  data-target="#myModal" data-backdrop="static" onclick="<%=aviso.getIdQuadroAviso()%>"id="">
+                                                            Exibir </button>
+
+                                                        <!--<button class="botaoVisualizar" type="button" id="btnExibeAviso" value="Exibir Aviso" onclick="ExibeAviso(1);">-->
+                                                        </button>
+                                                    </td>
+                                                </tr>
+
+                                                <%
+                                                        }
+                                                    }
+                                                %>
+
                                                 </tbody></table>
                                         </div>
                                     </div>
+
+
                                 </div>
                             </div>
                         </div>
