@@ -12,8 +12,8 @@
         <%
             String contextPath = request.getContextPath();
 
-            List<Aviso> listaAviso = new AvisoDAO().Pesquisar();
-
+            List<Aviso> listaAviso = new AvisoDAO().Pesquisar(); 
+            
             String nome = null;
             nome = session.getAttribute("nome").toString();
         %>
@@ -248,6 +248,10 @@
                                     </div>
 
                                     <%
+                                        
+                                        //String ronaldo = request.getParameter("idmsg");
+                                        //List<Aviso> listaAviso = new AvisoDAO().Pesquisar(ronaldo);
+                                        
                                         if (listaAviso.size() == 0) {
                                     %>
                                     <p>Sem dados de aviso</p>
@@ -257,7 +261,7 @@
                                         for (Aviso aviso : listaAviso) {
                                     %>
                                     <!--Modal-->
-                                    <div class="modal fade" id="myModal">
+                                    <div class="modal fade"  id="myModal">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                     <input type="hidden" name="idmsg" value="<%=aviso.getIdQuadroAviso()%>">
@@ -267,10 +271,8 @@
                                                     <h4 class="modal-title">
                                                         Quadro de Avisos</h4>
                                                 </div>
-
-
-
                                                 <div class="modal-body">
+                                                    
                                                     
                                                     <div class="box-body">
                                                         <div class="form-group">
@@ -330,12 +332,12 @@
                                                     for (Aviso aviso : listaAviso) {
                                                 %>  
                                                 <tr>
+                                                     <input type="hidden" name="idmsg" value="<%=aviso.getIdQuadroAviso()%>">
                                                     
                                                     <td><%=aviso.getTitulo()%></td>
                                                     <td><%=aviso.getData()%></td>
                                                     <td align="center" style="width:60px;">
-                                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal"  data-target="#myModal" data-backdrop="static" onclick="<%=aviso.getIdQuadroAviso()%>"id="">
-                                                            Exibir </button>
+                                                     <a href="<%=contextPath%>/views/exibirAviso.jsp?token=<%=aviso.getIdQuadroAviso()%>">Exibir</a>                                                 
 
                                                         <!--<button class="botaoVisualizar" type="button" id="btnExibeAviso" value="Exibir Aviso" onclick="ExibeAviso(1);">-->
                                                         </button>

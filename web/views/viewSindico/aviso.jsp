@@ -345,18 +345,10 @@
 
 
                                     <!-- GRID -->
-        <%
-                                                            if (listaAviso.size() == 0) {
-                                                        %>
-                                                    <p>Sem dados de aviso</p>
-                                                    <%
-                                                    } else {
-
-                                                        for (Aviso aviso : listaAviso) {
-                                                    %>
+       
 
 
-                                    <form action="/Condominio/QuadroAviso"method="POST">
+                                    
 
                                         <div class="box-body">
                                             <div>
@@ -370,8 +362,18 @@
                                                             <th scope="col">Data Expiração</th>
                                                             <th scope="col">Mensagem</th>
                                                         </tr>
+                                                        
+                                                         <%
+                                                            if (listaAviso.size() == 0) {
+                                                        %>
+                                                    <p>Sem dados de aviso</p>
+                                                    <%
+                                                    } else {
 
-                                                
+                                                        for (Aviso aviso : listaAviso) {
+                                                    %>
+
+                                                <form action="/Condominio/QuadroAviso"method="POST">
                                                     <tr>
 
 
@@ -412,6 +414,14 @@
                                                     <td style="width:50%;"><textarea style="width:100%;" type="text" rows="5" name="mensagemAviso" ><%=aviso.getMensagemAviso()%></textarea></td>
 
                                             </div>                                                    </tr>
+                                                    </form>
+                                        
+
+                                        <%
+                                                    }
+                                                }
+                                            %>
+
 
                                         
 
@@ -421,12 +431,7 @@
                                         </div>
                                 </div>
                                 </form>
-
-    <%
-                                                    }
-                                                }
-                                            %>
-
+    
                             </div>
                         </div>
                     </div>

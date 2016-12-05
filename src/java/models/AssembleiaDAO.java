@@ -5,7 +5,7 @@
  */
 package models;
 
-import beans.Aviso;
+import beans.Assembleia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,17 +20,14 @@ import utils.Conexao;
  *
  * @author ICE TI
  */
-public class AvisoDAO {
-
-    private Connection con ;
-    private String status;
-
-    public AvisoDAO() throws SQLException {
-        // retorna a con no momento da chamada da classe
-//        this.con = Conexao.getInstance().getConnection();
-    }
-
-    public void Inserir(Aviso aviso) {
+public class AssembleiaDAO {
+    
+    
+        private Connection con ;
+      
+    
+    
+    public void Inserir(Assembleia assembleia) {
 
         if (con == null) {
 
@@ -42,15 +39,16 @@ public class AvisoDAO {
         }
 
         try {
-            String sql = "insert INTO tb_aviso (titulo, dataAviso, dataExp, mensagem) VALUES (?,?,?,?)";
+            String sql = "insert INTO tb_assembleia (titulo, horario, dataAssembleia, ordem, local) VALUES (?,?,?,?,?)";
             // seta os valores
             try (PreparedStatement ps = con.prepareStatement(sql)) {
                 // seta os valores
 
-                ps.setString(1, aviso.getTitulo());
-                ps.setString(2, aviso.getData());
-                ps.setString(3, aviso.getDataExp());
-                ps.setString(4, aviso.getMensagemAviso());
+                ps.setString(1, assembleia.getTitulo());
+                ps.setString(2, assembleia.getHorario());
+                ps.setString(3, assembleia.getData());
+                ps.setString(4, assembleia.getOrdem());
+                ps.setString(5, assembleia.getLocal());
 
                 // executa o sql (execute) (quando necessita retorno em um resultSet)
                 ps.execute();
@@ -62,14 +60,16 @@ public class AvisoDAO {
             //fecha a conexão
             con.close();
 
-            // retorna o status da inserção
-            status = "Inserido com Sucesso!";
-
+           
         } catch (SQLException ex) {
-            throw new RuntimeException("Erro ao inserir aviso", ex);
+            throw new RuntimeException("Erro ao inserir assembleia", ex);
         }
     }
- public List<Aviso> PesquisarAviso(String idAviso) throws SQLException {
+    
+    
+    public List<Assembleia> Pesquisar() throws SQLException {
+
+   
 
         if (con == null) {
 
@@ -80,65 +80,8 @@ public class AvisoDAO {
                 return null;
             }
         }
-
-        if (con == null) {
-
-            try {
-                con = Conexao.getInstance().getConnection();
-            } catch (SQLException ex) {
-                System.out.println("Erro na pesquisa: " + ex.getMessage());
-                return null;
-            }
-        }
-        List<Aviso> listaAviso = new ArrayList();
-        String sql = "SELECT * FROM tb_aviso Where idQuadroAviso = '"+idAviso+"'";
-        try {
-
-            PreparedStatement ps = con.prepareStatement(sql);
-
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Aviso aviso = new Aviso();
-                aviso.setIdQuadroAviso(rs.getInt("idQuadroAviso"));
-                aviso.setTitulo(rs.getString("titulo"));
-                aviso.setData(rs.getString("dataAviso"));
-                aviso.setDataExp(rs.getString("dataExp"));
-                aviso.setMensagemAviso(rs.getString("mensagem"));
-
-                listaAviso.add(aviso);
-            }
-
-            return listaAviso;
-
-        } catch (SQLException ex) {
-            Logger.getLogger(AvisoDAO.class.getName()).log(Level.SEVERE, null, ex);
-            throw new RuntimeException("Erro: " + ex.getMessage(), ex);
-        }
-    }
-    public List<Aviso> Pesquisar() throws SQLException {
-
-        if (con == null) {
-
-            try {
-                con = Conexao.getInstance().getConnection();
-            } catch (SQLException ex) {
-                System.out.println("Erro na pesquisa: " + ex.getMessage());
-                return null;
-            }
-        }
-
-        if (con == null) {
-
-            try {
-                con = Conexao.getInstance().getConnection();
-            } catch (SQLException ex) {
-                System.out.println("Erro na pesquisa: " + ex.getMessage());
-                return null;
-            }
-        }
-        List<Aviso> listaAviso = new ArrayList();
-        String sql = "SELECT * FROM tb_aviso";
+        List<Assembleia> listaAssembleia = new ArrayList();
+        String sql = "SELECT * FROM tb_assembleia";
 
         try {
 
@@ -147,27 +90,79 @@ public class AvisoDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                Aviso aviso = new Aviso();
-                aviso.setIdQuadroAviso(rs.getInt("idQuadroAviso"));
-                aviso.setTitulo(rs.getString("titulo"));
-                aviso.setData(rs.getString("dataAviso"));
-                aviso.setDataExp(rs.getString("dataExp"));
-                aviso.setMensagemAviso(rs.getString("mensagem"));
+                Assembleia assembleia = new Assembleia();
+                assembleia.setIdAssembleia(rs.getInt("idAssembleia"));
+                assembleia.setTitulo(rs.getString("titulo"));
+                assembleia.setHorario(rs.getString("horario"));
+                assembleia.setData(rs.getString("dataAssembleia"));
+                assembleia.setOrdem(rs.getString("ordem"));
+                assembleia.setLocal(rs.getString("local"));
 
-                listaAviso.add(aviso);
+                listaAssembleia.add(assembleia);
             }
 
-            return listaAviso;
+            return listaAssembleia;
 
         } catch (SQLException ex) {
             Logger.getLogger(AvisoDAO.class.getName()).log(Level.SEVERE, null, ex);
             throw new RuntimeException("Erro: " + ex.getMessage(), ex);
         }
     }
+    
+    
+    public List<Assembleia> PesquisarAssembleia(String idAssembleia) throws SQLException {
 
-    public void Salvar(Aviso aviso) throws SQLException {
+        if (con == null) {
+
+            try {
+                con = Conexao.getInstance().getConnection();
+            } catch (SQLException ex) {
+                System.out.println("Erro na pesquisa: " + ex.getMessage());
+                return null;
+            }
+        }
+
+        if (con == null) {
+
+            try {
+                con = Conexao.getInstance().getConnection();
+            } catch (SQLException ex) {
+                System.out.println("Erro na pesquisa: " + ex.getMessage());
+                return null;
+            }
+        }
+        List<Assembleia> listaAssembleia = new ArrayList();
+        String sql = "SELECT * FROM tb_assembleia where idAssembleia= '"+idAssembleia+"'";
+                
+        try {
+
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Assembleia assembleia = new Assembleia();
+                assembleia.setIdAssembleia(rs.getInt("idAssembleia"));
+                assembleia.setTitulo(rs.getString("titulo"));
+                assembleia.setHorario(rs.getString("horario"));
+                assembleia.setData(rs.getString("dataAssembleia"));
+                assembleia.setOrdem(rs.getString("ordem"));
+                assembleia.setLocal(rs.getString("local"));
+                listaAssembleia.add(assembleia);
+            }
+
+            return listaAssembleia;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AvisoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("Erro: " + ex.getMessage(), ex);
+        }
+    }
+    
+    
+    public void Salvar(Assembleia assembleia) throws SQLException {
         
-                if (con == null) {
+             if (con == null) {
 
             try {
                 con = Conexao.getInstance().getConnection();
@@ -177,23 +172,24 @@ public class AvisoDAO {
         }
 
         try {
-            String sql = "UPDATE tb_aviso SET titulo=?, dataAviso=?, dataExp=?, mensagem=? WHERE idQuadroAviso = ?";
+            String sql = "UPDATE tb_assembleia SET titulo=?, horario=?, dataAssembleia=?, ordem=?, local=? WHERE idAssembleia = ?";
 
             PreparedStatement ps = con.prepareStatement(sql);
 
             //ResultSet rs = ps.executeQuery();
 
-            ps.setString(1, aviso.getTitulo());
-            ps.setString(2, aviso.getData());
-            ps.setString(3, aviso.getDataExp());
-            ps.setString(4, aviso.getMensagemAviso());
-            ps.setInt(5, aviso.getIdQuadroAviso());
+            ps.setString(1, assembleia.getTitulo());
+            ps.setString(2, assembleia.getHorario());
+            ps.setString(3, assembleia.getData());
+            ps.setString(4, assembleia.getOrdem());
+            ps.setString(5, assembleia.getLocal());
+            ps.setInt(6, assembleia.getIdAssembleia());
 
-            System.out.println(aviso.getMensagemAviso());
+           
             ps.executeUpdate();
 
         } catch (SQLException ex) {
-            Logger.getLogger(AvisoDAO.class
+            Logger.getLogger(AssembleiaDAO.class
                     .getName()).log(Level.SEVERE, null, ex);
             throw new RuntimeException(
                     "Erro ao atualizar aviso");
@@ -201,7 +197,7 @@ public class AvisoDAO {
     }
     
     
-    public void excluir(Aviso aviso) {
+        public void excluir(Assembleia assembleia) {
         
          if (con == null) {
 
@@ -214,11 +210,11 @@ public class AvisoDAO {
         
         
         try {
-            String sql = "DELETE FROM tb_aviso WHERE idQuadroAviso=?";
+            String sql = "DELETE FROM tb_assembleia WHERE IdAssembleia=?";
             // seta os valores
             try (PreparedStatement ps = con.prepareStatement(sql)) {
                 
-                ps.setInt(1, aviso.getIdQuadroAviso());
+                ps.setInt(1, assembleia.getIdAssembleia());
 
                 ps.executeUpdate();
                 ps.close();
@@ -227,11 +223,10 @@ public class AvisoDAO {
             con.close();
 
         } catch (SQLException ex) {
-            throw new RuntimeException("Erro ao excluir Usuario", ex);
+            throw new RuntimeException("Erro ao excluir Assembleia", ex);
         }
     }
+    
+    
+    
 }
-    
-    
-
-

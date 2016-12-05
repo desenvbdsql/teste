@@ -1,3 +1,8 @@
+
+<%@page import="models.AssembleiaDAO"%>
+<%@page import="beans.Assembleia"%>
+<%@page import="beans.Assembleia"%>
+<%@page import="java.util.List"%>
 <%@page import="controlers.LoginServ"%>
 <%@page import="controlers.LogoutServ"%>
 
@@ -6,8 +11,9 @@
     <head>
         <%
             String contextPath = request.getContextPath();
-        %>
-        <%
+            
+            List<Assembleia> listaAssembleia = new AssembleiaDAO().Pesquisar(); 
+       
             String nome = null;
             nome = session.getAttribute("nome").toString();
         %>
@@ -267,84 +273,17 @@
                             </div>
                             <!-- CADASTRO -->
                             <div class="margin">
+                                
+                                
+                                 
 
                             </div>
-                            <div class="modal fade" id="myModal">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <input type="hidden" name="ctl00$ContentPlaceHolder1$hfAssembleia" id="hfAssembleia">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal();">
-                                                <span aria-hidden="true">×</span></button>
-                                            <h4 class="modal-title">
-                                                Assembleia</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="box-body">
-                                                <div class="form-group">
-                                                    <label>
-                                                        Título:</label>
-                                                    <input name="ctl00$ContentPlaceHolder1$txtTitulo" type="text" id="ContentPlaceHolder1_txtTitulo" disabled="disabled" class="aspNetDisabled form-control" placeholder="Digite aqui ..." style="background-color:White;">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>
-                                                        Ordem do dia:</label>
-                                                    <textarea name="ctl00$ContentPlaceHolder1$txtOrdem" rows="2" cols="20" id="ContentPlaceHolder1_txtOrdem" disabled="disabled" class="aspNetDisabled form-control" placeholder="Digite aqui ..." style="background-color:White;"></textarea>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>
-                                                        Data:</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-calendar"></i>
-                                                        </div>
-                                                        <input name="ctl00$ContentPlaceHolder1$txtData" type="text" id="txtData" disabled="disabled" class="aspNetDisabled form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="" style="background-color:White;">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label>
-                                                        Horário:</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-clock-o"></i>
-                                                        </div>
-                                                        <input name="ctl00$ContentPlaceHolder1$txtHorario" type="text" id="txtHorario" disabled="disabled" class="aspNetDisabled form-control" data-inputmask="'alias': 'hh/MM/ss'" data-mask="" style="background-color:White;">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label>
-                                                        Local:
-                                                    </label>
-                                                    <input name="ctl00$ContentPlaceHolder1$txtLocal" type="text" id="txtLocal" disabled="disabled" class="aspNetDisabled form-control" placeholder="Digite aqui ..." style="background-color:White;">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>
-                                                        Torres:</label>
-                                                    <select name="ctl00$ContentPlaceHolder1$cboTorre" id="cboTorre" disabled="disabled" class="aspNetDisabled form-control" style="background-color:White;">
-                                                        <option selected="selected" value="1">Todas</option>
-                                                        <option value="2">A</option>
-                                                        <option value="3">B</option>
-                                                        <option value="4">C</option>
-                                                        <option value="5">D</option>
-                                                        <option value="6">E</option>
-
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <!-- /.box-body -->
-                                        </div>
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal" onclick="closeModal();">
-                                                Fechar</button>
-                                        </div>
-                                    </div>
-                                    <!-- /.modal-content -->
-                                </div>
-                                <!-- /.modal-dialog -->
-                            </div>
+                            
+                             
+                          
+                            
+                             
+                            
                             <!-- /.modal -->
                             <!-- FIM CADASTRO -->
                             <div class="box box-tool box-solid">
@@ -360,12 +299,40 @@
                                     <div class="box-body">
                                         <div>
                                             <table class="table table-bordered table-striped dataTable" cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_dgvAssembleia" style="border-collapse:collapse;">
-                                                <tbody><tr>
-                                                        <th scope="col">Detalhes</th><th scope="col">Download ATA</th><th scope="col">Titulo</th><th scope="col">Data</th><th scope="col">Horário</th>
-                                                    </tr><tr>
-                                                        <td colspan="7">Nenhum Registro Encontrado</td>
+                                                <tbody
+                                                    <tr>
+                                                        <th scope="col">Detalhes</th>
+                                                        <th scope="col">Download ATA</th>
+                                                        <th scope="col">Titulo</th>
+                                                        <th scope="col">Data</th>
+                                                        <th scope="col">Horário</th>
                                                     </tr>
-                                                </tbody></table>
+                                                         <%
+                                        
+                                        
+                                        if (listaAssembleia.size() == 0) {
+                                    %>
+                                    <p>Sem dados de aviso</p>
+                                    <%
+                                    } else {
+
+                                        for (Assembleia assembleia : listaAssembleia) {
+                                    %>
+                                                    <tr>
+                                                        <td><a href="<%=contextPath%>/views/exibirAssembleia.jsp?token=<%=assembleia.getIdAssembleia()%>">Exibir</a></td>
+                                                         <td></td>
+                                                        
+                                                        <td><%=assembleia.getTitulo()%></td>
+                                                        <td><%=assembleia.getData()%></td>
+                                                        <td><%=assembleia.getHorario()%></td>
+                                                        
+                                                    </tr>
+                                                     <%
+                                            }
+                                        }
+                                    %>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>

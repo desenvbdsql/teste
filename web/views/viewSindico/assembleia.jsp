@@ -1,3 +1,7 @@
+<%@page import="models.AssembleiaDAO"%>
+<%@page import="beans.Assembleia"%>
+<%@page import="beans.Assembleia"%>
+<%@page import="java.util.List"%>
 <%@page import="controlers.LogoutServ"%>
 <%@page import="controlers.LoginServ"%>
 
@@ -6,8 +10,9 @@
     <head>
         <%
             String contextPath = request.getContextPath();
-        %>
-        <%
+            
+            List<Assembleia> listaAssembleia = new AssembleiaDAO().Pesquisar();
+       
             String nome = null;
             nome = session.getAttribute("nome").toString();
         %>
@@ -24,9 +29,13 @@
         <script src="<%=contextPath%>/plugins/jQuery/jQuery-2.1.4.min.js"></script>
         <script src="<%=contextPath%>/bootstrap/js/bootstrap.min.js"></script>
         <script src="<%=contextPath%>/dist/js/app.min.js"></script>
+        <script src="<%=contextPath%>/dist/js/sweetalert.min.js"></script>
 
+        <link href="<%=contextPath%>/dist/css/sweetalert.css" rel="stylesheet" type="text/css"/>
     </head>
     <body class="hold-transition skin-blue layout-boxed sidebar-mini">
+    
+        
         <div class="wrapper">
 
             <!-- Main Header -->
@@ -117,6 +126,11 @@
             </header>
             <!-- Left side column. contains the logo and sidebar -->
             <aside class="main-sidebar">
+                                
+   
+               
+                        
+                                                    
 
                 <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar">
@@ -182,10 +196,14 @@
                                     Nova Assembleia</button>
                             </div>
                         </div>
+                        
+                         
+                        
+                          <form action="/Condominio/AssembleiaServ"method="POST">
                         <div class="modal fade" id="myModal">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <input type="hidden" name="ctl00$ContentPlaceHolder1$hfAssembleia" id="hfAssembleia">
+                                    <!--<input type="hidden" name="ctl00$ContentPlaceHolder1$hfAssembleia" id="hfAssembleia">-->
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal();">
                                             <span aria-hidden="true">×</span></button>
@@ -197,12 +215,12 @@
                                             <div class="form-group">
                                                 <label>
                                                     Título:</label>
-                                                <input name="ctl00$ContentPlaceHolder1$txtTitulo" type="text" id="ContentPlaceHolder1_txtTitulo" class="form-control" placeholder="Digite aqui ...">
+                                                <input name="titulo" type="text" id="ContentPlaceHolder1_txtTitulo" class="form-control" placeholder="Digite aqui ...">
                                             </div>
                                             <div class="form-group">
                                                 <label>
                                                     Ordem do dia:</label>
-                                                <textarea name="ctl00$ContentPlaceHolder1$txtOrdem" rows="2" cols="20" id="ContentPlaceHolder1_txtOrdem" class="form-control" placeholder="Digite aqui ..."></textarea>
+                                                <textarea name="ordem" rows="2" cols="20" id="ContentPlaceHolder1_txtOrdem" class="form-control" placeholder="Digite aqui ..."></textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label>
@@ -211,7 +229,7 @@
                                                     <div class="input-group-addon">
                                                         <i class="fa fa-calendar"></i>
                                                     </div>
-                                                    <input name="ctl00$ContentPlaceHolder1$txtData" type="text" id="txtData" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
+                                                    <input name="dataAssembleia" type="text" id="txtData" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
                                                 </div>
                                             </div>
 
@@ -222,7 +240,7 @@
                                                     <div class="input-group-addon">
                                                         <i class="fa fa-clock-o"></i>
                                                     </div>
-                                                    <input name="ctl00$ContentPlaceHolder1$txtHorario" type="time" id="txtHorario" class="form-control" data-inputmask="'alias': 'hh/MM/ss'" data-mask="">
+                                                    <input name="horario" type="time" id="txtHorario" class="form-control" data-inputmask="'alias': 'hh/MM/ss'" data-mask="">
                                                 </div>
                                             </div>
 
@@ -231,37 +249,25 @@
                                                 <label>
                                                     Local:
                                                 </label>
-                                                <input name="ctl00$ContentPlaceHolder1$txtLocal" type="text" id="txtLocal" class="form-control" placeholder="Digite aqui ...">
+                                                <input name="local" type="text" id="txtLocal" class="form-control" placeholder="Digite aqui ...">
                                             </div>
-                                            <div class="form-group">
-                                                <label>
-                                                    Torres:</label>
-                                                <select name="ctl00$ContentPlaceHolder1$cboTorre" id="cboTorre" class="form-control">
-                                                    <option value="1">Todas</option>
-                                                    <option value="2">A</option>
-                                                    <option value="3">B</option>
-                                                    <option value="4">C</option>
-                                                    <option value="5">D</option>
-                                                    <option value="6">E</option>
-
-                                                </select>
-                                            </div>
+                                         
                                         </div>
                                         <!-- /.box-body -->
                                     </div>
-                                    <div class="form-group">
-                                        <input name="ctl00$ContentPlaceHolder1$lblMensagem" type="text" id="lblMensagem" disabled="disabled" class="aspNetDisabled textoMensagem">
-                                    </div>
+                                    
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal" onclick="closeModal();">
                                             Fechar</button>
-                                        <input type="submit" name="ctl00$ContentPlaceHolder1$btnSalvar" value="Gravar" onclick="return validaCampos();" id="ContentPlaceHolder1_btnSalvar" class="btn btn-info pull-right">
+                                        <input type="submit"  value="Salvar" name="flag" onclick="return validaCampos();"  class="btn btn-info pull-right">
                                     </div>
                                 </div>
                                 <!-- /.modal-content -->
                             </div>
                             <!-- /.modal-dialog -->
                         </div>
+                          </form>    
+                                                   
                         <!-- /.modal -->
                         <!-- FIM CADASTRO -->
 
@@ -286,19 +292,59 @@
                                 <!-- /.box-tools -->
                             </div>
                             <!-- /.box-header -->
+                           
+                        
                             <div class="box-body" style="display: block;">
                                 <div class="box-body">
                                     <div>
                                         <table class="table table-bordered table-striped dataTable" cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_dgvAssembleia" style="border-collapse:collapse;">
-                                            <tbody><tr>
-                                                    <th scope="col">Upload ATA</th><th scope="col">Editar</th><th scope="col">Excluir</th><th scope="col">Titulo</th><th scope="col">Data</th><th scope="col">Horário</th><th scope="col">Ordem do Dia</th><th scope="col">Torre</th>
-                                                </tr><tr>
-                                                    <td colspan="9">Nenhum Registro Encontrado</td>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="col">Upload ATA</th>
+                                                    <th scope="col">Editar</th>
+                                                    <th scope="col">Excluir</th>
+                                                    <th scope="col">Titulo</th>
+                                                    <th scope="col">Data</th>
+                                                    <th scope="col">Horário</th>
+                                                    <th scope="col">Ordem do Dia</th>
+                                                    <th scope="col">Local</th>
                                                 </tr>
-                                            </tbody></table>
+                                                
+                                                      <%
+                                                            if (listaAssembleia.size() == 0) {
+                                                        %>
+                                                    <p>Sem dados de aviso</p>
+                                                    <%
+                                                    } else {
+
+                                                        for (Assembleia assembleia : listaAssembleia) {
+                                                    %>
+                                                
+                                                <form action="/Condominio/AssembleiaServ"method="POST">
+                                                <tr>
+                                                    <input type="hidden" name="idAssembleia" value="<%=assembleia.getIdAssembleia()%>"> 
+                                                    <td>Nenhum Registro</td>
+                                                    <td align="center" style="width:5%;"><input type="submit"  class="btn btn-info btn-sm pull-right" value="Editar" name="flag"  onclick="checkDelete(); return false;"></td>
+                                                    <td align="center"><input type="submit"  id="" class="btn btn-danger btn-sm pull-right" value="Excluir" name="flag"  onclick="return excluir();"></td>
+                                                    <td ><input type="text" class="form-control" name="titulo" value="<%=assembleia.getTitulo()%>"/></td>
+                                                    <td ><input type="text" class="form-control" name="dataAssembleia" value="<%=assembleia.getData()%>"/></td>
+                                                    <td ><input type="text" class="form-control" name="horario" value="<%=assembleia.getHorario()%>"/></td>
+                                                    <td ><textarea style="width:100%;" type="text" name="ordem" rows="3" name="local" ><%=assembleia.getOrdem()%></textarea></td>
+                                                    <td ><input type="text" class="form-control" name="local" value="<%=assembleia.getLocal()%>"/></td>
+                                                    
+                                                </tr>
+                                                   </form> 
+                                                     <%
+                                                    }
+                                                }
+                                            %>
+
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
+                            
                             <!-- /.box-body -->
                         </div>
                     </div>

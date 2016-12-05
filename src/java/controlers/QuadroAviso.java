@@ -101,7 +101,7 @@ public class QuadroAviso extends HttpServlet {
                 aviso.setMensagemAviso(mensagemUp);
 
                  avisoDAO = new AvisoDAO();
-                avisoDAO.Salvar(aviso);
+                 avisoDAO.Salvar(aviso);
 
                 request.getRequestDispatcher("views/viewSindico/aviso.jsp").forward(request, response);
 
@@ -111,9 +111,8 @@ public class QuadroAviso extends HttpServlet {
             case "Excluir":
                 avisoDAO = new AvisoDAO();
                 aviso = new Aviso();
-                aviso.setIdQuadroAviso(Integer.parseInt(request.getParameter("idmsg")));
-                avisoDAO.excluir(aviso);
-                //usuarioDAO
+                aviso.setIdQuadroAviso(Integer.parseInt(request.getParameter("idAssembleia")));
+                avisoDAO.excluir(aviso);              
                 request.getRequestDispatcher("views/viewSindico/aviso.jsp").forward(request, response);
                 break;
 
