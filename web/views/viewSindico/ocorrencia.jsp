@@ -1,4 +1,7 @@
+<%@page import="java.util.List"%>
 <%@page import="controlers.LogoutServ"%>
+<%@page import="models.OcorrenciaDAO"%>
+<%@page import="beans.OcorrenciaMorador"%>
 <%@page import="controlers.LoginServ"%>
 
 <!DOCTYPE html>
@@ -10,6 +13,12 @@
         <%
             String nome = null;
             nome = session.getAttribute("nome").toString();
+            
+
+              List<OcorrenciaMorador> listaOcorrencia = new OcorrenciaDAO().listarOcorrencias();
+
+                
+
         %>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">

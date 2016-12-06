@@ -18,6 +18,24 @@ public class OcorrenciaMorador {
     private String ocorrencia;
     private String statusOcorrencia;
     private int idUsuario;
+    private String chaveOcorrencia;
+    private String nomeMorador;
+
+    public String getNomeMorador() {
+        return nomeMorador;
+    }
+
+    public void setNomeMorador(String nomeMorador) {
+        this.nomeMorador = nomeMorador;
+    }
+
+    public String getChaveOcorrencia() {
+        return chaveOcorrencia;
+    }
+
+    public void setChaveOcorrencia(String chaveOcorrencia) {
+        this.chaveOcorrencia = chaveOcorrencia;
+    }
 
     public int getIdOcorrencia() {
         return idOcorrencia;

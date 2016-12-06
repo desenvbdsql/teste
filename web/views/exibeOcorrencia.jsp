@@ -1,19 +1,34 @@
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="beans.OcorrenciaMorador"%>
+<%@page import="models.OcorrenciaDAO"%>
+<%@page import="java.util.List"%>
 <%@page import="controlers.LogoutServ"%>
-<%@page import="controlers.LoginServ"%>
 
 <!DOCTYPE html>
 <html>
     <head>
         <%
             String contextPath = request.getContextPath();
-        %>
-        <%
+
             String nome = null;
             nome = session.getAttribute("nome").toString();
+            
+            List<OcorrenciaMorador> listaOcorrencia = null;
+            String idPerfil = null;
+            idPerfil = session.getAttribute("idPerfil").toString();
+            
+            
+              String idUsuario = null;
+              idUsuario = session.getAttribute("idUsuario").toString();
+              
+              
+                  listaOcorrencia = new OcorrenciaDAO().listarOcorrenciasCompleta(request.getParameter("token"));
+             
         %>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Cadastro de Usuários</title>    
+        <title>Exibir ocorrencia</title>    
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">    
         <link rel="stylesheet" href="<%=contextPath%>/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -81,14 +96,14 @@
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!-- The user image in the navbar-->
-                                    <img src="<%=contextPath%>/dist/img/avatar04.png" class="user-image" alt="User Image">
+                                    <img src="<%=contextPath%>/dist/img/smile.png" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                     <span class="hidden-xs"><%=nome%></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <img src="<%=contextPath%>/dist/img/avatar04.png" class="img-circle" alt="User Image">
+                                        <img src="<%=contextPath%>/dist/img/smile.png" class="img-circle" alt="User Image">
                                         <p>
                                             <%=nome%>
 
@@ -122,7 +137,7 @@
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="<%=contextPath%>/dist/img/avatar04.png" class="img-circle" alt="User Image">
+                            <img src="<%=contextPath%>/dist/img/smile.png" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
                             <p><%=nome%></p>
@@ -136,16 +151,14 @@
                     <ul class="sidebar-menu">
                         <li class="header">MENU</li>
                         <!-- Optionally, you can add icons to the links -->
-                        <li class="active"><a href="<%=contextPath%>/views/viewSindico/homeSindico.jsp"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
-                        <li><a href="<%=contextPath%>/views/viewSindico/administradoraSindico.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>                      
-                        <li><a href="<%=contextPath%>/views/viewSindico/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
-                        <li><a href="<%=contextPath%>/views/viewSindico/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
-                        <li><a href="<%=contextPath%>/views/viewSindico/alterarSenha.jsp"><i class="fa fa-key"></i> <span>Alterar Senha</span></a></li>
-                        <li><a href="<%=contextPath%>/views/viewSindico/cadastroUsuario.jsp"><i class="fa fa-user-plus"></i> <span>Cadastro Usuario</span></a></li>
-                        <li><a href="<%=contextPath%>/views/viewSindico/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
-                        <li><a href="<%=contextPath%>/views/viewSindico/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
-                        <li><a href="<%=contextPath%>/views/viewSindico/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li>
-                        <li><a href="<%=contextPath%>/views/viewSindico/listaUsuario.jsp"><i class="fa fa-list"></i> <span>Lista Usuários</span></a></li>
+                        <li class="active" ><a href="<%=contextPath%>/views/home.jsp"><i class="fa fa-home"></i> <span>Inícío</span></a></li>
+                        <li><a href="<%=contextPath%>/views/administradora.jsp"><i class="fa fa-files-o"></i> <span>Administradora</span></a></li>
+                        <li><a href="<%=contextPath%>/views/aloSindico.jsp"><i class="fa fa-phone"></i> <span>Alô Sindico</span></a></li>
+                        <li><a href="<%=contextPath%>/views/assembleia.jsp"><i class="fa fa-group"></i> <span>Assembléia</span></a></li>
+                        <li><a href="<%=contextPath%>/views/alterarSenha.jsp"><i class="fa fa-key"></i> <span>Alterar Senha</span></a></li>
+                        <li><a href="<%=contextPath%>/views/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
+                        <li><a href="<%=contextPath%>/views/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
+                        <li><a href="<%=contextPath%>/views/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li>
 
                     </ul><!-- /.sidebar-menu -->
                 </section>
@@ -236,72 +249,103 @@
                         <div class="box">
                             <div class="box-header">
                                 <h2>
-                                    <span class="fa fa-user-plus"></span><span class="glyphicon-class"> Cadastro Morador</span></h2>
+                                    <span class="ion ion-person-stalker"></span><span class="fa fa-bullhorn"> Time line Ocorrência </span></h2>
                             </div>
                             <div class="callout callout-info">
                                 <p>
-                                    Formulário de cadastro de novos moradores.</p>
+                                    Ocorrências.</p>
                             </div>
+
+
 
                             <!-- /.box-header -->
                             <div class="box-body">
-                                <div class="box box-info">
 
-                                    <!-- form start -->
-                                    <form class="form-horizontal" action="<%=contextPath%>/CadastroMoradorServ?flag=cadastrar" method="POST">
+                                <div class="col-md-12">
+                                    
+                                   
+                                    
+                                 
+                                    <form action="<%=contextPath%>/OcorrenciaServ" method="POST">
+                                      
+                                    <ul class="timeline">
+                                       
+                                           <%
+                                                  
+                                               DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+                                               LocalDate localDate = LocalDate.now();
+                                               if (listaOcorrencia.size() == 0) {
+                                                        %>
+                                                    <p>Sem dados de aviso</p>
+                                                    <%
+                                                    } else {
 
-                                        <div class="box-body">
 
-                                            <div class="form-group ">
-                                                <label for="torre" class="col-sm-2 control-label">Torre:</label>
-                                                <div class="col-sm-10">
-                                                    <select class="form-control" name="torre">
-                                                        <option selected="selected">A</option>
-                                                        <option>B</option>
-                                                        <option>C</option>
-                                                        <option>D</option>
-                                                        <option>E</option>
-
-                                                    </select>
+                                              for(OcorrenciaMorador ocorrencia: listaOcorrencia)
+                                                {
+                                                    
+                                                                
+                                                    %>
+                                        
+                                        
+                                        
+                                       
+                                          
+                                        
+                                          <input type="hidden"  id="ChaveOcorrencia" name="ChaveOcorrencia" value="<%=ocorrencia.getChaveOcorrencia()%>"/>
+                                          <input type="hidden"  id="tipoOcorrencia" name="tipoOcorrencia" value="<%=ocorrencia.getTipoOcorrencia()%>"/>
+                                          <input type="hidden"  id="tituloOcorrencia" name="tituloOcorrencia" value="<%=ocorrencia.getTituloOcorrencia()%>"/>
+                                          <input type="hidden"  id="dataOcorrencia" name="dataOcorrencia" value="<%=localDate%>"/>
+                                         
+                                          
+                                          <!-- timeline time label -->
+                                        <li class="time-label">
+                                            <span class="bg-red">
+                                                <%=ocorrencia.getDataOcorrencia()%>
+                                            </span>
+                                        </li>
+                                        <!-- /.timeline-label -->
+                                        <!-- timeline item -->
+                                        <li>
+                                            <i class="fa fa-envelope bg-blue"></i>
+                                            <div class="timeline-item">
+                                                <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+                                                <h3 class="timeline-header"><a href="#"><%=ocorrencia.getNomeMorador()%></a></h3>
+                                                <div class="timeline-body">
+                                                   <%=ocorrencia.getOcorrencia()%>
                                                 </div>
+                                              
                                             </div>
+                                        </li>
+                                        
+                                        <%
+                                                 }
+                                                }
+                                            %>
 
-                                            <!-- /.form-group -->
+                                        
+                                        <li>
+                                            <i class="fa fa-clock-o bg-gray"></i>
+                                        </li>
+                                    </ul>
 
-                                            <div class="form-group">
-                                                <label for="nomeMorador" class="col-sm-2 control-label">Nome:</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="nomeMorador" name="nomeMorador" placeholder="Nome">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="emailMorador" class="col-sm-2 control-label">Email:</label>
-                                                <div class="col-sm-10">
-                                                    <input type="email" class="form-control" id="emailMorador" name="emailMorador" placeholder="Email">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="senhaMorador" class="col-sm-2 control-label">Senha:</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="senhaMorador" name="senhaMorador" placeholder="Senha" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="aptMorador" class="col-sm-2 control-label">Apto:</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="aptMorador" name="aptMorador" placeholder="Apartamento">
-                                                </div>
-                                            </div>
-                                            <div class="box-footer">
-                                                <button type="submit" class="btn btn-default">Voltar</button>
-                                                <button type="submit" class="btn btn-info pull-right">Salvar</button>
-
-                                            </div>
-                                            <!-- /.box -->
-                                        </div>
-                                    </form>
-
+                                            
+                                            
+                                            
                                 </div>
+
+
+                                            
+                
+                                            <div class="row">
+                                            <div class="col-md-12">
+                                                
+                                                <input class="form-control" name="ocorrencia" type="text"/>
+                                                <input class="btn btn-success pull-right"  value="Gravar" name="flag"  type="submit"/>
+                                               
+                                            </div> 
+                                                 </form>
+                                                </div>
                                 <!-- fim conteudo-->
                                 </section>
 

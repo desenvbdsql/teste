@@ -11,9 +11,21 @@
             String contextPath = request.getContextPath();
         %>
         <%
+            List<OcorrenciaMorador> listaOcorrencia = null;
             String nome = null;
             nome = session.getAttribute("nome").toString();
-            List<OcorrenciaMorador> listaOcorrencia = new OcorrenciaDAO().listarOcorrencias();
+            String idUsuario = session.getAttribute("idUsuario").toString();
+            String idPerfil = session.getAttribute("idPerfil").toString();
+            if(idPerfil.equals("1"))
+            {
+               listaOcorrencia = new OcorrenciaDAO().listarOcorrencias();
+            }else
+            {
+           
+            listaOcorrencia = new OcorrenciaDAO().listarOcorrencias(idUsuario);
+            };
+
+
         %>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -405,6 +417,7 @@
                                             <div class="modal-body">
                                                 <div class="form-group">
                                                     <input type="hidden" name="ctl00$ContentPlaceHolder1$hfOcorrencia" id="hfOcorrencia">
+                                                    <input type="hidden"  id="ChaveOcorrencia" name="ChaveOcorrencia" value=""/>
                                                     <span id="ContentPlaceHolder1_lblCombo"> Tipo de ocorrência: </span>
 
                                                     <select name="tipoOcorrencia" id="cboOcorrencia">
@@ -550,7 +563,8 @@
                                                 %>
                                                 <form action="<%=contextPath%>/OcorrenciaServ" method="POST">
                                                     <tr>
-                                                        <td><input type="hidden" class="form-control" id="idOcorrenciaM" name="idOcorrenciaM" value="<%=oco.getIdOcorrencia()%>" /></td>
+                                                        <td><a href="<%=contextPath%>/views/exibeOcorrencia.jsp?token=<%=oco.getChaveOcorrencia()%>">Exibir</a></td>
+                                                        <input type="hidden" class="form-control" id="idOcorrenciaM" name="idOcorrenciaM" value="<%=oco.getIdOcorrencia()%>" />
                                                         <td><input type="submit" class="btn btn-info pull-right" value="Editar" name="flag" id="Button1" /></td>
                                                         <td><input type="submit" class="btn btn-danger pull-right" value="Excluir" name="flag" id="Button1" /></td>
                                                         <td><input type="text" class="form-control" id="tituloOcorrenciaM" name="tituloOcorrenciaM" placeholder="Titulo ocorrência" value="<%=oco.getTituloOcorrencia()%>" /></td>

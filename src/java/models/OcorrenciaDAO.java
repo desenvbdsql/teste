@@ -30,7 +30,7 @@ public class OcorrenciaDAO {
     }
 
     public void cadastrarOcorrencia(OcorrenciaMorador ocorrenciaMorador) {
-        String sql = "INSERT INTO tb_ocorrencia (tipoOcorrencia, dataOcorrencia, tituloOcorrencia, ocorrencia, statusOcorrencia, idUsuario) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO tb_ocorrencia (tipoOcorrencia, dataOcorrencia, tituloOcorrencia, ocorrencia, statusOcorrencia, idUsuario,chaveOcorrencia) VALUES (?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -40,7 +40,8 @@ public class OcorrenciaDAO {
             ps.setString(4, ocorrenciaMorador.getOcorrencia());
             ps.setString(5, ocorrenciaMorador.getStatusOcorrencia());
             ps.setInt(6, ocorrenciaMorador.getIdUsuario());
-
+            ps.setString(7,ocorrenciaMorador.getChaveOcorrencia());
+            
             ps.execute();
             ps.close();
             
@@ -54,8 +55,9 @@ public class OcorrenciaDAO {
     
     public List<OcorrenciaMorador> listarOcorrencias() {
         List<OcorrenciaMorador> listaOcorrencia = new ArrayList();
+          String sql =  "SELECT * FROM tb_ocorrencia WHERE  idOcorrencia IN (SELECT MIN(idOcorrencia) FROM tb_ocorrencia GROUP BY chaveOcorrencia)";
         
-        String sql = "SELECT * FROM tb_ocorrencia ORDER BY idOcorrencia";
+        //String sql = "SELECT * FROM tb_ocorrencia ORDER BY idOcorrencia";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -86,6 +88,84 @@ public class OcorrenciaDAO {
             throw new RuntimeException("Erro ao listar Ocorrencias", ex);
         }
     }
+    
+     public List<OcorrenciaMorador> listarOcorrencias(String idUsuario) {
+        List<OcorrenciaMorador> listaOcorrencia = new ArrayList();
+        
+        //String sql = "SELECT * FROM tb_ocorrencia WHERE idUsuario = '"+idUsuario+"' ORDER BY idOcorrencia";
+        
+        String sql =  "SELECT * FROM tb_ocorrencia WHERE idUsuario = '"+ idUsuario + "' AND idOcorrencia IN (SELECT MIN(idOcorrencia) FROM tb_ocorrencia WHERE idUsuario = '"+ idUsuario + "' GROUP BY chaveOcorrencia)";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                OcorrenciaMorador ocorrenciaM = new OcorrenciaMorador();
+                ocorrenciaM.setIdOcorrencia(rs.getInt("idOcorrencia"));
+                ocorrenciaM.setTipoOcorrencia(rs.getString("tipoOcorrencia"));
+                ocorrenciaM.setDataOcorrencia(rs.getString("dataOcorrencia"));
+                ocorrenciaM.setTituloOcorrencia(rs.getString("tituloOcorrencia"));
+                ocorrenciaM.setOcorrencia(rs.getString("ocorrencia"));
+                ocorrenciaM.setStatusOcorrencia(rs.getString("statusOcorrencia"));
+                ocorrenciaM.setIdUsuario(rs.getInt("idUsuario"));
+ocorrenciaM.setChaveOcorrencia(rs.getString("chaveOcorrencia"));
+                
+                
+                listaOcorrencia.add(ocorrenciaM);
+            }
+            
+            rs.close();
+            ps.close();
+            con.close();
+            
+            return listaOcorrencia;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OcorrenciaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("Erro ao listar Ocorrencias", ex);
+        }
+    }
+     
+     public List<OcorrenciaMorador> listarOcorrenciasCompleta(String chaveOcorrencia) {
+        List<OcorrenciaMorador> listaOcorrencia = new ArrayList();
+                
+        String sql = "SELECT O.idOcorrencia, O.idUsuario,O.tipoOcorrencia,O.statusOcorrencia, U.nome, O.dataOcorrencia, O.tituloOcorrencia, O.ocorrencia, O.chaveOcorrencia FROM tb_ocorrencia O INNER JOIN tb_Usuario U ON O.idUsuario = U.idUsuario WHERE O.chaveOcorrencia = '"+chaveOcorrencia+"' ORDER BY O.idOcorrencia";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                OcorrenciaMorador ocorrenciaM = new OcorrenciaMorador();
+                ocorrenciaM.setIdOcorrencia(rs.getInt("idOcorrencia"));
+                ocorrenciaM.setTipoOcorrencia(rs.getString("tipoOcorrencia"));
+                ocorrenciaM.setDataOcorrencia(rs.getString("dataOcorrencia"));
+                ocorrenciaM.setTituloOcorrencia(rs.getString("tituloOcorrencia"));
+                ocorrenciaM.setOcorrencia(rs.getString("ocorrencia"));
+                ocorrenciaM.setStatusOcorrencia(rs.getString("statusOcorrencia"));
+                ocorrenciaM.setIdUsuario(rs.getInt("idUsuario"));
+                ocorrenciaM.setNomeMorador(rs.getString("nome"));
+ocorrenciaM.setChaveOcorrencia(rs.getString("chaveOcorrencia"));
+
+listaOcorrencia.add(ocorrenciaM);
+            }
+            
+            rs.close();
+            ps.close();
+            con.close();
+            
+            return listaOcorrencia;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OcorrenciaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("Erro ao listar Ocorrencias", ex);
+        }
+    }
+     
+     
     
     public void alterarOcorrencia(OcorrenciaMorador ocorrenciaM) {
         

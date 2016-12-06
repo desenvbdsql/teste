@@ -10,6 +10,7 @@ import beans.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -56,13 +57,29 @@ public class OcorrenciaServ extends HttpServlet {
 
         switch (flag) {
             case "Gravar":
-
+                   
+                
+                if(request.getParameter("ChaveOcorrencia").isEmpty())
+                {
+                    UUID uuid = UUID.randomUUID();
+                    String randomUUIDString = uuid.toString();
+                    ocorrenciaMorador.setChaveOcorrencia(randomUUIDString);
+                }
+                else
+                {
+                    ocorrenciaMorador.setChaveOcorrencia(request.getParameter("ChaveOcorrencia"));
+                }
+                ;
+                
+                
+                
                 ocorrenciaMorador.setTipoOcorrencia(request.getParameter("tipoOcorrencia"));
                 ocorrenciaMorador.setDataOcorrencia(request.getParameter("dataOcorrencia"));
                 ocorrenciaMorador.setTituloOcorrencia(request.getParameter("tituloOcorrencia"));
                 ocorrenciaMorador.setOcorrencia(request.getParameter("ocorrencia"));
                 ocorrenciaMorador.setStatusOcorrencia("Nao lida");
                 ocorrenciaMorador.setIdUsuario(user.getIdUsuario());
+                
                 
                 ocorrenciaDAO.cadastrarOcorrencia(ocorrenciaMorador);
                 
