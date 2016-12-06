@@ -11,9 +11,9 @@
     <head>
         <%
             String contextPath = request.getContextPath();
-            
-            List<Assembleia> listaAssembleia = new AssembleiaDAO().Pesquisar(); 
-       
+
+            List<Assembleia> listaAssembleia = new AssembleiaDAO().Pesquisar();
+
             String nome = null;
             nome = session.getAttribute("nome").toString();
         %>
@@ -104,7 +104,7 @@
 
                                         </div>
                                         <div class="pull-right">
-                                            <form action="/Condominio/LogoutServ" method="POST">
+                                            <form action="/Condominio3/LogoutServ" method="POST">
                                                 <!--<a href="<%new LogoutServ();%>" class="btn btn-default btn-flat">Sair</a>-->
                                                 <input  type="submit" class="btn btn-default btn-flat" value="Sair">
                                             </form>
@@ -148,7 +148,6 @@
                         <li><a href="<%=contextPath%>/views/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
                         <li><a href="<%=contextPath%>/views/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
                         <li><a href="<%=contextPath%>/views/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li>
-                        </li>
                     </ul><!-- /.sidebar-menu -->
                 </section>
                 <!-- /.sidebar -->
@@ -273,17 +272,17 @@
                             </div>
                             <!-- CADASTRO -->
                             <div class="margin">
-                                
-                                
-                                 
+
+
+
 
                             </div>
-                            
-                             
-                          
-                            
-                             
-                            
+
+
+
+
+
+
                             <!-- /.modal -->
                             <!-- FIM CADASTRO -->
                             <div class="box box-tool box-solid">
@@ -299,38 +298,36 @@
                                     <div class="box-body">
                                         <div>
                                             <table class="table table-bordered table-striped dataTable" cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_dgvAssembleia" style="border-collapse:collapse;">
-                                                <tbody
-                                                    <tr>
-                                                        <th scope="col">Detalhes</th>
-                                                        <th scope="col">Download ATA</th>
-                                                        <th scope="col">Titulo</th>
-                                                        <th scope="col">Data</th>
-                                                        <th scope="col">Horário</th>
-                                                    </tr>
-                                                         <%
-                                        
-                                        
-                                        if (listaAssembleia.size() == 0) {
-                                    %>
-                                    <p>Sem dados de aviso</p>
-                                    <%
-                                    } else {
+                                                <tr>
+                                                    <th scope="col">Detalhes</th>
+                                                    <th scope="col">Download ATA</th>
+                                                    <th scope="col">Titulo</th>
+                                                    <th scope="col">Data</th>
+                                                    <th scope="col">Horário</th>
+                                                </tr>
+                                                <%
 
-                                        for (Assembleia assembleia : listaAssembleia) {
-                                    %>
-                                                    <tr>
-                                                        <td><a href="<%=contextPath%>/views/exibirAssembleia.jsp?token=<%=assembleia.getIdAssembleia()%>">Exibir</a></td>
-                                                         <td></td>
-                                                        
-                                                        <td><%=assembleia.getTitulo()%></td>
-                                                        <td><%=assembleia.getData()%></td>
-                                                        <td><%=assembleia.getHorario()%></td>
-                                                        
-                                                    </tr>
-                                                     <%
-                                            }
-                                        }
-                                    %>
+                                                    if (listaAssembleia.size() == 0) {
+                                                %>
+                                                <p>Sem dados de aviso</p>
+                                                <%
+                                                } else {
+
+                                                    for (Assembleia assembleia : listaAssembleia) {
+                                                %>
+                                                <tr>
+                                                    <td><a href="<%=contextPath%>/views/exibirAssembleia.jsp?token=<%=assembleia.getIdAssembleia()%>">Exibir</a></td>
+                                                    <td></td>
+
+                                                    <td><%=assembleia.getTitulo()%></td>
+                                                    <td><%=assembleia.getData()%></td>
+                                                    <td><%=assembleia.getHorario()%></td>
+
+                                                </tr>
+                                                <%
+                                                        }
+                                                    }
+                                                %>
                                                 </tbody>
                                             </table>
                                         </div>

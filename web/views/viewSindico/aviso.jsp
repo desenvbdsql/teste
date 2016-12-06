@@ -105,7 +105,7 @@
 
                                         </div>
                                         <div class="pull-right">
-                                            <form action="/Condominio/LogoutServ" method="POST">
+                                            <form action="/Condominio3/LogoutServ" method="POST">
                                                 <!--<a href="" class="btn btn-default btn-flat">Sair</a>-->
                                                 <input  type="submit" class="btn btn-default btn-flat" value="Sair">
                                             </form>
@@ -279,7 +279,7 @@
                                     </div>
                                     <!--Modal-->
 
-                                    <form action="/Condominio/QuadroAviso"method="POST">
+                                    <form action="/Condominio/QuadroAviso" method="POST">
 
                                         <div class="modal fade" id="myModal">
                                             <div class="modal-dialog">
@@ -295,7 +295,7 @@
                                                         <div class="box-body">
                                                             <div class="form-group">
                                                                 <span id="ContentPlaceHolder1_Label1">Titulo</span>
-                                                                <input name="titulo" type="text"   id="" class="form-control">
+                                                                <input name="titulo" type="text" class="form-control">
                                                             </div>
                                                             <div class="form-group">
                                                                 <span id="ContentPlaceHolder1_lblData"> Data do Aviso</span>
@@ -313,13 +313,13 @@
                                                                     <div class="input-group-addon">
                                                                         <i class="fa fa-calendar"></i>
                                                                     </div>
-                                                                    <input name="dataExp" type="text" id="" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
+                                                                    <input name="dataExp" type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
                                                                 </div>
                                                                 <!-- /.input group -->
                                                             </div>
                                                             <div class="form-group">
                                                                 <span id="ContentPlaceHolder1_lblAviso">Aviso</span>
-                                                                <textarea name="mensagemAviso" rows="2" cols="20" id="" class="form-control" style="height:200px;"></textarea>
+                                                                <textarea name="mensagemAviso" rows="2" cols="20" class="form-control" style="height:200px;"></textarea>
                                                             </div>
                                                         </div>
                                                         <!-- /.box-body -->

@@ -100,7 +100,7 @@
                                             <a href="<%=contextPath%>/views/viewSindico/perfil.jsp" class="btn btn-default btn-flat">Perfil</a>
                                         </div>
                                         <div class="pull-right">
-                                            <form action="/Condominio/LogoutServ" method="POST">
+                                            <form action="/Condominio3/LogoutServ" method="POST">
                                                 <!--<a href="<%new LogoutServ();%>" class="btn btn-default btn-flat">Sair</a>-->
                                                 <input  type="submit" class="btn btn-default btn-flat" value="Sair">
                                             </form>
@@ -255,7 +255,7 @@
                                             <div class="form-group ">
                                                 <label for="torre" class="col-sm-2 control-label">Torre:</label>
                                                 <div class="col-sm-10">
-                                                    <select class="form-control" name="torre" >
+                                                    <select class="form-control" name="torre">
                                                         <option selected="selected">A</option>
                                                         <option>B</option>
                                                         <option>C</option>
@@ -283,7 +283,7 @@
                                             <div class="form-group">
                                                 <label for="senhaMorador" class="col-sm-2 control-label">Senha:</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="senhaMorador" name="senhaMorador" placeholder="Senha">
+                                                    <input type="text" class="form-control" id="senhaMorador" name="senhaMorador" placeholder="Senha" required>
                                                 </div>
                                             </div>
                                             <div class="form-group">

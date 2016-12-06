@@ -1,4 +1,3 @@
-
 package models;
 
 import beans.Usuario;
@@ -20,11 +19,11 @@ public class UsuarioDao {
         // retorna a conexao no momento da chamada da classe
         this.con = Conexao.getInstance().getConnection();
     }
-    
+
     public List<Usuario> pesquisaLogin(String name, String pwd) {
         List<Usuario> ListaUsuario = new ArrayList<>();
         String sql = "SELECT * FROM tb_Usuario WHERE nome = '" + name + "' AND senha = '" + pwd + "'";
-        
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
 
@@ -40,10 +39,10 @@ public class UsuarioDao {
                 ListaUsuario.add(usuario);
                 System.out.println(usuario.getNome());
             }
-            
+
             rs.close();
             ps.close();
-            
+
             return ListaUsuario;
 
         } catch (SQLException ex) {
@@ -51,30 +50,32 @@ public class UsuarioDao {
             throw new RuntimeException("Erro ao pesquisar usuário", ex);
         }
     }
-    
+
     public List<Usuario> listar() {
         List<Usuario> listaUsuario = new ArrayList();
         String sql = "SELECT * FROM tb_Usuario ORDER BY idUsuario";
-        
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
 
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                Usuario usuario = new Usuario();
-                usuario.setIdUsuario(rs.getInt("idUsuario"));
-                usuario.setIdTorre(rs.getInt("idTorre"));
-                usuario.setNome(rs.getString("nome"));
-                usuario.setEmail(rs.getString("email"));
-                usuario.setApto(rs.getString("apto"));
+                if (rs.getInt("idPerfil") == 2) {
+                    Usuario usuario = new Usuario();
+                    usuario.setIdUsuario(rs.getInt("idUsuario"));
+                    usuario.setIdTorre(rs.getInt("idTorre"));
+                    usuario.setNome(rs.getString("nome"));
+                    usuario.setEmail(rs.getString("email"));
+                    usuario.setApto(rs.getString("apto"));
 
-                listaUsuario.add(usuario);
+                    listaUsuario.add(usuario);
+                }
             }
-            
+
             rs.close();
             ps.close();
-            
+
             return listaUsuario;
 
         } catch (SQLException ex) {
@@ -82,13 +83,13 @@ public class UsuarioDao {
             throw new RuntimeException("Erro ao pesquisar usuário", ex);
         }
     }
-    
+
     public void excluir(Usuario usuario) {
         try {
             String sql = "DELETE FROM tb_usuario WHERE idUsuario=?";
             // seta os valores
             try (PreparedStatement ps = con.prepareStatement(sql)) {
-                
+
                 ps.setInt(1, usuario.getIdUsuario());
 
                 ps.executeUpdate();
@@ -101,14 +102,14 @@ public class UsuarioDao {
             throw new RuntimeException("Erro ao excluir Usuario", ex);
         }
     }
-    
+
     @SuppressWarnings("empty-statement")
     public void inserir(Usuario usuario) {
         try {
             String sql = "insert INTO tb_usuario (idPerfil, idTorre, nome, email, senha, apto) VALUES (?,?,?,?,?,?)";
             // seta os valores
             try (PreparedStatement ps = con.prepareStatement(sql)) {
-                
+
                 ps.setInt(1, usuario.getIdPerfil());
                 ps.setInt(2, usuario.getIdTorre());
                 ps.setString(3, usuario.getNome());
@@ -126,9 +127,9 @@ public class UsuarioDao {
             throw new RuntimeException("Erro ao inserir Usuario", ex);
         }
     }
-    
+
     public void alterar(Usuario usuario) {
-        
+
         String sql = "UPDATE tb_Usuario SET nome=?, email=?, apto=? WHERE idUsuario=?";
 
         try {
@@ -137,7 +138,7 @@ public class UsuarioDao {
                 ps.setString(2, usuario.getEmail());
                 ps.setString(3, usuario.getApto());
                 ps.setInt(4, usuario.getIdUsuario());
-                
+
                 ps.executeUpdate();
             }
 
@@ -174,32 +175,32 @@ public class UsuarioDao {
         }
     }
 
-    public List<Usuario> recuperaSenha(Usuario usu) {
-        List<Usuario> listaUsuario = new ArrayList<>();
-        String sql = "SELECT * FROM tb_usuario WHERE apto = ?";
+    public Usuario pesquisarUsuario(String nome, String email) {
+
+        Usuario usuario = new Usuario();
+        String sql = "SELECT * FROM tb_Usuario WHERE nome = '" + nome + "' and email = '" + email + "'";
 
         try {
+            PreparedStatement ps = con.prepareStatement(sql);;
 
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, usu.getApto());
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                usu = new Usuario();
-                usu.setApto(rs.getString("apto"));
-
-                listaUsuario.add(usu);
+                usuario.setIdUsuario(rs.getInt("idUsuario"));
+                usuario.setNome(rs.getString("nome"));
+                usuario.setEmail(rs.getString("email"));
             }
-            return listaUsuario;
+
+            return usuario;
 
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
-            throw new RuntimeException("Falha ao listar os Usuários", ex);
+            throw new RuntimeException("Falha ao pesquisar perfil do Sindco", ex);
         }
     }
 
     public void editarSenha(Usuario user) {
-                
+
         String sql = "UPDATE tb_usuario SET senha=? WHERE apto=?";
         try {
             try (PreparedStatement ps = con.prepareStatement(sql)) {
@@ -214,6 +215,20 @@ public class UsuarioDao {
                     .getName()).log(Level.SEVERE, null, ex);
             throw new RuntimeException(
                     "Erro ao atualizar aluno");
+        }
+    }
+
+    public void alterarPerfilSindico(int id, String nome, String email) {
+        String sql = "UPDATE tb_usuario SET nome='" + nome + "', email='" + email + "' WHERE idUsuario='" + id + "'";
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("Falha ao atualizar o perfil do Sindico", ex);
         }
     }
 }

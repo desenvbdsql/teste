@@ -19,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import models.TorreDAO;
 import models.UsuarioDao;
 
@@ -41,6 +42,8 @@ public class CadastroMoradorServ extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        HttpSession session = request.getSession();
 
         List<Usuario> listaUsuario = new ArrayList();
         List<Torre> listaTorre = new ArrayList();
@@ -89,6 +92,20 @@ public class CadastroMoradorServ extends HttpServlet {
                 usuarioDAO.inserir(user);
 
                 request.getRequestDispatcher("views/viewSindico/listaUsuario.jsp").forward(request, response);
+                break;
+                
+            case "Alterar Perfil":
+                
+                usuarioDAO = new UsuarioDao();
+                user = new Usuario();
+                user.setIdUsuario(Integer.parseInt(request.getParameter("idU")));
+                user.setNome(request.getParameter("nomeU"));
+                user.setEmail(request.getParameter("emailU"));
+                usuarioDAO.alterarPerfilSindico(user.getIdUsuario(), user.getNome(), user.getEmail());
+                session.setAttribute("nome", user.getNome());
+                session.setAttribute("email", user.getEmail());
+                request.getRequestDispatcher("views/viewSindico/perfil.jsp").forward(request, response);
+                
                 break;
         }
 

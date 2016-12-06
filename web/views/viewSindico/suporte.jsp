@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-                <%
+        <%
             String contextPath = request.getContextPath();
         %>
         <%
@@ -20,9 +20,9 @@
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <link rel="stylesheet" href="<%=contextPath%>/dist/css/AdminLTE.min.css">
         <link rel="stylesheet" href="<%=contextPath%>/dist/css/skins/skin-blue.min.css">
-<script src="<%=contextPath%>/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-<script src="<%=contextPath%>/bootstrap/js/bootstrap.min.js"></script>
-<script src="<%=contextPath%>/dist/js/app.min.js"></script>
+        <script src="<%=contextPath%>/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+        <script src="<%=contextPath%>/bootstrap/js/bootstrap.min.js"></script>
+        <script src="<%=contextPath%>/dist/js/app.min.js"></script>
 
     </head>
     <body class="hold-transition skin-blue layout-boxed sidebar-mini">
@@ -101,7 +101,7 @@
 
                                         </div>
                                         <div class="pull-right">
-                                            <form action="/Condominio/LogoutServ" method="POST">
+                                            <form action="/Condominio3/LogoutServ" method="POST">
                                                 <!--<a href="<%new LogoutServ();%>" class="btn btn-default btn-flat">Sair</a>-->
                                                 <input  type="submit" class="btn btn-default btn-flat" value="Sair">
                                             </form>
@@ -244,11 +244,11 @@
 
                                             <input type="submit" name="ctl00$ContentPlaceHolder1$btnEnviar" value="Enviar" onclick="return validaCampos();" id="ContentPlaceHolder1_btnEnviar" class="btn btn-success pull-right">
                                         </div>
-                                        
+
                                     </div>
-                                    
+
                                 </div>
-                                
+
                             </div>
 
                         </div>
@@ -271,14 +271,13 @@
                 <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
                     <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
                     <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-                </ul>      
-        </div>
-    </aside><!-- /.control-sidebar -->
-    <!-- Add the sidebar's background. This div must be placed
-         immediately after the control sidebar -->
-    <div class="control-sidebar-bg"></div>
-</div><!-- ./wrapper -->
+                </ul>
+            </aside><!-- /.control-sidebar -->
+            <!-- Add the sidebar's background. This div must be placed
+                 immediately after the control sidebar -->
+            <div class="control-sidebar-bg"></div>
+        </div><!-- ./wrapper -->
 
 
-</body>
+    </body>
 </html>

@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>Controlec</servlet-name>
-        <servlet-class>controlers.Controlec</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>LogoutServ</servlet-name>
         <servlet-class>controlers.LogoutServ</servlet-class>
     </servlet>
@@ -21,10 +17,6 @@
         <servlet-class>controlers.QuadroAviso</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CadastroMoradorServ</servlet-name>
-        <servlet-class>controlers.CadastroMoradorServ</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>SindicoServ</servlet-name>
         <servlet-class>controlers.SindicoServ</servlet-class>
     </servlet>
@@ -32,10 +24,18 @@
         <servlet-name>AssembleiaServ</servlet-name>
         <servlet-class>controlers.AssembleiaServ</servlet-class>
     </servlet>
-    <servlet-mapping>
+    <servlet>
         <servlet-name>Controlec</servlet-name>
-        <url-pattern>/Controlec</url-pattern>
-    </servlet-mapping>
+        <servlet-class>controlers.Controlec</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CadastroMoradorServ</servlet-name>
+        <servlet-class>controlers.CadastroMoradorServ</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OcorrenciaServ</servlet-name>
+        <servlet-class>controlers.OcorrenciaServ</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LogoutServ</servlet-name>
         <url-pattern>/LogoutServ</url-pattern>
@@ -53,16 +53,24 @@
         <url-pattern>/QuadroAviso</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CadastroMoradorServ</servlet-name>
-        <url-pattern>/CadastroMoradorServ</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>SindicoServ</servlet-name>
         <url-pattern>/SindicoServ</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AssembleiaServ</servlet-name>
         <url-pattern>/AssembleiaServ</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Controlec</servlet-name>
+        <url-pattern>/Controlec</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastroMoradorServ</servlet-name>
+        <url-pattern>/CadastroMoradorServ</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OcorrenciaServ</servlet-name>
+        <url-pattern>/OcorrenciaServ</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,5 +1,8 @@
 <%@page import="controlers.LoginServ"%>
 <%@page import="controlers.LogoutServ"%>
+<%@page import="java.util.List"%>
+<%@page import="models.OcorrenciaDAO"%>
+<%@page import="beans.OcorrenciaMorador"%>
 
 <!DOCTYPE html>
 <html>
@@ -10,6 +13,7 @@
         <%
             String nome = null;
             nome = session.getAttribute("nome").toString();
+            List<OcorrenciaMorador> listaOcorrencia = new OcorrenciaDAO().listarOcorrencias();
         %>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -96,7 +100,7 @@
 
                                         </div>
                                         <div class="pull-right">
-                                            <form action="/Condominio/LogoutServ" method="POST">
+                                            <form action="/Condominio3/LogoutServ" method="POST">
                                                 <!--<a href="<%new LogoutServ();%>" class="btn btn-default btn-flat">Sair</a>-->
                                                 <input  type="submit" class="btn btn-default btn-flat" value="Sair">
                                             </form>
@@ -392,52 +396,55 @@
                                 <div class="modal-dialog">
                                     <!-- Modal content-->
                                     <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">
-                                                ×</button>
-                                            <h4 class="modal-title">Cadastro de Ocorrência</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <input type="hidden" name="ctl00$ContentPlaceHolder1$hfOcorrencia" id="hfOcorrencia">
-                                                <span id="ContentPlaceHolder1_lblCombo"> Tipo de ocorrência: </span>
-                                                <select name="ctl00$ContentPlaceHolder1$cboOcorrencia" id="cboOcorrencia">
-                                                    <option value="1">Administração</option>
-                                                    <option value="2">Convivência</option>
-                                                    <option value="3">Limpeza</option>
-                                                    <option value="4">Manutenção</option>
-                                                    <option value="5">Segurança</option>
-                                                    <option value="6">Outros</option>
+                                        <form action="<%=contextPath%>/OcorrenciaServ" method="POST">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">
+                                                    ×</button>
+                                                <h4 class="modal-title">Cadastro de Ocorrência</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <input type="hidden" name="ctl00$ContentPlaceHolder1$hfOcorrencia" id="hfOcorrencia">
+                                                    <span id="ContentPlaceHolder1_lblCombo"> Tipo de ocorrência: </span>
 
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <span id="ContentPlaceHolder1_lblData"> Data da Ocorrência</span>
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-calendar"></i>
-                                                    </div>
-                                                    <input name="ctl00$ContentPlaceHolder1$txtData" type="text" id="txtData" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
+                                                    <select name="tipoOcorrencia" id="cboOcorrencia">
+                                                        <option value="Administracao">Administração</option><!-- 1 -->
+                                                        <option value="Convivencia">Convivência</option><!-- 2 -->
+                                                        <option value="Limpeza">Limpeza</option><!-- 3 -->
+                                                        <option value="Manutencao">Manutenção</option><!-- 4 -->
+                                                        <option value="Seguranca">Segurança</option><!-- 5 -->
+                                                        <option value="Outros">Outros</option><!-- 6 -->
+                                                    </select>
                                                 </div>
-                                                <!-- /.input group -->
+
+                                                <div class="form-group">
+                                                    <span id="ContentPlaceHolder1_lblData"> Data da Ocorrência</span>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <input name="dataOcorrencia" type="text" id="txtData" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                </div>
+                                                <div class="form-group">
+                                                    <span id="ContentPlaceHolder1_Label1"> Título</span>
+                                                    <input name="tituloOcorrencia" type="text" id="txtTitulo" class="form-control" placeholder="Digite o titulo ocorrência ...">
+                                                </div>
+                                                <div class="form-group">
+                                                    <span id="ContentPlaceHolder1_Label2"> Ocorrência</span>
+                                                    <textarea name="ocorrencia" rows="5" cols="20" id="ContentPlaceHolder1_txtOcorrencia" class="form-control" placeholder="Digite a ocorrência ..."></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input name="ctl00$ContentPlaceHolder1$lblMensagem" type="text" id="lblMensagem" disabled="disabled" class="aspNetDisabled textoMensagem">
+                                                </div>
                                             </div>
-                                            <div class="form-group">
-                                                <span id="ContentPlaceHolder1_Label1"> Título</span>
-                                                <input name="ctl00$ContentPlaceHolder1$txtTitulo" type="text" id="txtTitulo" class="form-control" placeholder="Digite o titulo ocorrência ...">
+                                            <div class="box-footer">
+                                                <button type="button" class="btn btn-default" onclick="closeModal();">
+                                                    Fechar</button>
+                                                <input type="submit" name="flag" value="Gravar" onclick="return validaCadastro();" id="ContentPlaceHolder1_btnSalvar" class="btn btn-info pull-right">
                                             </div>
-                                            <div class="form-group">
-                                                <span id="ContentPlaceHolder1_Label2"> Ocorrência</span>
-                                                <textarea name="ctl00$ContentPlaceHolder1$txtOcorrencia" rows="5" cols="20" id="ContentPlaceHolder1_txtOcorrencia" class="form-control" placeholder="Digite a ocorrência ..."></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <input name="ctl00$ContentPlaceHolder1$lblMensagem" type="text" id="lblMensagem" disabled="disabled" class="aspNetDisabled textoMensagem">
-                                            </div>
-                                        </div>
-                                        <div class="box-footer">
-                                            <button type="button" class="btn btn-default" onclick="closeModal();">
-                                                Fechar</button>
-                                            <input type="submit" name="ctl00$ContentPlaceHolder1$btnSalvar" value="Gravar" onclick="return validaCadastro();" id="ContentPlaceHolder1_btnSalvar" class="btn btn-info pull-right">
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -522,12 +529,53 @@
                                         <input type="hidden" name="ctl00$ContentPlaceHolder1$hfToken" id="hfToken" value="1673">
                                         <div>
                                             <table class="table table-bordered table-striped dataTable" cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_dgvOcorrencia" style="border-collapse:collapse;">
-                                                <tbody><tr>
-                                                        <th scope="col">Visualizar</th><th scope="col">Editar</th><th scope="col">Excluir</th><th scope="col">Ocorrência</th><th scope="col">Tipo</th><th scope="col">Data </th><th scope="col">Situação</th>
-                                                    </tr><tr>
-                                                        <td colspan="8">Nenhum Registro Encontrado</td>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="col">Visualizar</th>
+                                                        <th scope="col">Editar</th>
+                                                        <th scope="col">Excluir</th>
+                                                        <th scope="col">Ocorrência</th>
+                                                        <th scope="col">Tipo</th>
+                                                        <th scope="col">Data </th>
+                                                        <th scope="col">Situação</th>
                                                     </tr>
-                                                </tbody></table>
+                                                    <%
+                                                        if (listaOcorrencia.size() == 0) {
+                                                    %>
+                                                <p>Nenhum Registro Encontrado</p>
+                                                <%
+                                                } else {
+
+                                                    for (OcorrenciaMorador oco : listaOcorrencia) {
+                                                %>
+                                                <form action="<%=contextPath%>/OcorrenciaServ" method="POST">
+                                                    <tr>
+                                                        <td><input type="hidden" class="form-control" id="idOcorrenciaM" name="idOcorrenciaM" value="<%=oco.getIdOcorrencia()%>" /></td>
+                                                        <td><input type="submit" class="btn btn-info pull-right" value="Editar" name="flag" id="Button1" /></td>
+                                                        <td><input type="submit" class="btn btn-danger pull-right" value="Excluir" name="flag" id="Button1" /></td>
+                                                        <td><input type="text" class="form-control" id="tituloOcorrenciaM" name="tituloOcorrenciaM" placeholder="Titulo ocorrência" value="<%=oco.getTituloOcorrencia()%>" /></td>
+                                                        <td><input type="text" class="form-control" id="tipoOcorrenciaM" name="tipoOcorrenciaM" placeholder="Tipo ocorrência" disabled value="<%=oco.getTipoOcorrencia()%>" /></td>
+                                                            <!--<select name="tipoDaOcorrencia">
+                                                            <option selected="selectd"></%=oco.getTipoOcorrencia()%></option>
+                                                            <option value="Administracao">Administração</option>
+                                                            <!-- 1<option value="Convivencia">Convivência</option>
+                                                                <option value="Limpeza">Limpeza</option>
+                                                                <option value="Manutencao">Manutenção</option>
+                                                                <option value="Seguranca">Segurança</option> 
+                                                                <option value="Outros">Outros</option>
+                                                            </select>-->
+                                                        <!-- <td colspan="8">Nenhum Registro Encontrado</td> -->
+                                                        <!--<td><input type="text" class="form-control" id="tipoOcorrenciaM" name="tipoOcorrenciaM" placeholder="Tipo ocorrência" value="</%=oco.getTipoOcorrencia()%>" /></td>-->
+                                                        <td><input type="text" class="form-control" id="dataOcorrenciaM" name="dataOcorrenciaM" placeholder="Data ocorrência" disabled value="<%=oco.getDataOcorrencia()%>" /></td>
+                                                        <td><input type="text" class="form-control" id="situacaoOcorrenciaM" name="situacaoOcorrenciaM" disabled value="<%=oco.getStatusOcorrencia()%>" /></td>
+                                                    </tr>
+                                                </form>
+                                                <%
+                                                        }
+                                                    }
+                                                %>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -553,34 +601,33 @@
                 <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
                     <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
                     <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-                </ul>      
-        </div>
-    </aside><!-- /.control-sidebar -->
-    <!-- Add the sidebar's background. This div must be placed
-         immediately after the control sidebar -->
-    <div class="control-sidebar-bg"></div>
-</div><!-- ./wrapper -->
+                </ul>
+            </aside><!-- /.control-sidebar -->
+            <!-- Add the sidebar's background. This div must be placed
+                 immediately after the control sidebar -->
+            <div class="control-sidebar-bg"></div>
+        </div><!-- ./wrapper -->
 
 
-<!-- jQuery 2.1.4 -->
-<script src="<%=contextPath%>/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-<!-- Bootstrap 3.3.5 -->
-<script src="<%=contextPath%>/bootstrap/js/bootstrap.min.js"></script>
-<!-- Select2 -->
-<script src="<%=contextPath%>/plugins/select2/select2.full.min.js"></script>
-<!-- InputMask -->
-<script src="<%=contextPath%>/plugins/input-mask/jquery.inputmask.js"></script>
-<script src="<%=contextPath%>/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+        <!-- jQuery 2.1.4 -->
+        <script src="<%=contextPath%>/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+        <!-- Bootstrap 3.3.5 -->
+        <script src="<%=contextPath%>/bootstrap/js/bootstrap.min.js"></script>
+        <!-- Select2 -->
+        <script src="<%=contextPath%>/plugins/select2/select2.full.min.js"></script>
+        <!-- InputMask -->
+        <script src="<%=contextPath%>/plugins/input-mask/jquery.inputmask.js"></script>
+        <script src="<%=contextPath%>/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
 
-<!-- date-range-picker -->
+        <!-- date-range-picker -->
 
 
-<!-- AdminLTE App -->
-<script src="<%=contextPath%>/dist/js/app.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<%=contextPath%>/dist/js/demo.js"></script>
-<!-- Page script -->
-<script>
+        <!-- AdminLTE App -->
+        <script src="<%=contextPath%>/dist/js/app.min.js"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script src="<%=contextPath%>/dist/js/demo.js"></script>
+        <!-- Page script -->
+        <script>
                                                 $(function () {
                                                     //Initialize Select2 Elements
                                                     $(".select2").select2();
@@ -593,7 +640,7 @@
                                                     $("[data-mask]").inputmask();
 
                                                 });
-</script>
+        </script>
 
-</body>
+    </body>
 </html>

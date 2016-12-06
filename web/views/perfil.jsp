@@ -1,5 +1,7 @@
 <%@page import="controlers.LoginServ"%>
 <%@page import="controlers.LogoutServ"%>
+<%@page import="models.UsuarioDao" %>
+<%@page import="beans.Usuario" %>
 
 <!DOCTYPE html>
 <html>
@@ -8,8 +10,13 @@
             String contextPath = request.getContextPath();
         %>
         <%
-            String nome = null;
+            String nome = "N/A";
+            String email = "N/A";
             nome = session.getAttribute("nome").toString();
+            email = session.getAttribute("email").toString();
+        %>
+        <%
+            Usuario userMorador = new UsuarioDao().pesquisarUsuario(nome, email);
         %>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -97,7 +104,7 @@
                                             <a href="<%=contextPath%>/views/perfil.jsp" class="btn btn-default btn-flat">Perfil</a>
                                         </div>
                                         <div class="pull-right">
-                                            <form action="/Condominio/LogoutServ" method="POST">
+                                            <form action="/Condominio3/LogoutServ" method="POST">
                                                 <!--<a href="<%new LogoutServ();%>" class="btn btn-default btn-flat">Sair</a>-->
                                                 <input  type="submit" class="btn btn-default btn-flat" value="Sair">
                                             </form>
@@ -141,7 +148,6 @@
                         <li><a href="<%=contextPath%>/views/ocorrencia.jsp"><i class="fa fa-bullhorn"></i> <span>Ocorrência</span></a></li>
                         <li><a href="<%=contextPath%>/views/aviso.jsp"><i class="fa fa-thumb-tack"></i> <span>Quadro Aviso</span></a></li>
                         <li><a href="<%=contextPath%>/views/suporte.jsp"><i class="fa fa-wrench"></i> <span>Suporte Técnico</span></a></li>
-                        </li>
                     </ul><!-- /.sidebar-menu -->
                 </section>
                 <!-- /.sidebar -->
@@ -199,9 +205,11 @@
                                 isValidFile = false;
                             } else {
                                 $('#idWait').modal('show');
-                            };
+                            }
+                            ;
                             return isValidFile;
-                        };
+                        }
+                        ;
                     </script>
 
                     <div>
@@ -262,19 +270,20 @@
                                         <!-- /.box-body -->
                                     </div>
                                     <!-- /.box -->
-                                    <div class="box-body">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">
-                                                Nome:</label>
-                                            <input name="ctl00$ContentPlaceHolder1$txtNome" type="text" value="<%=nome%>" id="ContentPlaceHolder1_txtNome" class="form-control">
-                                            <label for="exampleInputEmail1">
-                                                Email:</label>
-                                            <input name="ctl00$ContentPlaceHolder1$txtEmail" type="text" value="rangelpaolo@hotmail.com" id="ContentPlaceHolder1_txtEmail" class="form-control">
+                                    <form action="<%=contextPath%>/CadastroMoradorServ" method="POST">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <input name="idU" type="hidden" value="<%=userMorador.getIdUsuario()%>" id="ContentPlaceHolder1_txtNome" class="form-control">
+                                                <label for="exampleInputEmail1">Nome:</label>
+                                                <input name="nomeU" type="text" value="<%=userMorador.getNome()%>" id="ContentPlaceHolder1_txtNome" class="form-control">
+                                                <label for="exampleInputEmail1">Email:</label>
+                                                <input name="emailU" type="text" value="<%=userMorador.getEmail()%>" id="ContentPlaceHolder1_txtEmail" class="form-control">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="box-footer">
-                                        <input type="submit" name="ctl00$ContentPlaceHolder1$btnAlteraPerfil" value="Alterar Perfil" onclick="return validaPerfil();" id="ContentPlaceHolder1_btnAlteraPerfil" class="btn btn-info pull-right">
-                                    </div>
+                                        <div class="box-footer">
+                                            <input type="submit" name="flag" value="Alterar Perfil" onclick="return validaPerfil();" id="ContentPlaceHolder1_btnAlteraPerfil" class="btn btn-info pull-right">
+                                        </div>
+                                    </form>
                                 </div>
                                 <!-- /.box-body -->
                             </div>
@@ -298,13 +307,12 @@
                 <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
                     <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
                     <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-                </ul>      
-        </div>
-    </aside><!-- /.control-sidebar -->
-    <!-- Add the sidebar's background. This div must be placed
-         immediately after the control sidebar -->
-    <div class="control-sidebar-bg"></div>
-</div><!-- ./wrapper -->
+                </ul>
+            </aside><!-- /.control-sidebar -->
+            <!-- Add the sidebar's background. This div must be placed
+                 immediately after the control sidebar -->
+            <div class="control-sidebar-bg"></div>
+        </div><!-- ./wrapper -->
 
-</body>
+    </body>
 </html>

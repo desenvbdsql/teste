@@ -1,6 +1,7 @@
 <%@page import="controlers.LoginServ"%>
 <%@page import="controlers.LogoutServ" %>
-<%@page import="java.util.List" %>
+<%@page import="models.UsuarioDao" %>
+<%@page import="beans.Usuario" %>
 
 <!DOCTYPE html>
 <html>
@@ -9,8 +10,13 @@
             String contextPath = request.getContextPath();
         %>
         <%
-            String nome = null;
+            String nome = "N/A";
+            String email = "N/A";
             nome = session.getAttribute("nome").toString();
+            email = session.getAttribute("email").toString();
+        %>
+        <%
+            Usuario userSindico = new UsuarioDao().pesquisarUsuario(nome, email);
         %>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -101,7 +107,7 @@
                                             <a href="<%=contextPath%>/views/viewSindico/perfil.jsp" class="btn btn-default btn-flat">Perfil</a>
                                         </div>
                                         <div class="pull-right">
-                                            <form action="/Condominio/LogoutServ" method="POST">
+                                            <form action="/Condominio3/LogoutServ" method="POST">
                                                 <!--<a href="<%new LogoutServ();%>" class="btn btn-default btn-flat">Sair</a>-->
                                                 <input  type="submit" class="btn btn-default btn-flat" value="Sair">
                                             </form>
@@ -270,17 +276,20 @@
                                         <!-- /.box-body -->
                                     </div>
                                     <!-- /.box -->
-                                    <div class="box-body">
-                                        <div class="form-group">
-                                            <label for="ContentPlaceHolder1_txtNome">Nome: </label>
-                                            <input name="ContentPlaceHolder1_txtNome" type="text" value="Sindico" id="ContentPlaceHolder1_txtNome" class="form-control"><!-- ContentPlaceHolder1_txtNome -->
-                                            <label for="ContentPlaceHolder1_txtEmail">Email: </label>
-                                            <input name="ContentPlaceHolder1_txtEmail" type="text" value="Sindico@hotmail.com" id="ContentPlaceHolder1_txtEmail" class="form-control"><!-- Sindico@hotmail.com, ContentPlaceHolder1_txtEmail -->
+                                    <form action="<%=contextPath%>/CadastroMoradorServ" method="POST">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <input name="idU" type="hidden" value="<%=userSindico.getIdUsuario()%>" id="ContentPlaceHolder1_txtNome" class="form-control">
+                                                <label for="ContentPlaceHolder1_txtNome">Nome: </label>
+                                                <input name="nomeU" type="text" value="<%=userSindico.getNome()%>" id="ContentPlaceHolder1_txtNome" class="form-control"><!-- id="ContentPlaceHolder1_txtNome", value="Sindico" -->
+                                                <label for="ContentPlaceHolder1_txtEmail">Email: </label>
+                                                <input name="emailU" type="text" value="<%=userSindico.getEmail()%>" id="ContentPlaceHolder1_txtEmail" class="form-control"><!-- id="ContentPlaceHolder1_txtEmail", value="Sindico@hotmail.com" -->
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="box-footer">
-                                        <input type="submit" name="flag" value="Alterar Perfil" onclick="return validaPerfil();" id="ContentPlaceHolder1_btnAlteraPerfil" class="btn btn-info pull-right"><!-- ctl00$ContentPlaceHolder1$btnAlteraPerfil -->
-                                    </div>
+                                        <div class="box-footer">
+                                            <input type="submit" name="flag" value="Alterar Perfil" onclick="return validaPerfil();" id="ContentPlaceHolder1_btnAlteraPerfil" class="btn btn-info pull-right"><!-- ctl00$ContentPlaceHolder1$btnAlteraPerfil -->
+                                        </div>
+                                    </form>
                                 </div>
                                 <!-- /.box-body -->
                             </div>
