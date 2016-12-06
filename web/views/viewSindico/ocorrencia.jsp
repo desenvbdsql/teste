@@ -7,15 +7,22 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%
-            String contextPath = request.getContextPath();
-        %>
-        <%
+         <%
+                  String contextPath = request.getContextPath();
+     
+            List<OcorrenciaMorador> listaOcorrencia = null;
             String nome = null;
             nome = session.getAttribute("nome").toString();
-            
-
-              List<OcorrenciaMorador> listaOcorrencia = new OcorrenciaDAO().listarOcorrencias();
+            String idUsuario = session.getAttribute("idUsuario").toString();
+            String idPerfil = session.getAttribute("idPerfil").toString();
+            if(idPerfil.equals("1"))
+            {
+               listaOcorrencia = new OcorrenciaDAO().listarOcorrencias();
+            }else
+            {
+           
+            listaOcorrencia = new OcorrenciaDAO().listarOcorrencias(idUsuario);
+            };
 
                 
 
@@ -380,24 +387,39 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">Responder</th>
-                                                <th scope="col">Finalizar</th>
                                                 <th scope="col">Excluir</th>
                                                 <th scope="col">Assunto</th>
                                                 <th scope="col">Data </th>
-                                                <th scope="col">Enviada por:</th>
-                                                <th scope="col">Situação</th>
+                                                <th scope="col">Tipo </th>
+                                                <th scope="col">Status </th>
+                                               
+                                               
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                    <%
+                                                        if (listaOcorrencia.size() == 0) {
+                                                    %>
+                                                <p>Nenhum Registro Encontrado</p>
+                                                <%
+                                                } else {
+
+                                                    for (OcorrenciaMorador oco : listaOcorrencia) {
+                                                %>
                                             <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                 <td><a href="<%=contextPath%>/views/exibeOcorrencia.jsp?token=<%=oco.getChaveOcorrencia()%>">Exibir</a></td>
+                                                <td><input type="submit" class="btn btn-danger " value="Excluir" name="flag" id="Button1" /></td>                                                <td><%=oco.getTituloOcorrencia()%></td>
+                                                <td><%=oco.getDataOcorrencia()%></td>
+                                                <td><%=oco.getTipoOcorrencia()%></td>
+                                                
+                                                <td><%=oco.getStatusOcorrencia()%></td>
+                                                
+                                                
                                             </tr>
+                                              <%
+                                                        }
+                                                    }
+                                                %>
                                         </tbody>
                                     </table>
                                 </div>

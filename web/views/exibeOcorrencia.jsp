@@ -276,7 +276,7 @@
                                                LocalDate localDate = LocalDate.now();
                                                if (listaOcorrencia.size() == 0) {
                                                         %>
-                                                    <p>Sem dados de aviso</p>
+                                                    <p>Sem dados de ocorrencia</p>
                                                     <%
                                                     } else {
 

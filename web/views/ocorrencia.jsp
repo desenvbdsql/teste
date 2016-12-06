@@ -5,12 +5,12 @@
 <%@page import="beans.OcorrenciaMorador"%>
 
 <!DOCTYPE html>
+   <!-- morador -->
 <html>
     <head>
         <%
             String contextPath = request.getContextPath();
-        %>
-        <%
+     
             List<OcorrenciaMorador> listaOcorrencia = null;
             String nome = null;
             nome = session.getAttribute("nome").toString();
