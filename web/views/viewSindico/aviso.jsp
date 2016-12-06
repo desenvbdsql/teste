@@ -105,7 +105,7 @@
 
                                         </div>
                                         <div class="pull-right">
-                                            <form action="/Condominio3/LogoutServ" method="POST">
+                                            <form action="/Condominio/LogoutServ" method="POST">
                                                 <!--<a href="" class="btn btn-default btn-flat">Sair</a>-->
                                                 <input  type="submit" class="btn btn-default btn-flat" value="Sair">
                                             </form>
